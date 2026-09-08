@@ -5,7 +5,7 @@
 
 > **Author**: Anand S. Suchak  
 > *Computer Science Researcher, GTU Alumni, Incoming PhD Candidate*  
-> **Repository Slug**: `mcp-agent-eval`
+> **Repository Slug**: `mcp-inventory-bench`
 
 ---
 
@@ -29,7 +29,7 @@ This repository provides an empirical benchmarking testbed and academic paper ev
 ## 3. Project Structure
 
 ```text
-mcp-agent-eval/
+mcp-inventory-bench/
 ├── db/                         # Relational schema and seed generators
 │   ├── schema.sql              # Enterprise inventory DDL (PostgreSQL / SQLite)
 │   └── seed_data.py            # Parametric data generator (100-10,000 SKUs, velocity distributions)
@@ -60,8 +60,8 @@ mcp-agent-eval/
 ### Quickstart Setup
 ```bash
 # Clone the repository
-git clone https://github.com/AnandSuchak/mcp-agent-eval.git
-cd mcp-agent-eval
+git clone https://github.com/AnandSuchak/mcp-inventory-bench.git
+cd mcp-inventory-bench
 
 # Create and activate virtual environment
 python -m venv .venv
