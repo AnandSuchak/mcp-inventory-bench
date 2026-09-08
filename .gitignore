@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments & Secrets
+.env
+.venv
+env/
+venv/
+*.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Databases & Local State
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.pid
+
+# LaTeX Auxiliary Files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.run.xml
+*.bcf
+
+# Operating System & IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Large Benchmark Raw Dumps
+results/raw/
