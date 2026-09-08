@@ -1,0 +1,16 @@
+\begin{abstract}
+As enterprise computing transitions toward autonomous agentic workflows, the \textit{Model Context Protocol} (MCP) has emerged as an open architectural standard designed to decouple Large Language Model (LLM) reasoning from heterogeneous underlying databases, APIs, and business systems. 
+While MCP mitigates vendor lock-in and eliminates hardcoded function-calling schemas by introducing standardized client-server JSON-RPC interfaces and dynamic resource discovery, its systems-level performance implications remain largely unquantified.
+In enterprise environments characterized by strict service-level agreements (SLAs), operational predictability, and high transaction concurrency, introducing protocol intermediaries incurs non-trivial transport serialization latencies, context token inflation, and nondeterministic failure surfaces.
+
+In this paper, we present an empirical evaluation comparing native direct function-calling against standardized Model Context Protocol architectures within a multi-turn, closed-loop autonomous enterprise inventory workflow. 
+Tasked with an end-to-end operational objective—dynamically discovering database schemas, auditing stock deficiencies across multi-regional fulfillment hubs, computing historical sales velocities, querying negotiated supplier terms, and executing binding purchase orders—we benchmark both paradigms across four empirical dimensions: 
+(1) protocol transport overhead and tail-latency percentiles ($p_{50}, p_{90}, p_{95}, p_{99}$), 
+(2) context window token economics across multi-turn reasoning cycles, 
+(3) tool-calling determinism and failure rates under schema evolution, and 
+(4) server throughput scalability under increasing concurrent agent workloads ($N \in \{1, 5, 10, 25, 50, 100\}$). 
+
+Our experimental results demonstrate that while MCP introduces a predictable protocol overhead of approximately $12$--$28\text{ ms}$ per tool round-trip and inflates initial prompt contexts by $18.4\%$ during dynamic discovery, it drastically suppresses tool hallucination and parameter mismatch errors under schema modifications by $74.2\%$ relative to monolithic static prompts. 
+Furthermore, we show that standard \texttt{stdio} process-pipe transports encounter severe throughput degradation and memory contention at concurrency thresholds $N \ge 25$, whereas streamable HTTP/Server-Sent Events (SSE) transports maintain sub-linear latency scaling and robust isolation. 
+These findings provide actionable systems-engineering trade-offs for deploying autonomous agents in mission-critical closed-loop operations.
+\end{abstract}

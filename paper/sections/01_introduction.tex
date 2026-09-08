@@ -1,0 +1,60 @@
+\section{Introduction}
+\label{sec:intro}
+
+The integration of Large Language Models (LLMs) into production enterprise software has rapidly transitioned from passive conversational interfaces toward autonomous, goal-driven agentic architectures~\cite{yao2022react,schick2024toolformer,bubeck2023sparks}. 
+In modern enterprise applications—such as continuous supply-chain replenishment, automated financial reconciliation, and autonomous infrastructure remediation—agents operate in closed feedback loops. 
+In such workflows, agents receive broad, high-level business objectives (e.g., \textit{``Audit multi-regional stock levels, identify critical replenishment requirements based on empirical sales velocity, negotiate terms, and issue purchase orders''}), interact with persistent relational databases and third-party vendor APIs, reason over multi-step state transitions, and autonomously commit writes to transactional storage without human intervention.
+
+\subsection{The Architectural Divergence: Monolithic vs. Standardized Protocols}
+
+Historically, equipping LLMs with external execution capabilities relied on proprietary, monolithic tool-calling APIs provided directly by model vendors (e.g., OpenAI Function Calling, Google Gemini Tools)~\cite{patil2023gorilla,qin2023toolllm}. 
+In these conventional baseline architectures, software engineers embed exhaustive JSON Schema definitions and database specifications directly into the system prompt or API invocation payload. 
+While effective for constrained, single-purpose scripts, this monolithic integration paradigm exhibits severe limitations when scaled across enterprise infrastructures:
+\begin{enumerate}
+    \item \textbf{Schema Rigidity and Brittle Coupling}: Any modification to internal database column definitions, endpoint signatures, or security credentials necessitates manual refactoring and redeployment of the orchestration harness and prompt templates.
+    \item \textbf{Context Window Bloat}: Exposing an entire enterprise catalog of database tables and operational tools statically degrades the effective context window, escalating API consumption costs and diluting attention mechanisms over long multi-turn interactions.
+    \item \textbf{Security and Boundary Leaks}: Monolithic tool integrations frequently execute within the same runtime process space as the agent orchestrator, impeding granular privilege separation, tenant sandboxing, and standardized auditability.
+\end{enumerate}
+
+To address these architectural bottlenecks, the \textit{Model Context Protocol} (MCP)~\cite{anthropic2024mcp} was introduced as an open standard for universal AI-data integration. 
+Analogous to how the Language Server Protocol (LSP) standardized communication between integrated development environments (IDEs) and programming language toolchains, MCP standardizes how AI agents discover, query, and invoke tools, context resources, and prompt templates across disparate backends. 
+Operating over lightweight JSON-RPC 2.0 transport layers—principally inter-process standard input/output (\texttt{stdio}) and Server-Sent Events over HTTP (\texttt{SSE})—MCP decouples the agent's reasoning core from the data environment. 
+Under MCP, an agent dynamically queries the server for accessible tools and relational schemas at runtime, retrieving only the metadata necessary to complete the current operational sub-goal.
+
+\subsection{The Empirical Problem: Quantifying the Systems Penalty}
+
+Despite the architectural elegance and modularity promised by the Model Context Protocol, introducing an abstracted protocol boundary into the agent execution loop incurs real systems costs that remain uncharacterized in the empirical literature. 
+Every tool invocation in an MCP-governed workflow traverses client-side JSON serialization, operating system process pipe or network socket transport, server-side parameter parsing, authorization verification, database execution, and return serialization. 
+In multi-turn closed-loop tasks requiring dozens of intermediate tool evaluations per decision tree, protocol delays compound rapidly.
+
+Furthermore, in high-throughput enterprise settings characterized by strict Service Level Agreements (SLAs), mean performance metrics often obscure catastrophic latency degradation at the tail ($p_{95}, p_{99}$)~\cite{dean2013tail,suchak2025auth}. 
+Simultaneously, the token economics of dynamic schema reflection—whereby agents discover schemas dynamically via successive protocol calls rather than reading a static prompt—creates complex trade-offs between initial prompt overhead and cumulative token consumption. 
+Finally, when tens or hundreds of autonomous agents concurrently access shared MCP servers to perform inventory lookups and transaction commits, the underlying transport protocol and process scheduling behavior dictate whether the system scales gracefully or suffers from thread exhaustion and severe head-of-line blocking.
+
+\subsection{Research Questions}
+To rigorously evaluate the operational trade-offs of the Model Context Protocol in production-like settings, this paper investigates four primary research questions:
+
+\begin{itemize}
+    \item \textbf{RQ$_1$ (Latency \& Protocol Overhead)}: What is the exact tail-latency overhead ($p_{50}, p_{90}, p_{95}, p_{99}$) introduced by the MCP JSON-RPC abstraction layer across transport mechanisms (\texttt{stdio} vs. \texttt{SSE}) compared to direct, native function-calling?
+    \item \textbf{RQ$_2$ (Token Economy \& Context Window Efficiency)}: How does dynamic MCP schema discovery compare to monolithic static tool schemas in terms of prompt token footprint, reasoning completion tokens, and cumulative operational cost across multi-step closed-loop trajectories?
+    \item \textbf{RQ$_3$ (Determinism \& Robustness Under Schema Evolution)}: Does dynamic schema inspection via MCP reduce LLM tool hallucinations, invalid parameter generation, and schema drift failures when relational database structures evolve dynamically?
+    \item \textbf{RQ$_4$ (Concurrency Scalability \& Saturation)}: How does the MCP server architecture behave under increasing concurrent agent workloads ($N \in \{1, 5, 10, 25, 50, 100\}$), and at what saturation thresholds does transport serialization become the primary system bottleneck?
+\end{itemize}
+
+\subsection{Contributions}
+The primary contributions of this paper are summarized as follows:
+\begin{enumerate}
+    \item \textbf{An Open-Source Empirical Testbed}: We design and implement \texttt{mcp-inventory-bench}, a fully reproducible, open-source benchmarking testbed modeling an enterprise multi-warehouse inventory replenishment workflow with parameterized SKU catalogs, dynamic sales velocities, supplier contracts, and immutable audit trails.
+    \item \textbf{End-to-End Comparative Evaluation}: We conduct extensive benchmarking comparing baseline monolithic tool-calling agents against MCP-orchestrated agents across varying SKU catalog sizes (100 to 10,000 items) and concurrent load levels ($N=1$ to $N=100$).
+    \item \textbf{Empirical Tail-Latency and Token Characterization}: We provide high-resolution latency distributions ($p_{50}$ through $p_{99}$) isolating client-server protocol serialization from underlying database execution, alongside detailed token consumption profiles.
+    \item \textbf{Robustness and Architectural Guidelines}: We quantify the deterministic advantages of dynamic discovery under relational schema changes and formulate concrete architectural recommendations for deploying scalable MCP agent architectures in enterprise production.
+\end{enumerate}
+
+\subsection{Paper Organization}
+The remainder of this paper is structured as follows: 
+Section~\ref{sec:background} surveys background concepts in autonomous agent architectures, native tool-calling mechanisms, and the Model Context Protocol specification. 
+Section~\ref{sec:testbed} details the design and implementation of the \texttt{mcp-inventory-bench} enterprise testbed, database schema, and closed-loop replenishment workflow. 
+Section~\ref{sec:methodology} describes our experimental methodology, evaluation metrics, and benchmarking harness. 
+Section~\ref{sec:results} presents the empirical results addressing $RQ_1$ through $RQ_4$. 
+Section~\ref{sec:discussion} discusses architectural implications, failure modes, and threats to validity. 
+Finally, Section~\ref{sec:conclusion} concludes the paper and outlines directions for future research.
