@@ -28,19 +28,18 @@ def run_command(command: str) -> bool:
 
 def detect_test_runner(test_file_path: str) -> str:
     """Check whether pytest or python -m unittest should be used."""
-    # Check if pytest is callable
-    check_pytest = subprocess.run("pytest --version", shell=True, capture_output=True)
-    if check_pytest.returncode == 0:
-        return f"pytest {test_file_path} -v"
-    
-    # Try python -m pytest
+    # Prioritize python -m pytest with local root pythonpath
     check_py_m = subprocess.run(f"{sys.executable} -m pytest --version", shell=True, capture_output=True)
     if check_py_m.returncode == 0:
-        return f"{sys.executable} -m pytest {test_file_path} -v"
+        return f'{sys.executable} -m pytest -o pythonpath=. "{test_file_path}" -v'
+
+    check_pytest = subprocess.run("pytest --version", shell=True, capture_output=True)
+    if check_pytest.returncode == 0:
+        return f'pytest -o pythonpath=. "{test_file_path}" -v'
 
     # Fallback to standard library unittest
     normalized_path = test_file_path.replace("\\", "/")
-    return f"{sys.executable} -m unittest {normalized_path}"
+    return f'{sys.executable} -m unittest "{normalized_path}"'
 
 def validate_and_commit(test_file_path: str, commit_message: str):
     """Run test validation gate, then stage and commit to Git if passed."""

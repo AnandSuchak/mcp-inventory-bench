@@ -1,0 +1,409 @@
+"""
+Observational Trace Runner (Dataset A Collection Engine)
+Project: mcp-inventory-bench
+Author: Anand S. Suchak
+
+Executes multi-turn schema resolution experiments where the model begins with a
+restricted (Level-1) view and receives sliced constraint deltas only upon validation errors.
+Preserves the full hidden schema as the experimental control.
+"""
+
+import sys
+import time
+import copy
+import json
+import uuid
+from pathlib import Path
+from typing import Dict, Any, List, Optional, Tuple, Callable
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from trace.models import Trace, Attempt, SchemaExposureRecord, ValidationErrorRecord
+from trace.validator import SchemaValidator
+from trace.slicer import slice_constraint, format_fragment_identifier, estimate_tokens
+from trace.writer import TraceWriter
+
+# ==============================================================================
+# Full Hidden Schema Definitions (Experimental Control)
+# Level 1: stripped of constraints (pattern, enum, minimum, etc.)
+# Full Hidden: complete Draft 2020-12 constraints
+# ==============================================================================
+
+FULL_PURCHASE_ORDER_SCHEMA = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "create_purchase_order",
+    "type": "object",
+    "properties": {
+        "supplier_id": {
+            "type": "string",
+            "pattern": "^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$",
+            "description": "Standard vendor identifier format SUP-XXXX-XXXX"
+        },
+        "warehouse_code": {
+            "type": "string",
+            "enum": ["WH-US-EAST", "WH-US-WEST", "WH-EU-CENTRAL", "WH-APAC-SOUTH", "WH-LATAM-NORTH"],
+            "description": "Authorized regional warehouse code"
+        },
+        "order_priority": {
+            "type": "string",
+            "enum": ["STANDARD", "EXPEDITED", "CRITICAL"],
+            "default": "STANDARD"
+        },
+        "total_budget_limit": {
+            "type": "number",
+            "minimum": 100.0,
+            "maximum": 500000.0,
+            "description": "Max allowable authorization ceiling"
+        },
+        "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 50,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sku": {
+                        "type": "string",
+                        "pattern": "^SKU-[0-9]{5}$",
+                        "description": "Unique SKU code format SKU-XXXXX"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "minimum": 10,
+                        "maximum": 10000,
+                        "description": "Quantity to reorder, must meet MOQ >= 10"
+                    },
+                    "unit_cost": {
+                        "type": "number",
+                        "minimum": 0.01,
+                        "description": "Contract unit price"
+                    }
+                },
+                "required": ["sku", "quantity", "unit_cost"],
+                "additionalProperties": False
+            }
+        },
+        "authorized_by": {
+            "type": "string",
+            "pattern": "^[a-z]{3,8}\\.[a-z]{3,8}@enterprise\\.mock$",
+            "description": "Corporate email signature of the authorizing agent"
+        }
+    },
+    "required": ["supplier_id", "warehouse_code", "items", "authorized_by"],
+    "additionalProperties": False
+}
+
+def create_level_1_schema(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Produce the restricted Level-1 view: contains property names and basic types,
+    but strips regex patterns, enums, min/max bounds, and nested constraints.
+    """
+    l1 = {
+        "title": full_schema.get("title", "tool"),
+        "type": "object",
+        "properties": {}
+    }
+    for prop, meta in full_schema.get("properties", {}).items():
+        base_meta = {"type": meta.get("type", "string")}
+        if "description" in meta:
+            base_meta["description"] = meta["description"]
+        if meta.get("type") == "array" and "items" in meta:
+            base_meta["items"] = {"type": "object"}
+        l1["properties"][prop] = base_meta
+
+    # Include required list as baseline structural expectation
+    if "required" in full_schema:
+        l1["required"] = full_schema["required"]
+    return l1
+
+class TaskDefinition:
+    """Definition of an evaluation task for trace collection."""
+    def __init__(
+        self,
+        task_id: str,
+        category: str,
+        user_intent: str,
+        initial_arguments: Dict[str, Any],
+        correction_generator: Optional[Callable[[Dict[str, Any], ValidationErrorRecord], Dict[str, Any]]] = None
+    ):
+        self.task_id = task_id
+        self.category = category
+        self.user_intent = user_intent
+        self.initial_arguments = initial_arguments
+        self.correction_generator = correction_generator
+
+class TraceRunner:
+    """Executes closed-loop observational trace collection experiments."""
+
+    def __init__(
+        self,
+        full_schema: Dict[str, Any] = FULL_PURCHASE_ORDER_SCHEMA,
+        tool_name: str = "create_purchase_order",
+        single_error: bool = True,
+        max_attempts: int = 4
+    ):
+        self.full_schema = full_schema
+        self.tool_name = tool_name
+        self.single_error = single_error
+        self.max_attempts = max_attempts
+        self.validator = SchemaValidator(full_schema)
+        self.writer = TraceWriter()
+
+    def run_trace(self, task: TaskDefinition) -> Trace:
+        """
+        Execute a single observational trace:
+        1. Initialize Level 1 schema and exposure ledger
+        2. Attempt 1: Validate initial model arguments
+        3. If fail: Slice minimal constraint delta, expose to model, and retry
+        4. Record all attempts, latencies, tokens, and final outcome
+        """
+        trace = Trace(
+            task_id=task.task_id,
+            category=task.category,
+            user_intent=task.user_intent,
+            tool_name=self.tool_name,
+            model="gpt-4o-mini-mock",
+            model_version="2026-Q1"
+        )
+
+        # Level 1 Schema Exposure
+        level1 = create_level_1_schema(self.full_schema)
+        l1_tokens = estimate_tokens(level1)
+        trace.schema_exposure_ledger.append(SchemaExposureRecord(
+            fragment="level_1_base_schema",
+            tokens=l1_tokens,
+            attempt=1,
+            reason="INITIAL_LEVEL_1"
+        ))
+        trace.total_schema_tokens_exposed = l1_tokens
+
+        exposed_fragments = ["level_1_base_schema"]
+        current_args = copy.deepcopy(task.initial_arguments)
+
+        for attempt_num in range(1, self.max_attempts + 1):
+            t_start = time.perf_counter()
+            is_valid, validation_errors = self.validator.validate(current_args)
+            latency_ms = round((time.perf_counter() - t_start) * 1000, 3)
+
+            attempt = Attempt(
+                attempt_number=attempt_num,
+                schema_fragments_exposed=list(exposed_fragments),
+                schema_token_count=trace.total_schema_tokens_exposed,
+                model_response=json.dumps(current_args),
+                arguments=copy.deepcopy(current_args),
+                validation_status="SUCCESS" if is_valid else "FAIL",
+                validation_errors=validation_errors,
+                latency_ms=latency_ms
+            )
+            trace.attempts.append(attempt)
+
+            if is_valid:
+                trace.final_outcome = "SUCCESS"
+                trace.tokens_to_success = trace.total_schema_tokens_exposed
+                break
+
+            # If failed, extract constraint slice
+            if attempt_num < self.max_attempts:
+                # In single_error mode, process the first validation error
+                err_to_process = validation_errors[0] if self.single_error else validation_errors[0]
+                delta_slice = slice_constraint(self.full_schema, err_to_process.path, err_to_process.keyword)
+                fragment_id = format_fragment_identifier(err_to_process.path, err_to_process.keyword)
+                delta_tokens = estimate_tokens(delta_slice)
+
+                # Record in ledger
+                trace.schema_exposure_ledger.append(SchemaExposureRecord(
+                    fragment=fragment_id,
+                    tokens=delta_tokens,
+                    attempt=attempt_num + 1,
+                    reason=f"CONSTRAINT_VIOLATION_{err_to_process.keyword.upper()}"
+                ))
+                trace.total_schema_tokens_exposed += delta_tokens
+                exposed_fragments.append(fragment_id)
+
+                # Generate corrected arguments
+                if task.correction_generator:
+                    current_args = task.correction_generator(current_args, err_to_process)
+                else:
+                    # Fallback default correction heuristic
+                    current_args = self._default_correct_argument(current_args, err_to_process)
+
+        if trace.final_outcome != "SUCCESS":
+            trace.final_outcome = "FAIL"
+
+        return trace
+
+    def _default_correct_argument(self, args: Dict[str, Any], err: ValidationErrorRecord) -> Dict[str, Any]:
+        """Heuristic correction rule for synthetic agent self-correction."""
+        corrected = copy.deepcopy(args)
+        path = err.path.strip("/")
+        kw = err.keyword
+
+        if kw == "pattern":
+            if "supplier_id" in path:
+                corrected["supplier_id"] = "SUP-TEXAS-SEMI"
+            elif "sku" in path:
+                if "items" in corrected and len(corrected["items"]) > 0:
+                    corrected["items"][0]["sku"] = "SKU-10042"
+            elif "authorized_by" in path:
+                corrected["authorized_by"] = "anand.suchak@enterprise.mock"
+        elif kw == "enum":
+            if "warehouse_code" in path:
+                corrected["warehouse_code"] = "WH-US-EAST"
+            elif "order_priority" in path:
+                corrected["order_priority"] = "STANDARD"
+        elif kw == "minimum":
+            if "quantity" in path:
+                if "items" in corrected and len(corrected["items"]) > 0:
+                    corrected["items"][0]["quantity"] = 50 # Meet MOQ
+            elif "total_budget_limit" in path:
+                corrected["total_budget_limit"] = 500.0
+        elif kw == "required":
+            if "authorized_by" in err.message:
+                corrected["authorized_by"] = "anand.suchak@enterprise.mock"
+            elif "items" in err.message:
+                corrected["items"] = [{"sku": "SKU-10042", "quantity": 50, "unit_cost": 24.50}]
+
+        return corrected
+
+# ==============================================================================
+# Curated Task Suite Generator: 100 Traces across 7 Structured Categories
+# ==============================================================================
+
+def generate_curated_100_tasks() -> List[TaskDefinition]:
+    """
+    Generates exactly 100 structured tasks across the 7 required categories:
+    1. Explicit valid inputs (15)
+    2. Missing/ambiguous IDs (15)
+    3. Invalid enum situations (15)
+    4. Regex-constrained fields (15)
+    5. Numeric constraints (15)
+    6. Nested/array fields (15)
+    7. Mixed/ambiguous cases (10)
+    """
+    tasks: List[TaskDefinition] = []
+
+    # Category 1: Explicit valid inputs (15 tasks)
+    for i in range(1, 16):
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT1-VALID-{i:03d}",
+            category="Explicit valid inputs",
+            user_intent=f"Order 50 units of SKU-100{i:02d} for East warehouse under standard terms.",
+            initial_arguments={
+                "supplier_id": "SUP-TEXAS-SEMI",
+                "warehouse_code": "WH-US-EAST",
+                "order_priority": "STANDARD",
+                "total_budget_limit": 25000.0,
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": 50, "unit_cost": 45.0}],
+                "authorized_by": "agent.ops@enterprise.mock"
+            }
+        ))
+
+    # Category 2: Missing/ambiguous IDs (15 tasks)
+    for i in range(1, 16):
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT2-MISSING-ID-{i:03d}",
+            category="Missing/ambiguous IDs",
+            user_intent=f"Reorder low stock items without specifying authorization signature.",
+            initial_arguments={
+                "supplier_id": "SUP-TEXAS-SEMI",
+                "warehouse_code": "WH-US-WEST",
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": 40, "unit_cost": 30.0}]
+                # Missing 'authorized_by'
+            }
+        ))
+
+    # Category 3: Invalid enum situations (15 tasks)
+    invalid_wh_codes = ["EAST-COAST-HUB", "WH-NEW-YORK", "LONDON-CENTER", "TOKYO-WAREHOUSE", "MIAMI-DOCK"]
+    for i in range(1, 16):
+        bad_code = invalid_wh_codes[(i - 1) % len(invalid_wh_codes)]
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT3-ENUM-{i:03d}",
+            category="Invalid enum situations",
+            user_intent=f"Replenish stock for regional depot {bad_code}.",
+            initial_arguments={
+                "supplier_id": "SUP-TEXAS-SEMI",
+                "warehouse_code": bad_code,
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": 35, "unit_cost": 15.0}],
+                "authorized_by": "agent.procure@enterprise.mock"
+            }
+        ))
+
+    # Category 4: Regex-constrained fields (15 tasks)
+    bad_vendor_ids = ["vendor-texas", "12345", "SUPPLIER_TEXAS", "TEXAS-SEMI", "sup-texas-semi"]
+    for i in range(1, 16):
+        bad_vendor = bad_vendor_ids[(i - 1) % len(bad_vendor_ids)]
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT4-REGEX-{i:03d}",
+            category="Regex-constrained fields",
+            user_intent=f"Send PO using informal vendor handle '{bad_vendor}'.",
+            initial_arguments={
+                "supplier_id": bad_vendor,
+                "warehouse_code": "WH-US-EAST",
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": 25, "unit_cost": 50.0}],
+                "authorized_by": "anand.suchak@enterprise.mock"
+            }
+        ))
+
+    # Category 5: Numeric constraints (15 tasks)
+    for i in range(1, 16):
+        # Quantity violates MOQ minimum (MOQ is 10, agent orders 2 to 5)
+        bad_qty = (i % 8) + 1
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT5-NUMERIC-{i:03d}",
+            category="Numeric constraints",
+            user_intent=f"Order small top-up sample of {bad_qty} units (below MOQ).",
+            initial_arguments={
+                "supplier_id": "SUP-TEXAS-SEMI",
+                "warehouse_code": "WH-EU-CENTRAL",
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": bad_qty, "unit_cost": 80.0}],
+                "authorized_by": "ops.lead@enterprise.mock"
+            }
+        ))
+
+    # Category 6: Nested/array fields (15 tasks)
+    for i in range(1, 16):
+        # SKU regex violation inside items array: 'ITEM-123' instead of 'SKU-XXXXX'
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT6-NESTED-{i:03d}",
+            category="Nested/array fields",
+            user_intent=f"Submit multi-line order with unformatted SKU string.",
+            initial_arguments={
+                "supplier_id": "SUP-TEXAS-SEMI",
+                "warehouse_code": "WH-APAC-SOUTH",
+                "items": [{"sku": f"ITEM-{i}", "quantity": 50, "unit_cost": 22.0}],
+                "authorized_by": "apac.lead@enterprise.mock"
+            }
+        ))
+
+    # Category 7: Mixed/ambiguous cases (10 tasks)
+    for i in range(1, 11):
+        tasks.append(TaskDefinition(
+            task_id=f"TASK-CAT7-MIXED-{i:03d}",
+            category="Mixed/ambiguous cases",
+            user_intent=f"Urgent replenishment with multiple informal parameters.",
+            initial_arguments={
+                "supplier_id": f"vendor-{i}",
+                "warehouse_code": "WH-US-EAST",
+                "items": [{"sku": f"SKU-100{i:02d}", "quantity": 4, "unit_cost": 99.0}],
+                "authorized_by": "informal-user"
+            }
+        ))
+
+    return tasks
+
+if __name__ == "__main__":
+    runner = TraceRunner(single_error=True)
+    all_tasks = generate_curated_100_tasks()
+    print(f"[*] Executing 100 Curated Observational Traces across 7 categories...")
+    
+    traces = []
+    for t in all_tasks:
+        res_trace = runner.run_trace(t)
+        traces.append(res_trace)
+
+    runner.writer.write_traces_batch(traces)
+    manifest = runner.writer.refresh_manifest()
+    print(f"\n[+] Successfully collected {manifest['total_traces']} traces into Dataset A!")
+    print(f"[+] Total attempts: {manifest['total_attempts']} | Schema tokens exposed: {manifest['total_schema_tokens_exposed']}")
+    print(f"[+] Categories: {json.dumps(manifest['categories'], indent=2)}")
+    print(f"[+] Outcomes: {json.dumps(manifest['outcomes'], indent=2)}")

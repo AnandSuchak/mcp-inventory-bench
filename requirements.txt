@@ -15,4 +15,6 @@ SQLAlchemy>=2.0.0
 
 # Testing & Validation Framework
 pytest>=8.0.0
+jsonschema>=4.20.0
+
 
