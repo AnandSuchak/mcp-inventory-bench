@@ -79,6 +79,17 @@ class MetricsCollector:
         throughput = round(total_runs / max(0.001, wall_time_sec), 2)
         error_rate = round((len(error_runs) / max(1, total_runs)) * 100, 2)
 
+        # Compression and TTFT telemetry
+        tokens_saved = [r["tokens"].get("tokens_saved_vs_vanilla", 0) for r in successful_runs]
+        comp_ratios = [r["tokens"].get("compression_ratio_pct", 0.0) for r in successful_runs]
+        avg_prompt = round(sum(prompt_tokens) / max(1, len(prompt_tokens)), 1)
+        avg_disc = round(sum(discovery_tokens) / max(1, len(discovery_tokens)), 1)
+        avg_comp = round(sum(completion_tokens) / max(1, len(completion_tokens)), 1)
+        avg_total = round((sum(prompt_tokens) + sum(discovery_tokens) + sum(completion_tokens)) / max(1, len(prompt_tokens)), 1)
+
+        # Estimated TTFT: Base model prefill latency (~15ms per 1k input tokens on typical serving)
+        estimated_ttft_ms = round((avg_prompt + avg_disc) * 0.015, 2)
+
         return {
             "total_runs": total_runs,
             "successful_runs": len(successful_runs),
@@ -88,12 +99,13 @@ class MetricsCollector:
             "throughput_ops_per_sec": throughput,
             "e2e_latency_stats": MetricsCollector.calculate_percentiles(total_latencies),
             "token_stats": {
-                "avg_prompt_tokens": round(sum(prompt_tokens) / max(1, len(prompt_tokens)), 1),
-                "avg_discovery_tokens": round(sum(discovery_tokens) / max(1, len(discovery_tokens)), 1),
-                "avg_completion_tokens": round(sum(completion_tokens) / max(1, len(completion_tokens)), 1),
-                "avg_total_tokens": round(
-                    (sum(prompt_tokens) + sum(discovery_tokens) + sum(completion_tokens)) / max(1, len(prompt_tokens)), 1
-                ),
+                "avg_prompt_tokens": avg_prompt,
+                "avg_discovery_tokens": avg_disc,
+                "avg_completion_tokens": avg_comp,
+                "avg_total_tokens": avg_total,
+                "avg_tokens_saved": round(sum(tokens_saved) / max(1, len(tokens_saved)), 1),
+                "avg_compression_ratio_pct": round(sum(comp_ratios) / max(1, len(comp_ratios)), 2),
+                "estimated_ttft_ms": estimated_ttft_ms,
             },
             "per_tool_latency_stats": per_tool_stats
         }

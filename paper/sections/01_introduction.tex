@@ -21,39 +21,52 @@ Analogous to how the Language Server Protocol (LSP) standardized communication b
 Operating over lightweight JSON-RPC 2.0 transport layers—principally inter-process standard input/output (\texttt{stdio}) and Server-Sent Events over HTTP (\texttt{SSE})—MCP decouples the agent's reasoning core from the data environment. 
 Under MCP, an agent dynamically queries the server for accessible tools and relational schemas at runtime, retrieving only the metadata necessary to complete the current operational sub-goal.
 
-\subsection{The Empirical Problem: Quantifying the Systems Penalty}
+\subsection{The Empirical Problem: The Discovery Token Tax and Tail-Latency Penalties}
 
 Despite the architectural elegance and modularity promised by the Model Context Protocol, introducing an abstracted protocol boundary into the agent execution loop incurs real systems costs that remain uncharacterized in the empirical literature. 
 Every tool invocation in an MCP-governed workflow traverses client-side JSON serialization, operating system process pipe or network socket transport, server-side parameter parsing, authorization verification, database execution, and return serialization. 
-In multi-turn closed-loop tasks requiring dozens of intermediate tool evaluations per decision tree, protocol delays compound rapidly.
+
+Crucially, dynamic tool discovery via the standard \texttt{tools/list} endpoint introduces a significant \textit{``discovery token tax''}. 
+Because raw JSON Schema specifications mandate verbose boilerplate keys (\texttt{\$schema}, \texttt{type: "object"}, \texttt{properties}, \texttt{description}, and nested structural wrappers), transmitting these verbose schemas into the LLM context inflates initial prompt token counts by $18$--$30\%$. 
+This token inflation directly translates to increased financial API billing and degrades Time-to-First-Token (TTFT) latency during initial reasoning turns.
 
 Furthermore, in high-throughput enterprise settings characterized by strict Service Level Agreements (SLAs), mean performance metrics often obscure catastrophic latency degradation at the tail ($p_{95}, p_{99}$)~\cite{dean2013tail,suchak2025auth}. 
-Simultaneously, the token economics of dynamic schema reflection—whereby agents discover schemas dynamically via successive protocol calls rather than reading a static prompt—creates complex trade-offs between initial prompt overhead and cumulative token consumption. 
-Finally, when tens or hundreds of autonomous agents concurrently access shared MCP servers to perform inventory lookups and transaction commits, the underlying transport protocol and process scheduling behavior dictate whether the system scales gracefully or suffers from thread exhaustion and severe head-of-line blocking.
+When tens or hundreds of autonomous agents concurrently access shared MCP servers, the underlying transport protocol and process scheduling behavior dictate whether the system scales gracefully or suffers from thread exhaustion and severe head-of-line blocking.
+
+\subsection{The Proposed Optimization: The 3-Way Architectural Paradigm}
+
+To resolve the tension between dynamic decoupling and token efficiency, this paper evaluates closed-loop agent execution across three distinct architectural paradigms:
+\begin{enumerate}
+    \item \textbf{Architecture 1 (Direct Agent - Baseline)}: A monolithic design where full relational database schemas and function signatures are statically embedded in the agent's system prompt and executed via direct in-process database drivers.
+    \item \textbf{Architecture 2 (Vanilla MCP Agent)}: A decoupled design employing standard dynamic \texttt{tools/list} discovery over JSON-RPC 2.0, accepting the standard schema token tax.
+    \item \textbf{Architecture 3 (Compressed MCP Agent - Optimized)}: An optimized design that interposes an intermediary prompt/schema compression layer~\cite{jiang2023llmlingua,pan2024llmlingua2} between the MCP discovery endpoint and the LLM context. This layer applies semantic schema pruning, transforming verbose JSON Schema specifications into dense, declarative Interface Definition Language (IDL) signatures while preserving $100\%$ of parameter names, required constraints, and data types.
+\end{enumerate}
 
 \subsection{Research Questions}
-To rigorously evaluate the operational trade-offs of the Model Context Protocol in production-like settings, this paper investigates four primary research questions:
+To rigorously evaluate the operational trade-offs of these architectures, we investigate four primary research questions:
 
 \begin{itemize}
-    \item \textbf{RQ$_1$ (Latency \& Protocol Overhead)}: What is the exact tail-latency overhead ($p_{50}, p_{90}, p_{95}, p_{99}$) introduced by the MCP JSON-RPC abstraction layer across transport mechanisms (\texttt{stdio} vs. \texttt{SSE}) compared to direct, native function-calling?
-    \item \textbf{RQ$_2$ (Token Economy \& Context Window Efficiency)}: How does dynamic MCP schema discovery compare to monolithic static tool schemas in terms of prompt token footprint, reasoning completion tokens, and cumulative operational cost across multi-step closed-loop trajectories?
-    \item \textbf{RQ$_3$ (Determinism \& Robustness Under Schema Evolution)}: Does dynamic schema inspection via MCP reduce LLM tool hallucinations, invalid parameter generation, and schema drift failures when relational database structures evolve dynamically?
-    \item \textbf{RQ$_4$ (Concurrency Scalability \& Saturation)}: How does the MCP server architecture behave under increasing concurrent agent workloads ($N \in \{1, 5, 10, 25, 50, 100\}$), and at what saturation thresholds does transport serialization become the primary system bottleneck?
+    \item \textbf{RQ$_1$ (Tail Latency \& Protocol Overhead)}: What is the exact tail-latency overhead ($p_{50}, p_{90}, p_{95}, p_{99}$) introduced by the MCP JSON-RPC abstraction layer across transport mechanisms compared to direct in-process calling, and does prompt compression introduce noticeable computational pre-processing delay?
+    \item \textbf{RQ$_2$ (Token Economy \& TTFT Efficiency)}: How does dynamic MCP schema discovery compare against static baseline schemas, and can an intermediary schema compression layer neutralize the discovery token tax and reduce Time-to-First-Token (TTFT)?
+    \item \textbf{RQ$_3$ (Determinism \& Robustness Under Schema Evolution)}: Does dynamic schema inspection via MCP—with and without prompt compression—reduce tool hallucinations, invalid parameter generation, and schema drift failures when relational database structures evolve?
+    \item \textbf{RQ$_4$ (Concurrency Scalability \& Saturation)}: How do the three architectures scale under concurrent multi-agent workloads ($N \in \{1, 5, 10, 20\}$), and at what saturation thresholds does transport serialization become the primary system bottleneck?
 \end{itemize}
 
 \subsection{Contributions}
 The primary contributions of this paper are summarized as follows:
 \begin{enumerate}
     \item \textbf{An Open-Source Empirical Testbed}: We design and implement \texttt{mcp-inventory-bench}, a fully reproducible, open-source benchmarking testbed modeling an enterprise multi-warehouse inventory replenishment workflow with parameterized SKU catalogs, dynamic sales velocities, supplier contracts, and immutable audit trails.
-    \item \textbf{End-to-End Comparative Evaluation}: We conduct extensive benchmarking comparing baseline monolithic tool-calling agents against MCP-orchestrated agents across varying SKU catalog sizes (100 to 10,000 items) and concurrent load levels ($N=1$ to $N=100$).
+    \item \textbf{A 3-Way Comparative Evaluation}: We execute comprehensive empirical benchmarking comparing Direct Baseline agents, Vanilla MCP agents, and Compressed MCP agents under increasing concurrency ($N=1$ to $N=20$).
+    \item \textbf{A High-Efficiency Schema Compression Layer}: We engineer and open-source a sub-millisecond semantic schema compression layer that achieves a $74.9\%$ reduction in MCP discovery tokens, reducing overall agent context footprint below the direct baseline without sacrificing tool accuracy.
     \item \textbf{Empirical Tail-Latency and Token Characterization}: We provide high-resolution latency distributions ($p_{50}$ through $p_{99}$) isolating client-server protocol serialization from underlying database execution, alongside detailed token consumption profiles.
-    \item \textbf{Robustness and Architectural Guidelines}: We quantify the deterministic advantages of dynamic discovery under relational schema changes and formulate concrete architectural recommendations for deploying scalable MCP agent architectures in enterprise production.
+    \item \textbf{Architectural Production Guidelines}: We formulate concrete systems-engineering guidelines for deploying cost-effective, high-throughput MCP agents in mission-critical closed-loop operations.
 \end{enumerate}
 
 \subsection{Paper Organization}
 The remainder of this paper is structured as follows: 
 Section~\ref{sec:background} surveys background concepts in autonomous agent architectures, native tool-calling mechanisms, and the Model Context Protocol specification. 
 Section~\ref{sec:testbed} details the design and implementation of the \texttt{mcp-inventory-bench} enterprise testbed, database schema, and closed-loop replenishment workflow. 
+Section~\ref{sec:compression} details the architecture and formal algorithm of the intermediary prompt/schema compression layer.
 Section~\ref{sec:methodology} describes our experimental methodology, evaluation metrics, and benchmarking harness. 
 Section~\ref{sec:results} presents the empirical results addressing $RQ_1$ through $RQ_4$. 
 Section~\ref{sec:discussion} discusses architectural implications, failure modes, and threats to validity. 
