@@ -1,0 +1,52 @@
+{
+  "full": {
+    "total_tasks": 8,
+    "success_rate_pct": 87.5,
+    "mean_tts": 3142.57,
+    "mean_schema_tokens_exposed": 608.5,
+    "mean_prediction_overexposure": 347.5,
+    "mean_oracle_gap": 2230.62,
+    "total_experiment_tokens_consumed": 26810,
+    "first_pass_pct": 12.5
+  },
+  "reactive": {
+    "total_tasks": 8,
+    "success_rate_pct": 0.0,
+    "mean_tts": 0.0,
+    "mean_schema_tokens_exposed": 224.5,
+    "mean_prediction_overexposure": 0.0,
+    "mean_oracle_gap": 1501.75,
+    "total_experiment_tokens_consumed": 17016,
+    "first_pass_pct": 0.0
+  },
+  "lasr_k2": {
+    "total_tasks": 8,
+    "success_rate_pct": 0.0,
+    "mean_tts": 0.0,
+    "mean_schema_tokens_exposed": 321.88,
+    "mean_prediction_overexposure": 60.88,
+    "mean_oracle_gap": 2048.38,
+    "total_experiment_tokens_consumed": 22503,
+    "first_pass_pct": 0.0
+  },
+  "lasr_k3": {
+    "total_tasks": 8,
+    "success_rate_pct": 12.5,
+    "mean_tts": 3235.0,
+    "mean_schema_tokens_exposed": 335.75,
+    "mean_prediction_overexposure": 74.75,
+    "mean_oracle_gap": 2154.12,
+    "total_experiment_tokens_consumed": 23625,
+    "first_pass_pct": 0.0
+  },
+  "oracle": {
+    "total_tasks": 8,
+    "success_rate_pct": 0.0,
+    "mean_tts": 0.0,
+    "mean_schema_tokens_exposed": 323.62,
+    "mean_prediction_overexposure": 62.62,
+    "mean_oracle_gap": 2044.0,
+    "total_experiment_tokens_consumed": 22517,
+    "first_pass_pct": 0.0
+  }
+}

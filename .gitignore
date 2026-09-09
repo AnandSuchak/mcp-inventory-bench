@@ -46,3 +46,5 @@ Thumbs.db
 
 # Large Benchmark Raw Dumps
 results/raw/
+datasets/cache/
+
