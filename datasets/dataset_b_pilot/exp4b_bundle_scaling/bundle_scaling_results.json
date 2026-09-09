@@ -1,0 +1,268 @@
+{
+  "0": [
+    {
+      "task_id": "BLIND-C1-001",
+      "cluster": "routine_regional_replenish",
+      "bundle_size_k": 0,
+      "constraints_exposed": [],
+      "schema_tokens": 143,
+      "validation_status": "FAIL",
+      "residual_errors": 6,
+      "tokens_consumed": 932
+    },
+    {
+      "task_id": "BLIND-C2-001",
+      "cluster": "expedited_emergency_order",
+      "bundle_size_k": 0,
+      "constraints_exposed": [],
+      "schema_tokens": 143,
+      "validation_status": "FAIL",
+      "residual_errors": 7,
+      "tokens_consumed": 876
+    },
+    {
+      "task_id": "BLIND-C3-001",
+      "cluster": "specialized_bulk_procurement",
+      "bundle_size_k": 0,
+      "constraints_exposed": [],
+      "schema_tokens": 143,
+      "validation_status": "FAIL",
+      "residual_errors": 7,
+      "tokens_consumed": 978
+    },
+    {
+      "task_id": "BLIND-C4-001",
+      "cluster": "multi_item_depot_rebalance",
+      "bundle_size_k": 0,
+      "constraints_exposed": [],
+      "schema_tokens": 143,
+      "validation_status": "FAIL",
+      "residual_errors": 6,
+      "tokens_consumed": 985
+    }
+  ],
+  "1": [
+    {
+      "task_id": "BLIND-C1-001",
+      "cluster": "routine_regional_replenish",
+      "bundle_size_k": 1,
+      "constraints_exposed": [
+        "authorized_by.pattern"
+      ],
+      "schema_tokens": 188,
+      "validation_status": "FAIL",
+      "residual_errors": 6,
+      "tokens_consumed": 1023
+    },
+    {
+      "task_id": "BLIND-C2-001",
+      "cluster": "expedited_emergency_order",
+      "bundle_size_k": 1,
+      "constraints_exposed": [
+        "authorized_by.pattern"
+      ],
+      "schema_tokens": 188,
+      "validation_status": "FAIL",
+      "residual_errors": 6,
+      "tokens_consumed": 949
+    },
+    {
+      "task_id": "BLIND-C3-001",
+      "cluster": "specialized_bulk_procurement",
+      "bundle_size_k": 1,
+      "constraints_exposed": [
+        "authorized_by.pattern"
+      ],
+      "schema_tokens": 188,
+      "validation_status": "FAIL",
+      "residual_errors": 7,
+      "tokens_consumed": 1069
+    },
+    {
+      "task_id": "BLIND-C4-001",
+      "cluster": "multi_item_depot_rebalance",
+      "bundle_size_k": 1,
+      "constraints_exposed": [
+        "authorized_by.pattern"
+      ],
+      "schema_tokens": 188,
+      "validation_status": "FAIL",
+      "residual_errors": 6,
+      "tokens_consumed": 1076
+    }
+  ],
+  "2": [
+    {
+      "task_id": "BLIND-C1-001",
+      "cluster": "routine_regional_replenish",
+      "bundle_size_k": 2,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required"
+      ],
+      "schema_tokens": 207,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1089
+    },
+    {
+      "task_id": "BLIND-C2-001",
+      "cluster": "expedited_emergency_order",
+      "bundle_size_k": 2,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required"
+      ],
+      "schema_tokens": 207,
+      "validation_status": "FAIL",
+      "residual_errors": 4,
+      "tokens_consumed": 1016
+    },
+    {
+      "task_id": "BLIND-C3-001",
+      "cluster": "specialized_bulk_procurement",
+      "bundle_size_k": 2,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required"
+      ],
+      "schema_tokens": 207,
+      "validation_status": "FAIL",
+      "residual_errors": 5,
+      "tokens_consumed": 1122
+    },
+    {
+      "task_id": "BLIND-C4-001",
+      "cluster": "multi_item_depot_rebalance",
+      "bundle_size_k": 2,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required"
+      ],
+      "schema_tokens": 207,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1159
+    }
+  ],
+  "3": [
+    {
+      "task_id": "BLIND-C1-001",
+      "cluster": "routine_regional_replenish",
+      "bundle_size_k": 3,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties"
+      ],
+      "schema_tokens": 234,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1148
+    },
+    {
+      "task_id": "BLIND-C2-001",
+      "cluster": "expedited_emergency_order",
+      "bundle_size_k": 3,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties"
+      ],
+      "schema_tokens": 234,
+      "validation_status": "FAIL",
+      "residual_errors": 4,
+      "tokens_consumed": 1075
+    },
+    {
+      "task_id": "BLIND-C3-001",
+      "cluster": "specialized_bulk_procurement",
+      "bundle_size_k": 3,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties"
+      ],
+      "schema_tokens": 234,
+      "validation_status": "FAIL",
+      "residual_errors": 4,
+      "tokens_consumed": 1186
+    },
+    {
+      "task_id": "BLIND-C4-001",
+      "cluster": "multi_item_depot_rebalance",
+      "bundle_size_k": 3,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "order_priority.enum"
+      ],
+      "schema_tokens": 232,
+      "validation_status": "FAIL",
+      "residual_errors": 2,
+      "tokens_consumed": 1230
+    }
+  ],
+  "4": [
+    {
+      "task_id": "BLIND-C1-001",
+      "cluster": "routine_regional_replenish",
+      "bundle_size_k": 4,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties",
+        "order_priority.enum"
+      ],
+      "schema_tokens": 259,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1219
+    },
+    {
+      "task_id": "BLIND-C2-001",
+      "cluster": "expedited_emergency_order",
+      "bundle_size_k": 4,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties",
+        "order_priority.enum"
+      ],
+      "schema_tokens": 259,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1147
+    },
+    {
+      "task_id": "BLIND-C3-001",
+      "cluster": "specialized_bulk_procurement",
+      "bundle_size_k": 4,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "items.additionalProperties",
+        "order_priority.enum"
+      ],
+      "schema_tokens": 259,
+      "validation_status": "FAIL",
+      "residual_errors": 3,
+      "tokens_consumed": 1257
+    },
+    {
+      "task_id": "BLIND-C4-001",
+      "cluster": "multi_item_depot_rebalance",
+      "bundle_size_k": 4,
+      "constraints_exposed": [
+        "authorized_by.pattern",
+        "items.required",
+        "order_priority.enum",
+        "supplier_id.pattern"
+      ],
+      "schema_tokens": 275,
+      "validation_status": "FAIL",
+      "residual_errors": 1,
+      "tokens_consumed": 1330
+    }
+  ]
+}
