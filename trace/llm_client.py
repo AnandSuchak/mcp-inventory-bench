@@ -13,6 +13,18 @@ import json
 import time
 from typing import Dict, Any, Optional, Tuple
 
+import subprocess
+
+def get_git_commit_hash() -> str:
+    """Retrieve current Git commit hash for provenance."""
+    try:
+        res = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, timeout=2)
+        if res.returncode == 0:
+            return res.stdout.strip()
+    except Exception:
+        pass
+    return "unknown"
+
 class LiveLLMClient:
     """Dispatches tool-calling reasoning requests to live LLMs."""
 
@@ -26,6 +38,7 @@ class LiveLLMClient:
     ):
         self.temperature = temperature
         self.seed = seed
+        self.git_commit = get_git_commit_hash()
 
         # Auto-detect provider if not specified
         if provider:
@@ -67,6 +80,9 @@ class LiveLLMClient:
             "temperature": self.temperature,
             "seed": self.seed,
             "api_mode": self.api_mode,
+            "git_commit": self.git_commit,
+            "schema_version": "2026-07-28/draft-2020-12",
+            "prompt_version": "v1.0-level1-dynamic-repair",
             "timestamp": time.time()
         }
 
@@ -77,10 +93,10 @@ class LiveLLMClient:
         exposed_schema: Dict[str, Any],
         error_context: Optional[str] = None,
         previous_arguments: Optional[Dict[str, Any]] = None
-    ) -> Tuple[Dict[str, Any], str, float]:
+    ) -> Tuple[Dict[str, Any], str, float, str, int, int]:
         """
         Prompt the LLM to generate or repair tool arguments.
-        Returns: (parsed_arguments: dict, raw_response_text: str, latency_ms: float)
+        Returns: (parsed_arguments: dict, raw_response_text: str, latency_ms: float, response_id: str, prompt_tokens: int, completion_tokens: int)
         """
         t_start = time.perf_counter()
 
@@ -101,14 +117,14 @@ class LiveLLMClient:
 
         # Dispatch based on provider
         if self.api_mode == "live":
-            args, raw_resp = self._call_live_api(system_prompt, user_content)
+            args, raw_resp, resp_id, p_tok, c_tok = self._call_live_api(system_prompt, user_content)
         else:
-            args, raw_resp = self._call_mock(exposed_schema, previous_arguments, error_context)
+            args, raw_resp, resp_id, p_tok, c_tok = self._call_mock(exposed_schema, previous_arguments, error_context)
 
         latency_ms = round((time.perf_counter() - t_start) * 1000, 3)
-        return args, raw_resp, latency_ms
+        return args, raw_resp, latency_ms, resp_id, p_tok, c_tok
 
-    def _call_live_api(self, system_prompt: str, user_content: str) -> Tuple[Dict[str, Any], str]:
+    def _call_live_api(self, system_prompt: str, user_content: str) -> Tuple[Dict[str, Any], str, str, int, int]:
         """Dispatch live HTTP request using httpx."""
         import httpx
 
@@ -133,8 +149,12 @@ class LiveLLMClient:
                 resp.raise_for_status()
                 data = resp.json()
                 raw_text = data["choices"][0]["message"]["content"].strip()
+                resp_id = data.get("id", "")
+                usage = data.get("usage", {})
+                p_tok = usage.get("prompt_tokens", 0)
+                c_tok = usage.get("completion_tokens", 0)
                 parsed = json.loads(raw_text)
-                return parsed, raw_text
+                return parsed, raw_text, resp_id, p_tok, c_tok
 
         elif self.provider == "gemini":
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
@@ -153,8 +173,11 @@ class LiveLLMClient:
                 resp.raise_for_status()
                 data = resp.json()
                 raw_text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+                meta = data.get("usageMetadata", {})
+                p_tok = meta.get("promptTokenCount", 0)
+                c_tok = meta.get("candidatesTokenCount", 0)
                 parsed = json.loads(raw_text)
-                return parsed, raw_text
+                return parsed, raw_text, data.get("responseId", ""), p_tok, c_tok
 
         else:
             raise NotImplementedError(f"Live provider '{self.provider}' not yet configured.")
@@ -164,9 +187,8 @@ class LiveLLMClient:
         exposed_schema: Dict[str, Any],
         prev_args: Optional[Dict[str, Any]],
         error_context: Optional[str]
-    ) -> Tuple[Dict[str, Any], str]:
+    ) -> Tuple[Dict[str, Any], str, str, int, int]:
         """Mock fallback for harness verification only (labeled mock_pilot)."""
-        # Minimal synthetic generator
         args = {
             "supplier_id": "SUP-TEXAS-SEMI",
             "warehouse_code": "WH-US-EAST",
@@ -175,4 +197,4 @@ class LiveLLMClient:
             "items": [{"sku": "SKU-10001", "quantity": 50, "unit_cost": 45.0}],
             "authorized_by": "agent.ops@enterprise.mock"
         }
-        return args, json.dumps(args)
+        return args, json.dumps(args), "mock-resp-001", 120, 45

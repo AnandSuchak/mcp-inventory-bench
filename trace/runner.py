@@ -169,7 +169,11 @@ class TraceRunner:
             user_intent=task.user_intent,
             tool_name=self.tool_name,
             model=prov["model"],
-            model_version=f"{prov['provider']}:{prov['api_mode']}"
+            model_version=f"{prov['provider']}:{prov['api_mode']}",
+            git_commit=prov.get("git_commit", ""),
+            prompt_version=prov.get("prompt_version", "v1.0-level1-dynamic-repair"),
+            schema_version=prov.get("schema_version", "2026-07-28/draft-2020-12"),
+            provenance=prov
         )
 
         # Level 1 Schema Exposure
@@ -187,10 +191,13 @@ class TraceRunner:
         exposed_schema = copy.deepcopy(level1)
         raw_response_text = ""
         model_call_latency = 0.0
+        resp_id = ""
+        p_tok = 0
+        c_tok = 0
 
         if self.llm_client.api_mode == "live":
             # Real LLM call for Attempt 1
-            current_args, raw_response_text, model_call_latency = self.llm_client.generate_tool_arguments(
+            current_args, raw_response_text, model_call_latency, resp_id, p_tok, c_tok = self.llm_client.generate_tool_arguments(
                 user_intent=task.user_intent,
                 tool_name=self.tool_name,
                 exposed_schema=exposed_schema
@@ -198,6 +205,9 @@ class TraceRunner:
         else:
             current_args = copy.deepcopy(task.initial_arguments)
             raw_response_text = json.dumps(current_args)
+            resp_id = f"pilot-resp-{task.task_id}-att1"
+            p_tok = l1_tokens
+            c_tok = estimate_tokens(current_args)
 
         for attempt_num in range(1, self.max_attempts + 1):
             t_start = time.perf_counter()
@@ -212,7 +222,10 @@ class TraceRunner:
                 arguments=copy.deepcopy(current_args),
                 validation_status="SUCCESS" if is_valid else "FAIL",
                 validation_errors=validation_errors,
-                latency_ms=round(model_call_latency + validation_latency_ms, 3)
+                latency_ms=round(model_call_latency + validation_latency_ms, 3),
+                response_id=resp_id,
+                prompt_tokens=p_tok,
+                completion_tokens=c_tok
             )
             trace.attempts.append(attempt)
 
@@ -244,7 +257,7 @@ class TraceRunner:
 
                 # Generate corrected arguments
                 if self.llm_client.api_mode == "live":
-                    current_args, raw_response_text, model_call_latency = self.llm_client.generate_tool_arguments(
+                    current_args, raw_response_text, model_call_latency, resp_id, p_tok, c_tok = self.llm_client.generate_tool_arguments(
                         user_intent=task.user_intent,
                         tool_name=self.tool_name,
                         exposed_schema=exposed_schema,
@@ -254,9 +267,13 @@ class TraceRunner:
                 elif task.correction_generator:
                     current_args = task.correction_generator(current_args, err_to_process)
                     raw_response_text = json.dumps(current_args)
+                    resp_id = f"pilot-resp-{task.task_id}-att{attempt_num+1}"
+                    c_tok = estimate_tokens(current_args)
                 else:
                     current_args = self._default_correct_argument(current_args, err_to_process)
                     raw_response_text = json.dumps(current_args)
+                    resp_id = f"pilot-resp-{task.task_id}-att{attempt_num+1}"
+                    c_tok = estimate_tokens(current_args)
 
         if trace.final_outcome != "SUCCESS":
             trace.final_outcome = "FAIL"
@@ -422,19 +439,64 @@ def generate_curated_100_tasks() -> List[TaskDefinition]:
 
     return tasks
 
-if __name__ == "__main__":
-    runner = TraceRunner(single_error=True)
+def generate_targeted_real_tasks(n_per_category: int = 3) -> List[TaskDefinition]:
+    """
+    Selects a balanced, targeted subset of tasks across all 7 categories
+    (default: 3 per category = 21 tasks) for initial real-model validation.
+    """
     all_tasks = generate_curated_100_tasks()
-    print(f"[*] Executing 100 Curated Observational Traces across 7 categories...")
-    
-    traces = []
+    selected = []
+    category_counts: Dict[str, int] = {}
+
     for t in all_tasks:
+        c = t.category
+        if category_counts.get(c, 0) < n_per_category:
+            selected.append(t)
+            category_counts[c] = category_counts.get(c, 0) + 1
+
+    return selected
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Observational Trace Runner (Dataset A)")
+    parser.add_argument("--mode", choices=["pilot", "live"], default="pilot", help="Execution mode (pilot: mock harness validation, live: real LLM API)")
+    parser.add_argument("--provider", choices=["openai", "gemini", "anthropic", "groq"], default=None, help="LLM API provider")
+    parser.add_argument("--model", type=str, default=None, help="Target model identifier")
+    parser.add_argument("--api-key", type=str, default=None, help="API key override")
+    parser.add_argument("--n-per-cat", type=int, default=3, help="Number of tasks per category (3 -> 21 total, 15 -> 100 total)")
+    parser.add_argument("--full-100", action="store_true", help="Run full 100 tasks suite")
+
+    args = parser.parse_args()
+
+    client = LiveLLMClient(
+        provider=args.provider if args.mode == "live" else "mock_pilot",
+        model=args.model,
+        api_key=args.api_key
+    )
+
+    runner = TraceRunner(single_error=True, llm_client=client)
+
+    if args.full_100:
+        tasks = generate_curated_100_tasks()
+    else:
+        tasks = generate_targeted_real_tasks(n_per_category=args.n_per_cat)
+
+    print(f"\n======================================================================")
+    print(f"[*] OBSERVATIONAL TRACE RUNNER | Mode: {client.api_mode.upper()} | Provider: {client.provider} | Model: {client.model}")
+    print(f"[*] Executing {len(tasks)} tasks across 7 categories...")
+    print(f"======================================================================")
+
+    traces = []
+    for idx, t in enumerate(tasks, 1):
+        print(f"  [{idx}/{len(tasks)}] Running task: {t.task_id} ({t.category})...", end="", flush=True)
         res_trace = runner.run_trace(t)
         traces.append(res_trace)
+        print(f" Outcome: {res_trace.final_outcome} ({len(res_trace.attempts)} attempts)")
 
     runner.writer.write_traces_batch(traces)
     manifest = runner.writer.refresh_manifest()
-    print(f"\n[+] Successfully collected {manifest['total_traces']} traces into Dataset A!")
-    print(f"[+] Total attempts: {manifest['total_attempts']} | Schema tokens exposed: {manifest['total_schema_tokens_exposed']}")
+    print(f"\n[+] Finished! Traces logged to {runner.writer.traces_file}")
+    print(f"[+] Total traces: {manifest['total_traces']} | Total attempts: {manifest['total_attempts']} | Tokens exposed: {manifest['total_schema_tokens_exposed']}")
     print(f"[+] Categories: {json.dumps(manifest['categories'], indent=2)}")
     print(f"[+] Outcomes: {json.dumps(manifest['outcomes'], indent=2)}")

@@ -44,6 +44,9 @@ class Attempt:
     validation_status: str        # 'SUCCESS' or 'FAIL'
     validation_errors: List[ValidationErrorRecord] = field(default_factory=list)
     latency_ms: float = 0.0
+    response_id: str = ""
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
 
 @dataclass
 class Trace:
@@ -51,6 +54,8 @@ class Trace:
     trace_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     span_id: str = field(default_factory=lambda: uuid.uuid4().hex[:16])
     timestamp: str = field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
+    git_commit: str = ""
+    prompt_version: str = "v1.0-level1-dynamic-repair"
     model: str = "gpt-4o-mini-mock"
     model_version: str = "2026-Q1"
     task_id: str = ""
@@ -58,6 +63,7 @@ class Trace:
     user_intent: str = ""
     tool_name: str = ""
     schema_version: str = "2026-07-28/draft-2020-12"
+    provenance: Dict[str, Any] = field(default_factory=dict)
     attempts: List[Attempt] = field(default_factory=list)
     schema_exposure_ledger: List[SchemaExposureRecord] = field(default_factory=list)
     total_schema_tokens_exposed: int = 0
