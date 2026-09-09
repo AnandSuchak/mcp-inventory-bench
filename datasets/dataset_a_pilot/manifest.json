@@ -1,0 +1,27 @@
+{
+  "dataset_name": "Dataset A-Pilot: Harness Validation Traces (Synthetic Baseline)",
+  "dataset_type": "harness_validation_pilot",
+  "provenance": {
+    "api_mode": "mock_pilot",
+    "purpose": "Harness and protocol pipeline validation only (not real LLM evidence)"
+  },
+  "schema_version": "2026-07-28/draft-2020-12",
+  "total_traces": 100,
+  "total_attempts": 205,
+  "total_schema_tokens_exposed": 23680,
+  "categories": {
+    "Explicit valid inputs": 15,
+    "Missing/ambiguous IDs": 15,
+    "Invalid enum situations": 15,
+    "Regex-constrained fields": 15,
+    "Numeric constraints": 15,
+    "Nested/array fields": 15,
+    "Mixed/ambiguous cases": 10
+  },
+  "outcomes": {
+    "SUCCESS": 100
+  },
+  "models_evaluated": [
+    "gpt-4o-mini-mock"
+  ]
+}

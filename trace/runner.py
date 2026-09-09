@@ -132,6 +132,8 @@ class TaskDefinition:
         self.initial_arguments = initial_arguments
         self.correction_generator = correction_generator
 
+from trace.llm_client import LiveLLMClient
+
 class TraceRunner:
     """Executes closed-loop observational trace collection experiments."""
 
@@ -140,14 +142,17 @@ class TraceRunner:
         full_schema: Dict[str, Any] = FULL_PURCHASE_ORDER_SCHEMA,
         tool_name: str = "create_purchase_order",
         single_error: bool = True,
-        max_attempts: int = 4
+        max_attempts: int = 4,
+        llm_client: Optional[LiveLLMClient] = None,
+        writer: Optional[TraceWriter] = None
     ):
         self.full_schema = full_schema
         self.tool_name = tool_name
         self.single_error = single_error
         self.max_attempts = max_attempts
         self.validator = SchemaValidator(full_schema)
-        self.writer = TraceWriter()
+        self.llm_client = llm_client or LiveLLMClient()
+        self.writer = writer or TraceWriter()
 
     def run_trace(self, task: TaskDefinition) -> Trace:
         """
@@ -157,13 +162,14 @@ class TraceRunner:
         3. If fail: Slice minimal constraint delta, expose to model, and retry
         4. Record all attempts, latencies, tokens, and final outcome
         """
+        prov = self.llm_client.get_provenance_metadata()
         trace = Trace(
             task_id=task.task_id,
             category=task.category,
             user_intent=task.user_intent,
             tool_name=self.tool_name,
-            model="gpt-4o-mini-mock",
-            model_version="2026-Q1"
+            model=prov["model"],
+            model_version=f"{prov['provider']}:{prov['api_mode']}"
         )
 
         # Level 1 Schema Exposure
@@ -178,22 +184,35 @@ class TraceRunner:
         trace.total_schema_tokens_exposed = l1_tokens
 
         exposed_fragments = ["level_1_base_schema"]
-        current_args = copy.deepcopy(task.initial_arguments)
+        exposed_schema = copy.deepcopy(level1)
+        raw_response_text = ""
+        model_call_latency = 0.0
+
+        if self.llm_client.api_mode == "live":
+            # Real LLM call for Attempt 1
+            current_args, raw_response_text, model_call_latency = self.llm_client.generate_tool_arguments(
+                user_intent=task.user_intent,
+                tool_name=self.tool_name,
+                exposed_schema=exposed_schema
+            )
+        else:
+            current_args = copy.deepcopy(task.initial_arguments)
+            raw_response_text = json.dumps(current_args)
 
         for attempt_num in range(1, self.max_attempts + 1):
             t_start = time.perf_counter()
             is_valid, validation_errors = self.validator.validate(current_args)
-            latency_ms = round((time.perf_counter() - t_start) * 1000, 3)
+            validation_latency_ms = round((time.perf_counter() - t_start) * 1000, 3)
 
             attempt = Attempt(
                 attempt_number=attempt_num,
                 schema_fragments_exposed=list(exposed_fragments),
                 schema_token_count=trace.total_schema_tokens_exposed,
-                model_response=json.dumps(current_args),
+                model_response=raw_response_text,
                 arguments=copy.deepcopy(current_args),
                 validation_status="SUCCESS" if is_valid else "FAIL",
                 validation_errors=validation_errors,
-                latency_ms=latency_ms
+                latency_ms=round(model_call_latency + validation_latency_ms, 3)
             )
             trace.attempts.append(attempt)
 
@@ -220,12 +239,24 @@ class TraceRunner:
                 trace.total_schema_tokens_exposed += delta_tokens
                 exposed_fragments.append(fragment_id)
 
+                # Update composite exposed schema with new delta
+                exposed_schema.setdefault("constraints", {})[fragment_id] = delta_slice
+
                 # Generate corrected arguments
-                if task.correction_generator:
+                if self.llm_client.api_mode == "live":
+                    current_args, raw_response_text, model_call_latency = self.llm_client.generate_tool_arguments(
+                        user_intent=task.user_intent,
+                        tool_name=self.tool_name,
+                        exposed_schema=exposed_schema,
+                        error_context=err_to_process.message,
+                        previous_arguments=current_args
+                    )
+                elif task.correction_generator:
                     current_args = task.correction_generator(current_args, err_to_process)
+                    raw_response_text = json.dumps(current_args)
                 else:
-                    # Fallback default correction heuristic
                     current_args = self._default_correct_argument(current_args, err_to_process)
+                    raw_response_text = json.dumps(current_args)
 
         if trace.final_outcome != "SUCCESS":
             trace.final_outcome = "FAIL"
