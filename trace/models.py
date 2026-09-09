@@ -49,6 +49,14 @@ class Attempt:
     completion_tokens: int = 0
 
 @dataclass
+class ConstraintLifecycleRecord:
+    """Tracks per-constraint lifecycle to compute Constraint Repair Effect (CRE)."""
+    constraint_id: str                      # e.g., 'vendor_id.pattern', 'warehouse_code.enum'
+    first_failed_attempt: Optional[int]     # Attempt number where violation first occurred
+    first_exposed_attempt: Optional[int]    # Attempt number where constraint was exposed
+    first_success_after_exposure: Optional[int] = None # Attempt number where constraint was satisfied
+
+@dataclass
 class Trace:
     """Complete observational execution trace for a single closed-loop task."""
     trace_id: str = field(default_factory=lambda: str(uuid.uuid4()))
@@ -66,6 +74,7 @@ class Trace:
     provenance: Dict[str, Any] = field(default_factory=dict)
     attempts: List[Attempt] = field(default_factory=list)
     schema_exposure_ledger: List[SchemaExposureRecord] = field(default_factory=list)
+    constraint_lifecycles: List[ConstraintLifecycleRecord] = field(default_factory=list)
     total_schema_tokens_exposed: int = 0
     tokens_to_success: Optional[int] = None
     final_outcome: str = "PENDING"  # 'SUCCESS', 'FAIL', 'ABORTED'
@@ -80,6 +89,7 @@ class Trace:
     def from_dict(cls, data: Dict[str, Any]) -> "Trace":
         attempts_data = data.pop("attempts", [])
         ledger_data = data.pop("schema_exposure_ledger", [])
+        lifecycles_data = data.pop("constraint_lifecycles", [])
 
         attempts = []
         for a in attempts_data:
@@ -88,4 +98,5 @@ class Trace:
             attempts.append(Attempt(validation_errors=errs, **a))
 
         ledger = [SchemaExposureRecord(**item) for item in ledger_data]
-        return cls(attempts=attempts, schema_exposure_ledger=ledger, **data)
+        lifecycles = [ConstraintLifecycleRecord(**item) for item in lifecycles_data]
+        return cls(attempts=attempts, schema_exposure_ledger=ledger, constraint_lifecycles=lifecycles, **data)

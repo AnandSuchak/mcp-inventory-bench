@@ -85,24 +85,27 @@ def analyze_traces(file_path: Path = DEFAULT_TRACES_PATH) -> Dict[str, Any]:
     print(f"[*] Dataset: {file_path}")
     print("=" * 72)
 
-    print(f"\n[1] FIRST-ATTEMPT FAILURE RATE:")
-    print(f"    - First attempts failed: {first_attempt_failures}/{total} ({first_attempt_fail_rate:.1f}%)")
+    total_attempts_all = sum(attempts_counts)
+    total_error_events = sum(keyword_counter.values())
+
+    print(f"\n[1] FIRST-ATTEMPT VALIDATION OUTCOME:")
+    print(f"    - All {first_attempt_failures}/{total} first attempts failed validation under the Level-1 schema ({first_attempt_fail_rate:.1f}%).")
     print(f"    - First attempts passed: {total - first_attempt_failures}/{total} ({100 - first_attempt_fail_rate:.1f}%)")
 
-    print(f"\n[2] VALIDATION ERROR KEYWORDS BREAKDOWN:")
+    print(f"\n[2] VALIDATION-ERROR EVENTS BREAKDOWN ({total_error_events} events across {total_attempts_all} attempts):")
     for kw, count in keyword_counter.most_common():
-        print(f"    - {kw:<15}: {count:>4} occurrences ({count/max(1, sum(keyword_counter.values()))*100:.1f}%)")
+        print(f"    - {kw:<22}: {count:>4} events ({count/max(1, total_error_events)*100:.1f}%)")
 
     print(f"\n[3] TARGET ERROR PATHS BREAKDOWN:")
     for path, count in path_counter.most_common():
-        print(f"    - {path:<25}: {count:>4} occurrences ({count/max(1, sum(path_counter.values()))*100:.1f}%)")
+        print(f"    - {path:<25}: {count:>4} events ({count/max(1, total_error_events)*100:.1f}%)")
 
     print(f"\n[4] RETRIES & ATTEMPTS DISTRIBUTION:")
     att_counter = Counter(attempts_counts)
     for att_num in sorted(att_counter.keys()):
         cnt = att_counter[att_num]
         print(f"    - {att_num} attempt(s): {cnt:>4} traces ({cnt/total*100:.1f}%)")
-    avg_attempts = sum(attempts_counts) / total
+    avg_attempts = total_attempts_all / total
     print(f"    - Mean attempts per trace: {avg_attempts:.2f}")
 
     print(f"\n[5] SCHEMA TOKENS EXPOSED (TTS - Tokens-to-Success):")
@@ -112,6 +115,8 @@ def analyze_traces(file_path: Path = DEFAULT_TRACES_PATH) -> Dict[str, Any]:
         print(f"    - Average Total Tokens to Success: {avg_tts:.1f} tokens")
         print(f"    - Average Delta Tokens Added:      {avg_delta:.1f} tokens")
         print(f"    - Min / Max Tokens to Success:    {min(tokens_to_success)} / {max(tokens_to_success)} tokens")
+    else:
+        print("    - No traces reached full compliance within the maximum attempt ceiling (4 attempts).")
 
     print(f"\n[6] SEMANTIC CONSTRAINT CONSISTENCY CHECK (Signal vs. Noise):")
     for cat, constraints in category_constraint_map.items():
@@ -126,6 +131,8 @@ def analyze_traces(file_path: Path = DEFAULT_TRACES_PATH) -> Dict[str, Any]:
     return {
         "total_traces": total,
         "first_attempt_fail_rate": first_attempt_fail_rate,
+        "total_error_events": total_error_events,
+        "total_attempts": total_attempts_all,
         "keyword_distribution": dict(keyword_counter),
         "path_distribution": dict(path_counter),
         "mean_attempts": round(avg_attempts, 2),
