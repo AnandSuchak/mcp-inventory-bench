@@ -91,6 +91,16 @@ class SchemaCompressor:
         """
         t_start = time.perf_counter()
 
+        if not raw_tools:
+            return "", {
+                "compression_time_ms": 0.0,
+                "original_tokens": 0,
+                "compressed_tokens": 0,
+                "tokens_saved": 0,
+                "compression_ratio_pct": 0.0,
+                "mode": self.mode
+            }
+
         # Original representation (raw JSON formatted for prompt)
         original_str = json.dumps(raw_tools, indent=2)
         orig_tokens = self.estimate_tokens(original_str)
