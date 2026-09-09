@@ -210,3 +210,65 @@ def create_invariant_schema(full_schema: Dict[str, Any]) -> Dict[str, Any]:
     }
     return schema
 
+def create_invariant_schema_compact(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Candidate Invariant Tier 2 (Compact C_I,2):
+    Strips top-level $schema metadata and simplifies item structure representation.
+    """
+    schema = {
+        "title": "create_purchase_order",
+        "type": "object",
+        "properties": {
+            "supplier_id": {"type": "string", "pattern": "^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$"},
+            "warehouse_code": {"type": "string"},
+            "order_priority": {"type": "string"},
+            "total_budget_limit": {"type": "number"},
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sku": {"type": "string", "pattern": "^SKU-[0-9]{5}$"},
+                        "quantity": {"type": "integer", "minimum": 10},
+                        "unit_cost": {"type": "number"}
+                    },
+                    "required": ["sku", "quantity", "unit_cost"]
+                }
+            },
+            "authorized_by": {"type": "string", "pattern": "^[a-z]{3,8}\\.[a-z]{3,8}@enterprise\\.mock$"}
+        },
+        "required": ["supplier_id", "warehouse_code", "items", "authorized_by"]
+    }
+    return schema
+
+def create_invariant_schema_minimal(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Candidate Invariant Tier 3 (Aggressive C_I,3):
+    Omits nested items required list and quantity MOQ, testing the failure threshold.
+    """
+    schema = {
+        "title": "create_purchase_order",
+        "type": "object",
+        "properties": {
+            "supplier_id": {"type": "string", "pattern": "^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$"},
+            "warehouse_code": {"type": "string"},
+            "order_priority": {"type": "string"},
+            "total_budget_limit": {"type": "number"},
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sku": {"type": "string", "pattern": "^SKU-[0-9]{5}$"},
+                        "quantity": {"type": "integer"},
+                        "unit_cost": {"type": "number"}
+                    }
+                }
+            },
+            "authorized_by": {"type": "string", "pattern": "^[a-z]{3,8}\\.[a-z]{3,8}@enterprise\\.mock$"}
+        },
+        "required": ["supplier_id", "warehouse_code", "items", "authorized_by"]
+    }
+    return schema
+
+

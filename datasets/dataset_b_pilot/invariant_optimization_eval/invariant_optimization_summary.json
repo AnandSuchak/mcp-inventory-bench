@@ -1,0 +1,1582 @@
+{
+  "invariant_minimization_search": {
+    "Tier 1 (Standard C_I: 339 tok)": {
+      "tokens": 339,
+      "structural_success_pct": 75.0,
+      "semantic_correctness_pct": 75.0
+    },
+    "Tier 2 (Compact C_I: 308 tok)": {
+      "tokens": 308,
+      "structural_success_pct": 62.5,
+      "semantic_correctness_pct": 62.5
+    },
+    "Tier 3 (Minimal C_I: 284 tok)": {
+      "tokens": 284,
+      "structural_success_pct": 50.0,
+      "semantic_correctness_pct": 50.0
+    }
+  },
+  "systems_benchmark": {
+    "full": {
+      "total_tasks": 8,
+      "init_schema_tokens": 552.0,
+      "first_pass_structural_pct": 50.0,
+      "final_structural_pct": 100.0,
+      "final_semantic_correctness_pct": 100.0,
+      "mean_tts": 2470.2,
+      "total_tokens_consumed": 19762,
+      "records": [
+        {
+          "task_id": "BLIND-C1-013",
+          "cluster": "routine_regional_replenish",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2989,
+          "total_tokens_consumed": 2989,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+              ],
+              "semantic_failures": [],
+              "tokens": 1406
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1583
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C1-014",
+          "cluster": "routine_regional_replenish",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1426,
+          "total_tokens_consumed": 1426,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1426
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-013",
+          "cluster": "expedited_emergency_order",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 3061,
+          "total_tokens_consumed": 3061,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-ACME-999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+              ],
+              "semantic_failures": [],
+              "tokens": 1429
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1632
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-014",
+          "cluster": "expedited_emergency_order",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 3049,
+          "total_tokens_consumed": 3049,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+              ],
+              "semantic_failures": [],
+              "tokens": 1426
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1623
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-013",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1428,
+          "total_tokens_consumed": 1428,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1428
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-014",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1423,
+          "total_tokens_consumed": 1423,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1423
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-013",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1484,
+          "total_tokens_consumed": 1484,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1484
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-014",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "full",
+          "init_schema_tokens": 552,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 4902,
+          "total_tokens_consumed": 4902,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+                "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+              ],
+              "semantic_failures": [],
+              "tokens": 1471
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+              ],
+              "semantic_failures": [],
+              "tokens": 1713
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1718
+            }
+          ]
+        }
+      ]
+    },
+    "ci_k0": {
+      "total_tasks": 8,
+      "init_schema_tokens": 339.0,
+      "first_pass_structural_pct": 0.0,
+      "final_structural_pct": 75.0,
+      "final_semantic_correctness_pct": 75.0,
+      "mean_tts": 3094.8,
+      "total_tokens_consumed": 25025,
+      "records": [
+        {
+          "task_id": "BLIND-C1-013",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3249,
+          "total_tokens_consumed": 3249,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'.",
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 954
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'."
+              ],
+              "tokens": 1133
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1162
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C1-014",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3245,
+          "total_tokens_consumed": 3245,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EAST-FACILITY-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-FACILITY-01'.",
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 954
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-FACILITY-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-FACILITY-01'."
+              ],
+              "tokens": 1131
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1160
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-013",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3218,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+                "'RUSH' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EASTERN-01'.",
+                "Priority mismatch: expected one of ['CRITICAL', 'EXPEDITED'], but got 'RUSH'."
+              ],
+              "tokens": 949
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'RUSH' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EASTERN-01'.",
+                "Priority mismatch: expected one of ['CRITICAL', 'EXPEDITED'], but got 'RUSH'."
+              ],
+              "tokens": 1142
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EASTERN-01'."
+              ],
+              "tokens": 1127
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-014",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3168,
+          "total_tokens_consumed": 3168,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EXPRESS' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-TERM-01'.",
+                "Priority mismatch: expected one of ['CRITICAL', 'EXPEDITED'], but got 'EXPRESS'."
+              ],
+              "tokens": 935
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-TERM-01'."
+              ],
+              "tokens": 1102
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1131
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-013",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3252,
+          "total_tokens_consumed": 3252,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 955
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1134
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1163
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-014",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3238,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 953
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1132
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TXSEMI-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1153
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-013",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2184,
+          "total_tokens_consumed": 2184,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 981
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1203
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-014",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k0",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3471,
+          "total_tokens_consumed": 3471,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'.",
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 998
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'."
+              ],
+              "tokens": 1222
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1251
+            }
+          ]
+        }
+      ]
+    },
+    "ci_k1": {
+      "total_tasks": 8,
+      "init_schema_tokens": 364.8,
+      "first_pass_structural_pct": 25.0,
+      "final_structural_pct": 75.0,
+      "final_semantic_correctness_pct": 75.0,
+      "mean_tts": 1834.0,
+      "total_tokens_consumed": 17603,
+      "records": [
+        {
+          "task_id": "BLIND-C1-013",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k1",
+          "init_schema_tokens": 385,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1023,
+          "total_tokens_consumed": 1023,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1023
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C1-014",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k1",
+          "init_schema_tokens": 385,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1025,
+          "total_tokens_consumed": 1025,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1025
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-013",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k1",
+          "init_schema_tokens": 365,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2181,
+          "total_tokens_consumed": 2181,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 995
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1186
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-014",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k1",
+          "init_schema_tokens": 365,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2181,
+          "total_tokens_consumed": 2181,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-TERM-01'."
+              ],
+              "tokens": 995
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1186
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-013",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k1",
+          "init_schema_tokens": 347,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3303,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 974
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1155
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1174
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-014",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k1",
+          "init_schema_tokens": 347,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3296,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 971
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1153
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1172
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-013",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k1",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2184,
+          "total_tokens_consumed": 2184,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 981
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1203
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-014",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k1",
+          "init_schema_tokens": 385,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2410,
+          "total_tokens_consumed": 2410,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 1094
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1316
+            }
+          ]
+        }
+      ]
+    },
+    "ci_k2": {
+      "total_tasks": 8,
+      "init_schema_tokens": 370.0,
+      "first_pass_structural_pct": 25.0,
+      "final_structural_pct": 75.0,
+      "final_semantic_correctness_pct": 75.0,
+      "mean_tts": 2075.2,
+      "total_tokens_consumed": 19050,
+      "records": [
+        {
+          "task_id": "BLIND-C1-013",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k2",
+          "init_schema_tokens": 411,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1095,
+          "total_tokens_consumed": 1095,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1095
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C1-014",
+          "cluster": "routine_regional_replenish",
+          "arm": "ci_k2",
+          "init_schema_tokens": 385,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1025,
+          "total_tokens_consumed": 1025,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1025
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-013",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k2",
+          "init_schema_tokens": 373,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2225,
+          "total_tokens_consumed": 2225,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1017
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1208
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-014",
+          "cluster": "expedited_emergency_order",
+          "arm": "ci_k2",
+          "init_schema_tokens": 373,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3512,
+          "total_tokens_consumed": 3512,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'SUP-XYZ1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1034
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1236
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1242
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-013",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k2",
+          "init_schema_tokens": 347,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3303,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 974
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1155
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1174
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-014",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "ci_k2",
+          "init_schema_tokens": 347,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3296,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 971
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1153
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1172
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-013",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k2",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2184,
+          "total_tokens_consumed": 2184,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 981
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1203
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-014",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "ci_k2",
+          "init_schema_tokens": 385,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2410,
+          "total_tokens_consumed": 2410,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 1094
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1316
+            }
+          ]
+        }
+      ]
+    },
+    "invariant_oracle": {
+      "total_tasks": 8,
+      "init_schema_tokens": 359.0,
+      "first_pass_structural_pct": 25.0,
+      "final_structural_pct": 87.5,
+      "final_semantic_correctness_pct": 87.5,
+      "mean_tts": 2384.6,
+      "total_tokens_consumed": 19930,
+      "records": [
+        {
+          "task_id": "BLIND-C1-013",
+          "cluster": "routine_regional_replenish",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 385,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1023,
+          "total_tokens_consumed": 1023,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1023
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C1-014",
+          "cluster": "routine_regional_replenish",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 385,
+          "first_pass_structural": true,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 1,
+          "total_tts": 1025,
+          "total_tokens_consumed": 1025,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1025
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-013",
+          "cluster": "expedited_emergency_order",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 373,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2225,
+          "total_tokens_consumed": 2225,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1017
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1208
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C2-014",
+          "cluster": "expedited_emergency_order",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 373,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3512,
+          "total_tokens_consumed": 3512,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'SUP-XYZ1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1034
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-01'."
+              ],
+              "tokens": 1236
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1242
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-013",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3252,
+          "total_tokens_consumed": 3252,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 955
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1134
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1163
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C3-014",
+          "cluster": "specialized_bulk_procurement",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": false,
+          "final_semantic_correctness": false,
+          "attempts_needed": 3,
+          "total_tts": 0,
+          "total_tokens_consumed": 3238,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 953
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1132
+            },
+            {
+              "attempt": 3,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'SUP-TXSEMI-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 1153
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-013",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": true,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 2,
+          "total_tts": 2184,
+          "total_tokens_consumed": 2184,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": true,
+              "validation_errors": [
+                "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [],
+              "tokens": 981
+            },
+            {
+              "attempt": 2,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1203
+            }
+          ]
+        },
+        {
+          "task_id": "BLIND-C4-014",
+          "cluster": "multi_item_depot_rebalance",
+          "arm": "invariant_oracle",
+          "init_schema_tokens": 339,
+          "first_pass_structural": false,
+          "first_pass_semantic": false,
+          "final_structural_success": true,
+          "final_semantic_correctness": true,
+          "attempts_needed": 3,
+          "total_tts": 3471,
+          "total_tokens_consumed": 3471,
+          "attempts": [
+            {
+              "attempt": 1,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'.",
+                "Priority mismatch: expected one of ['STANDARD'], but got 'standard'."
+              ],
+              "tokens": 998
+            },
+            {
+              "attempt": 2,
+              "is_valid": false,
+              "is_correct": false,
+              "validation_errors": [
+                "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+              ],
+              "semantic_failures": [
+                "Destination mismatch: user requested 'WH-US-EAST', but received 'EAST-DEPOT-01'."
+              ],
+              "tokens": 1222
+            },
+            {
+              "attempt": 3,
+              "is_valid": true,
+              "is_correct": true,
+              "validation_errors": [],
+              "semantic_failures": [],
+              "tokens": 1251
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
