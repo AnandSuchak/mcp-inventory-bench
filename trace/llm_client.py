@@ -62,7 +62,7 @@ class LiveLLMClient:
         elif self.provider == "openai":
             self.model = "gpt-4o-mini"
         elif self.provider == "gemini":
-            self.model = "gemini-1.5-flash"
+            self.model = "gemini-3.6-flash"
         elif self.provider == "anthropic":
             self.model = "claude-3-5-haiku-20241022"
         elif self.provider == "groq":
@@ -125,8 +125,9 @@ class LiveLLMClient:
         return args, raw_resp, latency_ms, resp_id, p_tok, c_tok
 
     def _call_live_api(self, system_prompt: str, user_content: str) -> Tuple[Dict[str, Any], str, str, int, int]:
-        """Dispatch live HTTP request using httpx with modern API endpoint negotiation."""
-        import httpx
+        """Dispatch live HTTP request using urllib.request with robust error handling."""
+        import urllib.request
+        import urllib.error
         import re
 
         def extract_json(text: str) -> Dict[str, Any]:
@@ -137,6 +138,45 @@ class LiveLLMClient:
                 text = re.sub(r"\s*```$", "", text)
             return json.loads(text.strip())
 
+        def http_post(url: str, headers: Dict[str, str], payload_dict: Dict[str, Any], timeout: float = 60.0, max_retries: int = 8) -> Dict[str, Any]:
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload_dict).encode("utf-8"),
+                headers=headers,
+                method="POST"
+            )
+            last_err = None
+            for attempt in range(max_retries):
+                try:
+                    with urllib.request.urlopen(req, timeout=timeout) as resp:
+                        return json.loads(resp.read().decode("utf-8"))
+                except urllib.error.HTTPError as e:
+                    last_err = e
+                    if e.code in (429, 500, 502, 503, 504) and attempt < max_retries - 1:
+                        sleep_seconds = 2 ** attempt + 2
+                        if e.code == 429:
+                            try:
+                                body_bytes = e.read()
+                                err_data = json.loads(body_bytes.decode("utf-8"))
+                                details = err_data.get("error", {}).get("details", [])
+                                for d in details:
+                                    if "retryDelay" in d:
+                                        delay_str = d["retryDelay"].rstrip("s")
+                                        sleep_seconds = max(sleep_seconds, float(delay_str) + 1.0)
+                            except Exception:
+                                sleep_seconds = max(sleep_seconds, 15.0)
+                        time.sleep(sleep_seconds)
+                        continue
+                    raise
+                except (urllib.error.URLError, TimeoutError, OSError) as e:
+                    last_err = e
+                    if attempt < max_retries - 1:
+                        time.sleep(2 ** attempt + 2)
+                        continue
+                    raise
+            if last_err:
+                raise last_err
+
         if self.provider in ("openai", "groq"):
             base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1" if self.provider == "openai" else "https://api.groq.com/openai/v1").rstrip("/")
             headers = {
@@ -144,53 +184,48 @@ class LiveLLMClient:
                 "Content-Type": "application/json"
             }
 
-            with httpx.Client(timeout=45.0) as client:
-                # 1. Try modern OpenAI Responses API first if on OpenAI
-                if self.provider == "openai":
-                    try:
-                        responses_payload = {
-                            "model": self.model,
-                            "temperature": self.temperature,
-                            "input": [
-                                {"role": "system", "content": system_prompt},
-                                {"role": "user", "content": user_content}
-                            ],
-                            "response_format": {"type": "json_object"}
-                        }
-                        r_resp = client.post(f"{base_url}/responses", json=responses_payload, headers=headers)
-                        if r_resp.status_code == 200:
-                            data = r_resp.json()
-                            raw_text = data.get("output_text") or data.get("output", [{}])[0].get("content", [{}])[0].get("text", "")
-                            resp_id = data.get("id", "")
-                            usage = data.get("usage", {})
-                            p_tok = usage.get("input_tokens", 0)
-                            c_tok = usage.get("output_tokens", 0)
-                            parsed = extract_json(raw_text)
-                            return parsed, raw_text, resp_id, p_tok, c_tok
-                    except Exception:
-                        pass # Fallback to standard chat completions endpoint
+            # 1. Try modern OpenAI Responses API first if on OpenAI
+            if self.provider == "openai":
+                try:
+                    responses_payload = {
+                        "model": self.model,
+                        "temperature": self.temperature,
+                        "input": [
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_content}
+                        ],
+                        "response_format": {"type": "json_object"}
+                    }
+                    data = http_post(f"{base_url}/responses", headers, responses_payload)
+                    raw_text = data.get("output_text") or data.get("output", [{}])[0].get("content", [{}])[0].get("text", "")
+                    resp_id = data.get("id", "")
+                    usage = data.get("usage", {})
+                    p_tok = usage.get("input_tokens", 0)
+                    c_tok = usage.get("output_tokens", 0)
+                    parsed = extract_json(raw_text)
+                    return parsed, raw_text, resp_id, p_tok, c_tok
+                except Exception:
+                    pass  # Fallback to standard chat completions endpoint
 
-                # 2. Standard Chat Completions endpoint
-                chat_payload = {
-                    "model": self.model,
-                    "temperature": self.temperature,
-                    "seed": self.seed,
-                    "response_format": {"type": "json_object"},
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_content}
-                    ]
-                }
-                resp = client.post(f"{base_url}/chat/completions", json=chat_payload, headers=headers)
-                resp.raise_for_status()
-                data = resp.json()
-                raw_text = data["choices"][0]["message"]["content"].strip()
-                resp_id = data.get("id", "")
-                usage = data.get("usage", {})
-                p_tok = usage.get("prompt_tokens", 0)
-                c_tok = usage.get("completion_tokens", 0)
-                parsed = extract_json(raw_text)
-                return parsed, raw_text, resp_id, p_tok, c_tok
+            # 2. Standard Chat Completions endpoint
+            chat_payload = {
+                "model": self.model,
+                "temperature": self.temperature,
+                "seed": self.seed,
+                "response_format": {"type": "json_object"},
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_content}
+                ]
+            }
+            data = http_post(f"{base_url}/chat/completions", headers, chat_payload)
+            raw_text = data["choices"][0]["message"]["content"].strip()
+            resp_id = data.get("id", "")
+            usage = data.get("usage", {})
+            p_tok = usage.get("prompt_tokens", 0)
+            c_tok = usage.get("completion_tokens", 0)
+            parsed = extract_json(raw_text)
+            return parsed, raw_text, resp_id, p_tok, c_tok
 
         elif self.provider == "gemini":
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
@@ -204,16 +239,14 @@ class LiveLLMClient:
                     "responseMimeType": "application/json"
                 }
             }
-            with httpx.Client(timeout=30.0) as client:
-                resp = client.post(url, json=payload, headers=headers)
-                resp.raise_for_status()
-                data = resp.json()
-                raw_text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-                meta = data.get("usageMetadata", {})
-                p_tok = meta.get("promptTokenCount", 0)
-                c_tok = meta.get("candidatesTokenCount", 0)
-                parsed = extract_json(raw_text)
-                return parsed, raw_text, data.get("responseId", ""), p_tok, c_tok
+            data = http_post(url, headers, payload, timeout=60.0)
+            time.sleep(2.0)  # Proactive pacing to respect RPM rate limits
+            raw_text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+            meta = data.get("usageMetadata", {})
+            p_tok = meta.get("promptTokenCount", 0)
+            c_tok = meta.get("candidatesTokenCount", 0)
+            parsed = extract_json(raw_text)
+            return parsed, raw_text, data.get("responseId", ""), p_tok, c_tok
 
         else:
             raise NotImplementedError(f"Live provider '{self.provider}' not yet configured.")

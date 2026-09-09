@@ -1,22 +1,22 @@
 {
   "dataset_name": "Dataset A: Observational Execution Traces",
   "schema_version": "2026-07-28/draft-2020-12",
-  "total_traces": 100,
-  "total_attempts": 205,
-  "total_schema_tokens_exposed": 23680,
+  "total_traces": 21,
+  "total_attempts": 84,
+  "total_schema_tokens_exposed": 6258,
   "categories": {
-    "Explicit valid inputs": 15,
-    "Missing/ambiguous IDs": 15,
-    "Invalid enum situations": 15,
-    "Regex-constrained fields": 15,
-    "Numeric constraints": 15,
-    "Nested/array fields": 15,
-    "Mixed/ambiguous cases": 10
+    "Explicit valid inputs": 3,
+    "Missing/ambiguous IDs": 3,
+    "Invalid enum situations": 3,
+    "Regex-constrained fields": 3,
+    "Numeric constraints": 3,
+    "Nested/array fields": 3,
+    "Mixed/ambiguous cases": 3
   },
   "outcomes": {
-    "SUCCESS": 100
+    "FAIL": 21
   },
   "models_evaluated": [
-    "gpt-4o-mini-mock"
+    "gemini-3.5-flash-lite"
   ]
 }
