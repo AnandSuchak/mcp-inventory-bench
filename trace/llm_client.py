@@ -125,27 +125,63 @@ class LiveLLMClient:
         return args, raw_resp, latency_ms, resp_id, p_tok, c_tok
 
     def _call_live_api(self, system_prompt: str, user_content: str) -> Tuple[Dict[str, Any], str, str, int, int]:
-        """Dispatch live HTTP request using httpx."""
+        """Dispatch live HTTP request using httpx with modern API endpoint negotiation."""
         import httpx
+        import re
+
+        def extract_json(text: str) -> Dict[str, Any]:
+            text = text.strip()
+            # Remove markdown backticks if present
+            if text.startswith("```"):
+                text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.IGNORECASE)
+                text = re.sub(r"\s*```$", "", text)
+            return json.loads(text.strip())
 
         if self.provider in ("openai", "groq"):
-            base_url = "https://api.openai.com/v1" if self.provider == "openai" else "https://api.groq.com/openai/v1"
+            base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1" if self.provider == "openai" else "https://api.groq.com/openai/v1").rstrip("/")
             headers = {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
-            payload = {
-                "model": self.model,
-                "temperature": self.temperature,
-                "seed": self.seed,
-                "response_format": {"type": "json_object"},
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_content}
-                ]
-            }
-            with httpx.Client(timeout=30.0) as client:
-                resp = client.post(f"{base_url}/chat/completions", json=payload, headers=headers)
+
+            with httpx.Client(timeout=45.0) as client:
+                # 1. Try modern OpenAI Responses API first if on OpenAI
+                if self.provider == "openai":
+                    try:
+                        responses_payload = {
+                            "model": self.model,
+                            "temperature": self.temperature,
+                            "input": [
+                                {"role": "system", "content": system_prompt},
+                                {"role": "user", "content": user_content}
+                            ],
+                            "response_format": {"type": "json_object"}
+                        }
+                        r_resp = client.post(f"{base_url}/responses", json=responses_payload, headers=headers)
+                        if r_resp.status_code == 200:
+                            data = r_resp.json()
+                            raw_text = data.get("output_text") or data.get("output", [{}])[0].get("content", [{}])[0].get("text", "")
+                            resp_id = data.get("id", "")
+                            usage = data.get("usage", {})
+                            p_tok = usage.get("input_tokens", 0)
+                            c_tok = usage.get("output_tokens", 0)
+                            parsed = extract_json(raw_text)
+                            return parsed, raw_text, resp_id, p_tok, c_tok
+                    except Exception:
+                        pass # Fallback to standard chat completions endpoint
+
+                # 2. Standard Chat Completions endpoint
+                chat_payload = {
+                    "model": self.model,
+                    "temperature": self.temperature,
+                    "seed": self.seed,
+                    "response_format": {"type": "json_object"},
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_content}
+                    ]
+                }
+                resp = client.post(f"{base_url}/chat/completions", json=chat_payload, headers=headers)
                 resp.raise_for_status()
                 data = resp.json()
                 raw_text = data["choices"][0]["message"]["content"].strip()
@@ -153,7 +189,7 @@ class LiveLLMClient:
                 usage = data.get("usage", {})
                 p_tok = usage.get("prompt_tokens", 0)
                 c_tok = usage.get("completion_tokens", 0)
-                parsed = json.loads(raw_text)
+                parsed = extract_json(raw_text)
                 return parsed, raw_text, resp_id, p_tok, c_tok
 
         elif self.provider == "gemini":
