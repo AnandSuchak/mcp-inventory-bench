@@ -156,3 +156,57 @@ def create_schema_level_1d(full_schema: Dict[str, Any]) -> Dict[str, Any]:
     if "required" in full_schema:
         schema["required"] = list(full_schema["required"])
     return schema
+
+def create_invariant_schema(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Invariant Foundation (C_I):
+    The minimal safe structural schema that is universally required for any syntactically
+    valid tool call, regardless of task intent.
+
+    Exposes:
+    - Base properties, types, and top-level requiredness list
+    - Format pattern for supplier_id
+    - Format pattern for authorized_by
+    - Array structure for items: object items with sku, quantity, unit_cost
+    - Invariant: items.minItems = 1
+    - Invariant: items.sku.pattern = '^SKU-[0-9]{5}$'
+    - Invariant: items.quantity.minimum = 10
+    - Invariant: items.items.required = ['sku', 'quantity', 'unit_cost']
+
+    Leaves task-dependent constraints (warehouse_code.enum, order_priority.enum,
+    total_budget_limit.maximum, etc.) to dynamic LASR resolution.
+    """
+    schema = {
+        "$schema": full_schema.get("$schema", "https://json-schema.org/draft/2020-12/schema"),
+        "title": full_schema.get("title", "create_purchase_order"),
+        "type": "object",
+        "properties": {
+            "supplier_id": {
+                "type": "string",
+                "pattern": "^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$"
+            },
+            "warehouse_code": {"type": "string"},
+            "order_priority": {"type": "string"},
+            "total_budget_limit": {"type": "number"},
+            "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sku": {"type": "string", "pattern": "^SKU-[0-9]{5}$"},
+                        "quantity": {"type": "integer", "minimum": 10},
+                        "unit_cost": {"type": "number"}
+                    },
+                    "required": ["sku", "quantity", "unit_cost"]
+                }
+            },
+            "authorized_by": {
+                "type": "string",
+                "pattern": "^[a-z]{3,8}\\.[a-z]{3,8}@enterprise\\.mock$"
+            }
+        },
+        "required": list(full_schema.get("required", ["supplier_id", "warehouse_code", "items", "authorized_by"]))
+    }
+    return schema
+

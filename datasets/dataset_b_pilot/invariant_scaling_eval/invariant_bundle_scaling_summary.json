@@ -1,0 +1,1631 @@
+{
+  "full": {
+    "total_tasks": 8,
+    "first_pass_pct": 50.0,
+    "final_success_pct": 100.0,
+    "mean_init_schema_tokens": 552.0,
+    "mean_tts": 2470.2,
+    "total_tokens_consumed": 19762,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2989,
+        "total_tokens_consumed": 2989,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+            ],
+            "tokens": 1406
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1583
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1426,
+        "total_tokens_consumed": 1426,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1426
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 3061,
+        "total_tokens_consumed": 3061,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'SUP-ACME-999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+            ],
+            "tokens": 1429
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1632
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 3049,
+        "total_tokens_consumed": 3049,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+            ],
+            "tokens": 1426
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1623
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1428,
+        "total_tokens_consumed": 1428,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1428
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1423,
+        "total_tokens_consumed": 1423,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1423
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1484,
+        "total_tokens_consumed": 1484,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1484
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "full",
+        "init_schema_tokens": 552,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 4902,
+        "total_tokens_consumed": 4902,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+              "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+            ],
+            "tokens": 1471
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+            ],
+            "tokens": 1713
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1718
+          }
+        ]
+      }
+    ]
+  },
+  "ci_k0": {
+    "total_tasks": 8,
+    "first_pass_pct": 0.0,
+    "final_success_pct": 75.0,
+    "mean_init_schema_tokens": 339.0,
+    "mean_tts": 3094.8,
+    "total_tokens_consumed": 25025,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3249,
+        "total_tokens_consumed": 3249,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 954
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1133
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1162
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3245,
+        "total_tokens_consumed": 3245,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EAST-FACILITY-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 954
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-FACILITY-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1131
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1160
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3218,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+              "'RUSH' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 949
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'RUSH' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1142
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EASTERN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1127
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3168,
+        "total_tokens_consumed": 3168,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'EXPRESS' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 935
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1102
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1131
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3252,
+        "total_tokens_consumed": 3252,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 955
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1134
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1163
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3238,
+        "final_error_count": 2,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 953
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1132
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TXSEMI-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1153
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2184,
+        "total_tokens_consumed": 2184,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 981
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1203
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k0",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3471,
+        "total_tokens_consumed": 3471,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 998
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1222
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1251
+          }
+        ]
+      }
+    ]
+  },
+  "ci_k1": {
+    "total_tasks": 8,
+    "first_pass_pct": 25.0,
+    "final_success_pct": 75.0,
+    "mean_init_schema_tokens": 364.8,
+    "mean_tts": 1834.0,
+    "total_tokens_consumed": 17603,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k1",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1023,
+        "total_tokens_consumed": 1023,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1023
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k1",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1025,
+        "total_tokens_consumed": 1025,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1025
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k1",
+        "init_schema_tokens": 365,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2181,
+        "total_tokens_consumed": 2181,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 995
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1186
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k1",
+        "init_schema_tokens": 365,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2181,
+        "total_tokens_consumed": 2181,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-TERM-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 995
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1186
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k1",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3303,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 974
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1155
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1174
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k1",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3296,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 971
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1153
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1172
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k1",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2184,
+        "total_tokens_consumed": 2184,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 981
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1203
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k1",
+        "init_schema_tokens": 385,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2410,
+        "total_tokens_consumed": 2410,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']"
+            ],
+            "tokens": 1094
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1316
+          }
+        ]
+      }
+    ]
+  },
+  "ci_k2": {
+    "total_tasks": 8,
+    "first_pass_pct": 25.0,
+    "final_success_pct": 75.0,
+    "mean_init_schema_tokens": 370.0,
+    "mean_tts": 2075.2,
+    "total_tokens_consumed": 19050,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k2",
+        "init_schema_tokens": 411,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1095,
+        "total_tokens_consumed": 1095,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1095
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k2",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1025,
+        "total_tokens_consumed": 1025,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1025
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k2",
+        "init_schema_tokens": 373,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2225,
+        "total_tokens_consumed": 2225,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1017
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1208
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k2",
+        "init_schema_tokens": 373,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3512,
+        "total_tokens_consumed": 3512,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-XYZ1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1034
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1236
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1242
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k2",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3303,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 974
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1155
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1174
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k2",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3296,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 971
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1153
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1172
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k2",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2184,
+        "total_tokens_consumed": 2184,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 981
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1203
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k2",
+        "init_schema_tokens": 385,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2410,
+        "total_tokens_consumed": 2410,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']"
+            ],
+            "tokens": 1094
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1316
+          }
+        ]
+      }
+    ]
+  },
+  "ci_k3": {
+    "total_tasks": 8,
+    "first_pass_pct": 25.0,
+    "final_success_pct": 75.0,
+    "mean_init_schema_tokens": 377.8,
+    "mean_tts": 2125.7,
+    "total_tokens_consumed": 19353,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k3",
+        "init_schema_tokens": 419,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3699,
+        "total_tokens_consumed": 3699,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+            ],
+            "tokens": 1116
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'SUP-DEF-VEND' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+            ],
+            "tokens": 1290
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1293
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "ci_k3",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1025,
+        "total_tokens_consumed": 1025,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1025
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k3",
+        "init_schema_tokens": 419,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1121,
+        "total_tokens_consumed": 1121,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1121
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "ci_k3",
+        "init_schema_tokens": 381,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2315,
+        "total_tokens_consumed": 2315,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1053
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1262
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k3",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3303,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 974
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-ACME1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1155
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1174
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "ci_k3",
+        "init_schema_tokens": 347,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3296,
+        "final_error_count": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 971
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TXSEMI123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1153
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1172
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k3",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2184,
+        "total_tokens_consumed": 2184,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 981
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1203
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "ci_k3",
+        "init_schema_tokens": 385,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2410,
+        "total_tokens_consumed": 2410,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']"
+            ],
+            "tokens": 1094
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1316
+          }
+        ]
+      }
+    ]
+  },
+  "oracle": {
+    "total_tasks": 8,
+    "first_pass_pct": 25.0,
+    "final_success_pct": 87.5,
+    "mean_init_schema_tokens": 359.0,
+    "mean_tts": 2384.6,
+    "total_tokens_consumed": 19930,
+    "records": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "arm": "oracle",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1023,
+        "total_tokens_consumed": 1023,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1023
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "arm": "oracle",
+        "init_schema_tokens": 385,
+        "first_pass": true,
+        "final_success": true,
+        "attempts_needed": 1,
+        "total_tts": 1025,
+        "total_tokens_consumed": 1025,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1025
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "arm": "oracle",
+        "init_schema_tokens": 373,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2225,
+        "total_tokens_consumed": 2225,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1017
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1208
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "arm": "oracle",
+        "init_schema_tokens": 373,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3512,
+        "total_tokens_consumed": 3512,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-XYZ1234-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1034
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1236
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1242
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "oracle",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3252,
+        "total_tokens_consumed": 3252,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 955
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1134
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1163
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "arm": "oracle",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": false,
+        "attempts_needed": 3,
+        "total_tts": 0,
+        "total_tokens_consumed": 3238,
+        "final_error_count": 2,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 3,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 953
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TEXASSEM-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1132
+          },
+          {
+            "attempt": 3,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'SUP-TXSEMI-01' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'",
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1153
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "oracle",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 2,
+        "total_tts": 2184,
+        "total_tokens_consumed": 2184,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'WH-MAIN-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 981
+          },
+          {
+            "attempt": 2,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1203
+          }
+        ]
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "arm": "oracle",
+        "init_schema_tokens": 339,
+        "first_pass": false,
+        "final_success": true,
+        "attempts_needed": 3,
+        "total_tts": 3471,
+        "total_tokens_consumed": 3471,
+        "final_error_count": 0,
+        "attempts": [
+          {
+            "attempt": 1,
+            "is_valid": false,
+            "error_count": 2,
+            "errors": [
+              "'standard' is not one of ['STANDARD', 'EXPEDITED', 'CRITICAL']",
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 998
+          },
+          {
+            "attempt": 2,
+            "is_valid": false,
+            "error_count": 1,
+            "errors": [
+              "'EAST-DEPOT-01' is not one of ['WH-US-EAST', 'WH-US-WEST', 'WH-EU-CENTRAL', 'WH-APAC-SOUTH', 'WH-LATAM-NORTH']"
+            ],
+            "tokens": 1222
+          },
+          {
+            "attempt": 3,
+            "is_valid": true,
+            "error_count": 0,
+            "errors": [],
+            "tokens": 1251
+          }
+        ]
+      }
+    ]
+  }
+}
