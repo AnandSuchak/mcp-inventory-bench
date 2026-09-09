@@ -212,7 +212,7 @@ class LiveLLMClient:
                 meta = data.get("usageMetadata", {})
                 p_tok = meta.get("promptTokenCount", 0)
                 c_tok = meta.get("candidatesTokenCount", 0)
-                parsed = json.loads(raw_text)
+                parsed = extract_json(raw_text)
                 return parsed, raw_text, data.get("responseId", ""), p_tok, c_tok
 
         else:
