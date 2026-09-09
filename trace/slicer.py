@@ -104,3 +104,55 @@ def format_fragment_identifier(error_path: str, validator_keyword: str) -> str:
         cleaned = re.sub(r'\.\d+$', '', cleaned)
         return f"{cleaned}.{validator_keyword}"
     return validator_keyword
+
+# ==============================================================================
+# Experiment 2: Schema Budget Levels (1A, 1B, 1C, 1D) with Sanitized Descriptions
+# Eliminates hidden-constraint leakage (e.g. no format or regex clues in text).
+# ==============================================================================
+
+SANITIZED_NEUTRAL_DESCRIPTIONS = {
+    "supplier_id": "Identifier of the vendor or supplier.",
+    "warehouse_code": "Code of the target distribution facility.",
+    "order_priority": "Operational priority level of the replenishment request.",
+    "total_budget_limit": "Maximum authorized financial expenditure.",
+    "items": "Collection of line items to order.",
+    "sku": "Unique product stock keeping unit code.",
+    "quantity": "Number of units to replenish.",
+    "unit_cost": "Agreed unit price per item.",
+    "authorized_by": "Contact signature of the authorizing agent."
+}
+
+def create_schema_level_1a(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """Level 1A: Property names + raw data types only (minimalist structural IDL)."""
+    schema = {
+        "title": full_schema.get("title", "tool"),
+        "type": "object",
+        "properties": {}
+    }
+    for prop, meta in full_schema.get("properties", {}).items():
+        base_meta = {"type": meta.get("type", "string")}
+        if meta.get("type") == "array":
+            base_meta["items"] = {"type": "object"}
+        schema["properties"][prop] = base_meta
+    return schema
+
+def create_schema_level_1b(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """Level 1B: Property names + raw data types + sanitized constraint-neutral descriptions."""
+    schema = create_schema_level_1a(full_schema)
+    for prop in schema["properties"]:
+        schema["properties"][prop]["description"] = SANITIZED_NEUTRAL_DESCRIPTIONS.get(prop, "Operational tool parameter.")
+    return schema
+
+def create_schema_level_1c(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """Level 1C: Property names + raw data types + requiredness lists."""
+    schema = create_schema_level_1a(full_schema)
+    if "required" in full_schema:
+        schema["required"] = list(full_schema["required"])
+    return schema
+
+def create_schema_level_1d(full_schema: Dict[str, Any]) -> Dict[str, Any]:
+    """Level 1D: Property names + raw data types + sanitized descriptions + requiredness lists."""
+    schema = create_schema_level_1b(full_schema)
+    if "required" in full_schema:
+        schema["required"] = list(full_schema["required"])
+    return schema
