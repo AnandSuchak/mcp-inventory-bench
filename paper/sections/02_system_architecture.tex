@@ -56,8 +56,8 @@ To evaluate token economics, we audit token consumption at every turn:
     \begin{equation}
     TTS = \sum_{t=1}^{T_{\text{succ}}} \left( P_t + \text{Tok}(S_t) + C_t \right)
     \end{equation}
-    where $P_t$ denotes non-schema prompt tokens, $\text{Tok}(S_t)$ denotes serialized schema tokens, and $C_t$ denotes output completion tokens (preventing schema double-counting).
+    where $P_t$ denotes non-schema prompt tokens (system instructions, non-schema tool metadata, user prompt, and conversation history), $\text{Tok}(S_t)$ denotes serialized schema tokens, and $C_t$ denotes output completion tokens (preventing schema double-counting).
     \item \textbf{Total Workload Tokens}: Sum of all tokens consumed across all 32 tasks and all attempts up to the three-attempt budget, including failed retry loops.
     \item \textbf{Structural Recovery Rate}: Fraction of initially structurally invalid trajectories that subsequently satisfy JSON Schema validation within the attempt budget.
 \end{itemize}
-Primary workload metrics use Google's \texttt{gemini-3.5-flash-lite} provider-reported API usage metadata (\texttt{prompt\_token\_count} and \texttt{candidates\_token\_count}, including reasoning/thinking tokens where billed), while serialized schema tokens are separately audited via the tokenizer for architectural decomposition.
+Primary workload metrics use Google's \texttt{gemini-3.5-flash-lite} provider-reported API usage metadata: prompt/input tokens (\texttt{prompt\_token\_count}), output tokens (\texttt{candidates\_token\_count}), and billed thinking tokens (\texttt{thoughtsTokenCount} reasoning overhead where applicable), while serialized schema tokens are separately audited via the tokenizer for architectural decomposition.

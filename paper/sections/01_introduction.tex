@@ -3,7 +3,7 @@
 
 The deployment of Large Language Models (LLMs) in mission-critical enterprise workflows has shifted from conversational assistants toward autonomous, closed-loop execution agents~\cite{yao2022react,schick2024toolformer}. 
 In enterprise operations—such as multi-warehouse replenishment, inventory reconciliation, and procurement logistics—agents interact with transactional backends via standardized tool-calling protocols.
-The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission.
+The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission. Our experiments target MCP tool-schema exposure and tool-call argument generation; they do not evaluate protocol-session, transport, or discovery semantics.
 
 \subsection{The Dilemma of Enterprise Tool Schemas}
 Despite MCP's architectural standardization, exposing enterprise-grade tools to LLMs presents a challenging systems dilemma:
