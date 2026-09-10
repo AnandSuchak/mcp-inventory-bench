@@ -34,7 +34,7 @@ Submissions are evaluated on two orthogonal metrics:
 \end{enumerate}
 
 \subsection{Execution Environment}
-All experiments run using \texttt{gemini-3.5-flash-lite} hosted on Google Cloud Generative Language API via direct REST HTTP endpoints. Generation used temperature $0.0$ with fixed decoding seeds where supported; all reported experiments use frozen recorded traces and provider-reported usage metadata.
+All experiments run using model ID \texttt{gemini-3.5-flash-lite} hosted on Google Cloud Generative Language API via direct REST HTTP endpoints. Generation used temperature $0.0$ with fixed decoding seeds where supported; each recorded API response stores the provider-reported \texttt{modelVersion} alongside usage metadata.
 
 \subsection{Evaluation Hygiene \& Benchmark Scope}
 To maintain strict methodological hygiene, we explicitly delineate the empirical role of each benchmark split:

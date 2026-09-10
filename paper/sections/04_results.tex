@@ -58,7 +58,7 @@ A natural systems question is: \textit{How much of the total token savings stems
 \noindent\textbf{Net Workload Impact}: Comparing \texttt{ci\_k2\_reactive} against Full Schema, $45.9\%$ of the 21,381 saved tokens ($9,804$ tokens) derives from leaner schema serialization, while $54.1\%$ ($11,577$ tokens) derives from prompt and completion token savings during multi-turn interactions.
 
 \subsection{Auditable Trajectory Case Study}
-Figure~\ref{fig:case_study} details the step-by-step recovery trajectory for task \texttt{BLIND-C3-013}. On Attempt 1, exposed to $C_I^* + \text{top-1 LASR rule}$ (347 tokens), the model generates unconstrained enum \texttt{'WH-EAST-01'}. The schema validator flags three concurrent violations (\texttt{warehouse\_code.enum}, \texttt{order\_priority.enum}, \texttt{supplier\_id.pattern}). LASR intercepts these error paths and recomposes the AST in-tree ($347 \rightarrow 419$ tokens). On subsequent attempts, the agent resolves all constraints, converging to 100\% structural and semantic correctness.
+Figure~\ref{fig:case_study} details the step-by-step recovery trajectory for task \texttt{BLIND-C3-013}. On Attempt 1, exposed to $C_I^* + \text{top-1 LASR rule}$ (347 tokens), the model generates unconstrained enum \texttt{'WH-EAST-01'}. The schema validator flags three concurrent violations (\texttt{warehouse\_code.enum}, \texttt{order\_priority.enum}, \texttt{supplier\_id.pattern}). LASR intercepts these error paths and recomposes the schema tree in-tree ($347 \rightarrow 419$ tokens). On subsequent attempts, the agent resolves all constraints, converging to 100\% structural and semantic correctness.
 
 \begin{figure}[t]
 \centering
@@ -75,7 +75,7 @@ $\bullet$ Validator: FAIL (3 concurrent violations in pass):\\
 \quad 2. \texttt{'standard' not in ['STANDARD', \dots]} \\
 \quad 3. \texttt{'SUP-ACME1234-US' does not match regex} \\
 $\bullet$ Extracted: $\{\texttt{warehouse.enum}, \texttt{priority.enum}, \texttt{supplier.pattern}\}$ \\
-\textbf{[In-Tree Recomposition]} Spliced AST: $347 \rightarrow 419$ tok (+72 tok) \\
+\textbf{[In-Tree Recomposition]} Spliced Schema: $347 \rightarrow 419$ tok (+72 tok) \\
 \textbf{[Attempt 2]} Model Output: \texttt{'WH-US-EAST'} (Enum Resolved) \\
 \textbf{[Attempt 3]} Output: Valid purchase order JSON \\
 $\bullet$ Validator: \textbf{PASS} (Structural: 100\%, Semantic: 100\%) \\
