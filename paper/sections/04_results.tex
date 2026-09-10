@@ -4,8 +4,8 @@
 We structure our empirical analysis around four core research hypotheses evaluated across the primary 32-task frozen benchmark corpus.
 
 \subsection{$H_1$: Semantic Predictability over Frequency Baselines}
-We first evaluate whether intent-driven multi-label classification can reliably anticipate task-conditioned constraints on unseen template families compared to an empirical frequency prior.
-On the unseen template family evaluation ($N=32$ from \texttt{family\_c}), LASR at $k=2$ achieves an $F_1$ score of \textbf{0.863} and a \textbf{68.8\% exact bundle match}, compared to \textbf{$F_1 = 0.250$} and 25.0\% exact match for the Frequency Prior baseline. A paired bootstrap hypothesis test ($B=2,000$) establishes a statistically significant lift:
+We first evaluate whether intent-driven multi-label classification can reliably anticipate task-conditioned constraints on unseen template families compared to an empirical frequency prior. The frequency prior ranks constraint labels by empirical prevalence across the 48 training tasks and selects the top-$k$ most frequent constraints.
+On the unseen template family evaluation ($N=32$ from \texttt{family\_c}), LASR at $k=2$ achieves an $F_1$ score of \textbf{0.863} and a \textbf{68.8\% exact bundle match}, compared to \textbf{$F_1 = 0.250$} and 25.0\% exact match for the Frequency Prior baseline. We resampled the 32 evaluation tasks with replacement for $B=2,000$ paired bootstrap replicates, computing percentile bootstrap confidence intervals:
 \begin{equation}
 \Delta F_1 = +0.612 \quad [95\% \text{ CI: } +0.431, +0.775], \quad p < 0.001
 \end{equation}

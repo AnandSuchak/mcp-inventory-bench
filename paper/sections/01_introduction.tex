@@ -3,13 +3,13 @@
 
 The deployment of Large Language Models (LLMs) in mission-critical enterprise workflows has shifted from conversational assistants toward autonomous, closed-loop execution agents~\cite{yao2022react,schick2024toolformer}. 
 In enterprise operations—such as multi-warehouse replenishment, inventory reconciliation, and procurement logistics—agents interact with transactional backends via standardized tool-calling protocols.
-The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission. Our experiments target MCP tool-schema exposure and tool-call argument generation; they do not evaluate protocol-session, transport, or discovery semantics.
+The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission. Our experiments target MCP tool-schema exposure and tool-call argument generation; protocol transport, session, and discovery semantics are outside the evaluation scope.
 
 \subsection{The Dilemma of Enterprise Tool Schemas}
 Despite MCP's architectural standardization, exposing enterprise-grade tools to LLMs presents a challenging systems dilemma:
 \begin{enumerate}
     \item \textbf{The Monolithic Full-Schema Tax}: Enterprise tools enforce intricate data contracts governed by JSON Schema Draft 2020-12~\cite{jsonschema202012} (e.g., supplier regex patterns, item-level quantity bounds, warehouse routing enums, and budget restrictions). Transmitting complete monolithic schemas (often exceeding 500 tokens per tool) on every turn inflates prompt token overhead, drives up financial API costs, and degrades inference throughput~\cite{patil2023gorilla}.
-    \item \textbf{The Brittleness of Naive Truncation}: Conversely, statically stripping schemas down to basic primitive types eliminates vital domain rules. In our benchmarks, when task-conditioned rules (such as warehouse routing enums) are omitted, models hallucinate non-existent identifiers, resulting in catastrophic validation failures that cannot be resolved through unassisted retries.
+    \item \textbf{The Brittleness of Naive Truncation}: Conversely, statically stripping schemas down to basic primitive types eliminates vital domain rules. In our benchmarks, when task-conditioned rules (such as warehouse routing enums) are omitted, models hallucinate non-existent identifiers, resulting in catastrophic validation failures that may remain unresolved through unassisted retries.
 \end{enumerate}
 
 \subsection{Our Approach: Three-Tier Adaptive Resolution}

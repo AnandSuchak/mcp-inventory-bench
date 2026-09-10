@@ -2,7 +2,7 @@
 \label{sec:setup}
 
 \subsection{Task Corpus \& Stratified Template Splits}
-We evaluate LASR-MCP on a synthetic enterprise-style supply-chain tool execution benchmark (\texttt{create\_purchase\_order}) governing multi-item warehouse replenishment. The benchmark corpus comprises 80 blinded task instances partitioned strictly across syntactic template families:
+We evaluate LASR-MCP on a synthetic enterprise-style supply-chain tool execution benchmark (\texttt{create\_purchase\_order}) governing multi-item warehouse replenishment. The benchmark corpus comprises 80 pre-specified task instances partitioned strictly across syntactic template families:
 \begin{itemize}
     \item \textbf{Training Tasks ($N=48$)}: Derived from template families \texttt{family\_a} and \texttt{family\_b}, used to train the frozen semantic predictor.
     \item \textbf{Evaluation Tasks ($N=32$)}: Drawn exclusively from \texttt{family\_c} with distinct lexical and syntactic structures (serving as unseen held-out test tasks for $H_1$ intent prediction, and development/validation tasks for $H_2$--$H_4$ systems evaluation).
