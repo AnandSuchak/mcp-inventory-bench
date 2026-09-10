@@ -1,0 +1,63 @@
+\section{The LASR-MCP Architecture}
+\label{sec:architecture}
+
+To resolve the trade-off between bloated context overhead and brittle schema truncation, we introduce \textbf{Learned Adaptive Schema Resolution (LASR-MCP)}. Rather than treating tool schemas as static monolithic declarations or appending unanchored constraint slices, LASR-MCP formulates the active tool schema at execution attempt $t$ as a three-tier union:
+\begin{equation}
+\label{eq:three_tier}
+C_{\text{active}}^{(t)} = C_I^* \;\cup\; \hat{C}_T(x) \;\cup\; C_R^{(t)}
+\end{equation}
+where $C_I^*$ represents the schema-wide \textit{Invariant Foundation}, $\hat{C}_T(x)$ is the \textit{Proactive Task-Conditioned Constraint Bundle} predicted from user intent $x$, and $C_R^{(t)}$ is the accumulated set of \textit{Dynamically Recovered In-Tree Constraints} derived from validation feedback up to round $t$.
+
+\subsection{Tier 1: Invariant Foundation Floor ($C_I^*$)}
+Empirical inspection of complex JSON Schema specifications (e.g., enterprise purchase order dispatching) reveals that tool execution cannot succeed on intent-specific properties alone. Certain structural constraints are \textit{invariants} required for all syntactically well-formed submissions regardless of user goal (e.g., supplier identification regex format, item array container specifications, and SKU patterns).
+
+Let $\mathcal{C}_{\text{full}}$ denote the complete schema constraint set ($552$ tokens). We define the Invariant Foundation $C_I^*$ as the minimal constraint subset among tested candidates that guarantees baseline structural validity without user-intent conditioning:
+\begin{equation}
+C_I^* = \arg\min_{C \in \mathcal{C}_{\text{cand}}} |C| \quad \text{s.t.} \quad \mathcal{V}_{\text{struct}}(C) \ge \tau_{\text{floor}}
+\end{equation}
+where $\mathcal{C}_{\text{cand}}$ is the set of evaluated candidate invariant subsets and $\tau_{\text{floor}} = 0.70$ specifies the baseline validity floor, chosen \textit{a priori} as the minimum operational viability threshold to avoid retry cascade failure. As demonstrated in Section~\ref{sec:results}, $C_I^* = 339$ tokens is the empirically selected invariant foundation meeting this threshold among tested tiers for the evaluated purchase-order schema; compressing below this boundary triggers structural collapse in nested item definitions.
+
+\subsection{Tier 2: Proactive Intent-Conditioned Predictor ($\hat{C}_T(x)$)}
+Given a user query $x \in \mathcal{X}$, the agent's goal is to predict the minimal subset of task-conditioned constraints $\hat{C}_T(x) \subseteq \mathcal{C}_{\text{task}}$ necessary for successful execution. We formulate this as a multi-label classification problem over the task-conditioned label space $\mathcal{L} = \{c_1, c_2, \dots, c_m\}$ (e.g., specific warehouse routing enums, order priority restrictions, and budget bounds).
+
+We employ a frozen linear semantic predictor:
+\begin{equation}
+\hat{y}_i = \sigma\left( \mathbf{w}_i^T \phi(x) + b_i \right), \quad i \in \{1, \dots, m\}
+\end{equation}
+where $\phi(x)$ denotes normalized term-salience features extracted from the query. The decision threshold $\theta$ was calibrated strictly on the 48 training tasks and frozen prior to evaluation. To construct the proactive bundle of size up to $k$, the highest-ranked constraints exceeding $\theta$ (up to $k$) are selected:
+\begin{equation}
+\hat{C}_T(x) = \text{Top-}k \left( \{ c_i \in \mathcal{L} \mid \hat{y}_i \ge \theta \} \right)
+\end{equation}
+
+\subsection{Tier 3: Dynamic In-Tree Recomposition ($C_R^{(t)}$)}
+\label{sec:recomposition}
+When an unpredicted constraint is omitted from $C_I^* \cup \hat{C}_T(x)$, the LLM may submit arguments $y_t$ that fail JSON Schema validation. A simple agent implementation may return raw validator error strings into conversation history or retry without modifying the exposed schema. 
+
+LASR-MCP introduces \textit{in-tree reactive recomposition}. Reactive recovery operates as pass-level multi-error constraint expansion rather than single-error sequential repair. Our validator is configured to return all observed violations $\text{Errors}(y_t) = \{e_1, e_2, \dots\}$ in a single validation pass, rather than short-circuiting on the first failure. Analogous to an enterprise validator reporting all diagnostic issues across a payload, the reactive operator extracts all concurrent violations simultaneously:
+\begin{equation}
+\label{eq:reactive_op}
+\small
+C_R^{(t+1)} = C_R^{(t)} \cup \bigcup_{e \in \text{Errors}(y_t)} \left( \text{Fragment}(e) \cap \mathcal{S}_{\text{specs}} \setminus C_{\text{active}}^{(t)} \right)
+\end{equation}
+where $\text{Fragment}(e)$ deterministically maps the RFC 6901 JSON Pointer error path~\cite{rfc6901} and validator-reported JSON Schema keyword (e.g., \texttt{path='/warehouse\_code'}, \texttt{keyword='enum'}) to the canonical constraint node $\Delta_e \in \mathcal{S}_{\text{specs}}$.
+
+The updated schema specification $S_{t+1}$ is then structurally spliced into the native JSON Schema hierarchy:
+\begin{equation}
+S_{t+1} = \mathcal{R}\left( S_I, C_{\text{active}}^{(t+1)} \right)
+\end{equation}
+where $\mathcal{R}$ is the in-tree recomposition function that inserts properties, pattern regexes, and enums directly into their respective object trees without creating duplicate definition nodes or schema syntax errors.
+
+\subsection{Incremental Token Accounting Metrics}
+To evaluate token economics, we audit token consumption at every turn:
+\begin{itemize}
+    \item \textbf{Initial Schema Overhead ($S_0$)}: Tokens required to serialize $S_{\text{active}}^{(1)}$.
+    \item \textbf{Incremental Expansion ($\Delta S_t$)}: Additional schema tokens introduced at attempt $t \ge 2$: $\Delta S_t = \text{Tok}(S_t) - \text{Tok}(S_{t-1})$.
+    \item \textbf{Tokens-to-Success ($TTS$)}: Cumulative tokens across all attempts until successful completion, defined strictly over successful trajectories ($T_{\text{succ}} \le 3$):
+    \begin{equation}
+    TTS = \sum_{t=1}^{T_{\text{succ}}} \left( P_t + \text{Tok}(S_t) + C_t \right)
+    \end{equation}
+    where $P_t$ denotes non-schema prompt tokens, $\text{Tok}(S_t)$ denotes serialized schema tokens, and $C_t$ denotes output completion tokens (preventing schema double-counting).
+    \item \textbf{Total Workload Tokens}: Sum of all tokens consumed across all 32 tasks and all attempts up to the three-attempt budget, including failed retry loops.
+    \item \textbf{Structural Recovery Rate}: Fraction of initially structurally invalid trajectories that subsequently satisfy JSON Schema validation within the attempt budget.
+\end{itemize}
+Primary workload metrics use Google's \texttt{gemini-3.5-flash-lite} provider-reported API usage metadata (\texttt{prompt\_token\_count} and \texttt{candidates\_token\_count}, including reasoning/thinking tokens where billed), while serialized schema tokens are separately audited via the tokenizer for architectural decomposition.

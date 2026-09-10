@@ -1,0 +1,10 @@
+{
+  "filename": "invariant_optimization_summary.json",
+  "sha256": "78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11",
+  "size_bytes": 388286,
+  "git_commit": "9807340abc38170e0090a102547ee4309c01d78b",
+  "model": "gemini-3.5-flash-lite",
+  "evaluation_tasks_count": 32,
+  "arms_count": 6,
+  "timestamp_frozen": "2026-09-10T10:45:00+05:30"
+}

@@ -1,0 +1,86 @@
+\section{Empirical Results \& Discussion}
+\label{sec:results}
+
+We structure our empirical analysis around four core research hypotheses evaluated across the primary 32-task frozen benchmark corpus.
+
+\subsection{$H_1$: Semantic Predictability over Frequency Baselines}
+We first evaluate whether intent-driven multi-label classification can reliably anticipate task-conditioned constraints on unseen template families compared to an empirical frequency prior.
+On the unseen template family evaluation ($N=32$ from \texttt{family\_c}), LASR at $k=2$ achieves an $F_1$ score of \textbf{0.863} and a \textbf{68.8\% exact bundle match}, compared to \textbf{$F_1 = 0.250$} and 25.0\% exact match for the Frequency Prior baseline. A paired bootstrap hypothesis test ($B=2,000$) establishes a statistically significant lift:
+\begin{equation}
+\Delta F_1 = +0.612 \quad [95\% \text{ CI: } +0.431, +0.775], \quad p < 0.001
+\end{equation}
+This strongly supports $H_1$, demonstrating that task text contains predictive signal for constraint pre-allocation across template families.
+
+\input{tables/table1_systems_evaluation.tex}
+
+\subsection{$H_2$: Structural Necessity of the Invariant Foundation (Supported on Benchmark)}
+To determine the minimal invariant floor $C_I^*$ meeting the pre-specified 70\% structural-validity threshold ($\tau_{\text{floor}} = 0.70$), we benchmarked three candidate compression tiers prior to task conditioning:
+\begin{itemize}
+    \item \textbf{Tier 1 (Standard $C_I^*$, 339 tokens)}: 75.0\% structural validity.
+    \item \textbf{Tier 2 (Compact $C_I$, 308 tokens)}: 62.5\% structural validity (-12.5 pp).
+    \item \textbf{Tier 3 (Minimal $C_I$, 284 tokens)}: 50.0\% structural validity (-25.0 pp).
+\end{itemize}
+Within the evaluated benchmark, $H_2$ is supported: $C_I^* = 339$ tokens represents the empirically selected invariant foundation satisfying the 70\% floor for the evaluated purchase-order schema. Further compression below 339 tokens progressively reduced structural validity, from 75.0\% at 339 tokens to 62.5\% at 308 tokens and 50.0\% at 284 tokens, due to the omission of structural definitions for nested array item requirements. We emphasize that 339 tokens represents the smallest tested invariant candidate satisfying this operational threshold for this schema, not an unconstrained universal constant.
+
+\subsection{$H_3$: Evidence Consistent with a Causal Contribution of Reactive Recovery}
+\input{tables/table2_paired_bootstrap.tex}
+The central systems question is whether reactive in-tree recovery provides empirical evidence consistent with a causal contribution over static adaptive exposure. In Table~\ref{tab:systems_evaluation}, we contrast \texttt{ci\_k1\_static} directly with \texttt{ci\_k1\_reactive}:
+
+\noindent\textbf{Structural Reliability}: Final structural success increases from \textbf{78.1\%} to \textbf{100.0\%} ($\Delta\text{Success} = \mathbf{+21.9\text{ pp}}$, 95\% CI: $[+9.4, +37.5]\text{ pp}$, exact one-sided McNemar/binomial test $p = 0.0078125$).
+
+\noindent\textbf{Semantic Correctness}: Task correctness increases from \textbf{71.9\%} to \textbf{93.8\%} ($\Delta\text{Correctness} = \mathbf{+21.9\text{ pp}}$, 95\% CI: $[+9.4, +37.5]\text{ pp}$, exact one-sided McNemar/binomial test $p = 0.0078125$).
+
+\noindent\textbf{Structural Recovery Rate}: All 27 initially failed trajectories in the benchmark were successfully recovered to satisfy structural validation within the three-attempt budget ($27/27 = 100.0\%$).
+
+As broken down in Table~\ref{tab:cluster_breakdown}, the observed lift is concentrated in Cluster 3 (Specialized Bulk Procurement), where static success was only 50.0\% (4/8 tasks) due to missing warehouse enums, while reactive recovery achieved \textbf{100.0\%} (8/8 tasks).
+
+\input{tables/table3_cluster_breakdown.tex}
+
+\subsection{$H_4$: Total Workload Token Efficiency}
+Table~\ref{tab:systems_evaluation} highlights the macro token economics of adaptive resolution across the 32-task workload: Full Schema Control consumed \textbf{96,629 total API tokens} with a mean $TTS$ of 2,913.2 tokens, while reactive LASR cut consumption to \textbf{77,140 tokens} at $k=1$ (\textbf{-20.2\%}) and \textbf{75,248 tokens} at $k=2$ (\textbf{-22.1\% net token reduction}).
+
+\textbf{Observed Correctness vs. Full Schema}: In this benchmark, reactive LASR achieved 93.8\% semantic correctness compared to 90.6\% for Full Schema (+3.1 pp). Because LLM outputs exhibit inherent stochasticity, this difference reflects an observed empirical result on this benchmark distribution rather than evidence that schema reduction intrinsically enhances underlying semantic comprehension. The core claim rests on reliability preservation and workload token reduction.
+
+\textbf{Why Reactive LASR Outperforms Static LASR in Total Tokens}: In \texttt{ci\_k1\_static}, failing tasks cycle through 3 wasted attempts without converging, accumulating 83,754 tokens. In \texttt{ci\_k1\_reactive}, because in-tree schema expansion resolves the root cause immediately on Attempt 2, the system terminates the retry cascade early, saving 6,614 tokens (-7.9\%) relative to static LASR.
+
+\subsection{Emergence of $k=2$ as the Best Observed Operating Point}
+While $k=1$ provides the leanest initial schema ($S_0 = 361.1$ tokens), \texttt{ci\_k2\_reactive} ($S_0 = 366.8$ tokens) achieved the lowest total token consumption overall (75,248 tokens) while achieving 100\% structural validity and 93.8\% semantic correctness. By predicting slightly wider constraint bundles ($k=2$) upfront, the system avoids initial failures on Cluster 2 without adding meaningful schema bloat.
+
+\subsection{Decomposing Token Savings: Schema Reduction vs. Retry Avoidance}
+A natural systems question is: \textit{How much of the total token savings stems from a leaner schema footprint versus avoiding failed retry turns?} Auditing granular token accounts across the 32 tasks reveals the exact operational balance:
+
+\noindent\textbf{Initial Schema Savings vs. Expansion Cost}: In \texttt{ci\_k2\_reactive}, total schema serialization consumed 24,972 tokens compared to 34,776 for Full Schema—a net saving of \textbf{9,804 schema tokens (-28.2\%)}, even after paying 1,402 tokens of amortized reactive expansion across all attempts ($43.8$ tokens/task).
+
+\noindent\textbf{Retry-Avoidance Savings}: In \texttt{ci\_k1\_static}, failing tasks cycle through 3 attempts without converging, accumulating 75 total attempts across the workload. In \texttt{ci\_k1\_reactive}, in-tree schema expansion resolves omitted rules immediately on Attempt 2, reducing workload attempts to 66 (avoiding 9 full failure rounds). This retry avoidance saves \textbf{4,059 prompt tokens} and \textbf{1,294 completion tokens} (5,353 tokens), plus \textbf{1,261 avoided schema tokens}, yielding 6,614 net API tokens saved (-7.9\%) over the static arm.
+
+\noindent\textbf{Net Workload Impact}: Comparing \texttt{ci\_k2\_reactive} against Full Schema, $45.9\%$ of the 21,381 saved tokens ($9,804$ tokens) derives from leaner schema serialization, while $54.1\%$ ($11,577$ tokens) derives from prompt and completion token savings during multi-turn interactions.
+
+\subsection{Auditable Trajectory Case Study}
+Figure~\ref{fig:case_study} details the step-by-step recovery trajectory for task \texttt{BLIND-C3-013}. On Attempt 1, exposed to $C_I^* + \text{top-1 LASR rule}$ (347 tokens), the model generates unconstrained enum \texttt{'WH-EAST-01'}. The schema validator flags three concurrent violations (\texttt{warehouse\_code.enum}, \texttt{order\_priority.enum}, \texttt{supplier\_id.pattern}). LASR intercepts these error paths and recomposes the AST in-tree ($347 \rightarrow 419$ tokens). On subsequent attempts, the agent resolves all constraints, converging to 100\% structural and semantic correctness.
+
+\begin{figure}[t]
+\centering
+\fbox{
+\parbox{0.92\columnwidth}{
+\scriptsize
+\textbf{Task}: \texttt{BLIND-C3-013} (Specialized Bulk) \quad \textbf{Arm}: \texttt{ci\_k1\_reactive} \\
+\rule{0.92\columnwidth}{0.4pt}
+\textbf{[Attempt 1]} \\
+$\bullet$ Exposed Schema: $C_I^* \cup \{\text{items.maxItems}\}$ (347 tokens) \\
+$\bullet$ Model Output: \texttt{warehouse\_code = 'WH-EAST-01'} \\
+$\bullet$ Validator: FAIL (3 concurrent violations in pass):\\
+\quad 1. \texttt{'WH-EAST-01' not in ['WH-US-EAST', \dots]} \\
+\quad 2. \texttt{'standard' not in ['STANDARD', \dots]} \\
+\quad 3. \texttt{'SUP-ACME1234-US' does not match regex} \\
+$\bullet$ Extracted: $\{\texttt{warehouse.enum}, \texttt{priority.enum}, \texttt{supplier.pattern}\}$ \\
+\textbf{[In-Tree Recomposition]} Spliced AST: $347 \rightarrow 419$ tok (+72 tok) \\
+\textbf{[Attempt 2]} Model Output: \texttt{'WH-US-EAST'} (Enum Resolved) \\
+\textbf{[Attempt 3]} Output: Valid purchase order JSON \\
+$\bullet$ Validator: \textbf{PASS} (Structural: 100\%, Semantic: 100\%) \\
+$\bullet$ Outcome: \textbf{RECOVERED} (3 attempts, $TTS = 3,626$ tok)
+}
+}
+\caption{Trajectory-level evidence of pass-level multi-error extraction and native in-tree schema recomposition on held-out task \texttt{BLIND-C3-013}.}
+\label{fig:case_study}
+\end{figure}
+

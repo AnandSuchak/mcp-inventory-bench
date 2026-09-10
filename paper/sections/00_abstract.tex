@@ -1,14 +1,15 @@
 \begin{abstract}
-As enterprise computing transitions toward autonomous agentic workflows, the \textit{Model Context Protocol} (MCP) has emerged as an open architectural standard designed to decouple Large Language Model (LLM) reasoning from heterogeneous underlying databases, APIs, and business systems. 
-While MCP mitigates vendor lock-in and eliminates hardcoded function-calling schemas by introducing standardized client-server JSON-RPC interfaces and dynamic resource discovery, our initial empirical benchmarks reveal a measurable systems penalty: dynamic tool reflection introduces a \textit{``discovery token tax''} (inflating initial context by $18$--$30\%$) and non-trivial Time-to-First-Token (TTFT) delays.
+As enterprise computing transitions toward autonomous agentic workflows, the \textit{Model Context Protocol} (MCP) has emerged as the standard open interface for tool calling and context integration. 
+However, deploying complex enterprise schemas (such as multi-constraint purchase order systems) introduces severe operational penalties: monolithic full-schema exposure inflates context token consumption, while naive schema pruning triggers catastrophic argument hallucinations due to omitted domain constraints.
 
-To resolve this fundamental tension between dynamic protocol decoupling and token efficiency, we present an empirical evaluation of three distinct architectures operating within a closed-loop enterprise inventory workflow: 
-(1) \textbf{Direct Agent (Baseline)} with monolithic static schemas, 
-(2) \textbf{Vanilla MCP Agent} employing standard dynamic discovery, and 
-(3) \textbf{Compressed MCP Agent (Optimized)}, which interposes an intermediary semantic prompt/schema compression layer between the MCP discovery endpoint and the LLM context. 
-Tasked with an end-to-end operational objective—dynamically discovering database schemas, auditing stock deficiencies across multi-regional fulfillment hubs, computing historical sales velocities, querying negotiated supplier terms, and executing binding purchase orders—we evaluate all three architectures across tail-latency percentiles ($p_{50}, p_{90}, p_{95}, p_{99}$), token economy, tool determinism, and concurrency scalability ($N \in \{1, 5, 10, 20\}$).
+To resolve this tension, we present \textbf{Learned Adaptive Schema Resolution (LASR-MCP)}, a three-tier architecture that decouples tool definitions into: 
+(1) an \textbf{Invariant Foundation} ($C_I^*$) ensuring a structural safety floor, 
+(2) a \textbf{Proactive Intent Predictor} pre-allocating task-conditioned constraint bundles, and 
+(3) a \textbf{Dynamic In-Tree Recomposition Operator} that reactively expands schemas upon validation errors via pass-level multi-error extraction.
 
-Our experimental results demonstrate that the Compressed MCP architecture neutralizes the discovery token tax, achieving a $74.9\%$ reduction in tool discovery tokens ($880 \rightarrow 221$ tokens) and lowering overall closed-loop prompt tokens to $1411$—outperforming even the direct baseline ($1770$ tokens) by $20.3\%$. 
-Crucially, this compression is achieved in $<1\text{ ms}$ of CPU pre-processing time, preserving MCP's robust $100\%$ tool execution accuracy and low $p_{99}$ tail latency while substantially reducing prefill latency and API costs.
-These findings provide concrete systems-engineering guidelines for deploying high-throughput, cost-efficient autonomous agents in production enterprise environments.
+We evaluate LASR-MCP across a synthetic enterprise-style inventory dispatching benchmark ($N=32$ tasks across four operational archetypes) under \texttt{gemini-3.5-flash-lite}:
+First, on an unseen template family, our semantic intent predictor achieves an $F_1$ score of $0.863$ versus $0.250$ for frequency baselines ($\Delta F_1 = +0.612$, $p < 0.001$).
+Second, within the benchmark evaluation, reactive in-tree recovery provides empirical evidence consistent with a causal contribution over static adaptive exposure, yielding a $+21.9\text{ percentage point}$ structural reliability improvement ($78.1\% \rightarrow 100.0\%$, $95\%\text{ CI: } [+9.4, +37.5]\text{ pp}$, $p < 0.01$), successfully recovering all $27$ initially failed trajectories within a three-attempt budget.
+Crucially, reactive recovery terminates wasteful retry cascades early, achieving a $20.2\%$ to $22.1\%$ reduction in total workload API tokens compared to monolithic full-schema exposure ($96,629 \rightarrow 77,140$ tokens at $k=1$, and $75,248$ tokens at $k=2$), identifying $k=2$ as the best observed operating point.
+All benchmark data, traces, and code are publicly archived with a SHA-256 cryptographic manifest for deterministic trace replay and build verification.
 \end{abstract}

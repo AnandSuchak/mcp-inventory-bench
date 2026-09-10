@@ -1,0 +1,15 @@
+\section{Related Work and Novelty Positioning}
+\label{sec:related_work}
+
+The transition of LLMs to autonomous enterprise agents makes tool context efficiency and execution reliability paramount. We situate LASR-MCP within four emerging paradigms in tool-augmented literature:
+
+\noindent\textbf{1) Tool and Context Retrieval in MCP}: As tool registries expand, sending full catalogs exhausts context windows. RAG-MCP~\cite{rag_mcp2024} and MCP-Zero~\cite{mcp_zero2024} employ dense semantic retrieval to filter catalogs to top-$k$ tools, while Gorilla~\cite{patil2023gorilla} and ToolLLM~\cite{qin2023toolllm} retrieve APIs from extensive registries. \textit{Distinction}: These frameworks operate at the \textit{inter-tool catalog level} (which tools to load). In contrast, LASR-MCP operates \textit{intra-tool}, resolving parameter-level constraints once a tool is chosen.
+
+\noindent\textbf{2) Schema Compression and Dense Representation}: Tool Attention~\cite{tool_attention2024} lazily loads parameter docs via intent gating. TSCG~\cite{tscg2024} compiles verbose schemas into dense interfaces, while LLMLingua~\cite{jiang2023llmlingua} and LLMLingua-2~\cite{pan2024llmlingua2} compress prompt tokens. \textit{Distinction}: Prior compression targets representation granularity. LASR-MCP preserves native JSON Schema semantics while enforcing an empirically validated Invariant Foundation Floor ($C_I^*$).
+
+\noindent\textbf{3) Field-Aware and Schema Routing}: SchemaRouter~\cite{schemarouter2024} predicts parameters, noting under-fetching risks. HyperAgent~\cite{hyperagent2024} coordinates field pruning across workflows. \textit{Distinction}: LASR-MCP performs closed-loop recovery inside an active schema via \textbf{Dynamic In-Tree Recomposition ($C_R$)}, extracting omitted constraints directly from validator diagnostics to achieve complete structural recovery across evaluated cases.
+
+\noindent\textbf{4) Execution Traces and Tool Adaptation}: ReAct~\cite{yao2022react} and Toolformer~\cite{schick2024toolformer} demonstrate agent self-correction, and ToolSpec~\cite{toolspec2024} uses speculative decoding. \textit{Distinction}: Standard trace recovery appends raw error strings to conversation history; LASR-MCP intercepts validator error paths for \textbf{native in-tree AST recomposition}, splicing missing constraint subtrees directly into the tool schema on Attempt~2.
+
+\noindent\textbf{Summary of Novelty}: LASR-MCP performs constraint-level adaptive resolution within an already selected executable tool schema, combining intent-conditioned proactive prediction with validator-derived pass-level in-tree recomposition.
+

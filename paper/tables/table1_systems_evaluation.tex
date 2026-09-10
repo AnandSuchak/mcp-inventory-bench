@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Full-Spectrum Systems Evaluation across 32 Development/Validation Tasks ($N=32$, Gemini 3.5 Flash-Lite)}
+\label{tab:systems_evaluation}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{System Arm} & \textbf{Reactive?} & \textbf{Init $S_0$} & \textbf{Exp. $\Delta S$} & \textbf{1st-Pass (\%)} & \textbf{Struct. (\%)} & \textbf{Sem. (\%)} & \textbf{Mean $TTS$} & \textbf{Total Tokens} \\
+\midrule
+Full Schema Control & No & 552.0 & 0.0 & 31.2\% & \textbf{93.8\%} & 90.6\% & 2913.2 & \textbf{96,629} \\
+$C_I^*$ Baseline ($k=0$) & No & 339.0 & 0.0 & 0.0\% & \textbf{68.8\%} & 65.6\% & 3182.9 & \textbf{102,407} \\
+LASR $k=1$ (Static) & No & 361.1 & 0.0 & 15.6\% & \textbf{78.1\%} & 71.9\% & 2410.6 & \textbf{83,754} \\
+LASR $k=1$ (Reactive) & Yes & 361.1 & 45.4 & 15.6\% & \textbf{100.0\%} & 93.8\% & 2410.6 & \textbf{77,140} \\
+LASR $k=2$ (Reactive) & Yes & 366.8 & 43.8 & 18.8\% & \textbf{100.0\%} & 93.8\% & 2351.5 & \textbf{75,248} \\
+Oracle $O(x)$ (Reactive)* & Yes & 359.0 & 48.3 & 15.6\% & \textbf{96.9\%} & 93.8\% & 2325.3 & \textbf{75,649} \\
+\bottomrule
+\multicolumn{9}{p{0.92\textwidth}}{\footnotesize *\textit{Note}: Oracle $O(x)$ is a model-conditional reference baseline. Mean $TTS$ is averaged over successful trajectories ($N_{\text{succ}}$); Total Tokens accounts for all attempts across all 32 tasks.} \\
+\end{tabular}
+\end{table*}

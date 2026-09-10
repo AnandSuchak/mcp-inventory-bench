@@ -1,73 +1,41 @@
 \section{Introduction}
 \label{sec:intro}
 
-The integration of Large Language Models (LLMs) into production enterprise software has rapidly transitioned from passive conversational interfaces toward autonomous, goal-driven agentic architectures~\cite{yao2022react,schick2024toolformer,bubeck2023sparks}. 
-In modern enterprise applications—such as continuous supply-chain replenishment, automated financial reconciliation, and autonomous infrastructure remediation—agents operate in closed feedback loops. 
-In such workflows, agents receive broad, high-level business objectives (e.g., \textit{``Audit multi-regional stock levels, identify critical replenishment requirements based on empirical sales velocity, negotiate terms, and issue purchase orders''}), interact with persistent relational databases and third-party vendor APIs, reason over multi-step state transitions, and autonomously commit writes to transactional storage without human intervention.
+The deployment of Large Language Models (LLMs) in mission-critical enterprise workflows has shifted from conversational assistants toward autonomous, closed-loop execution agents~\cite{yao2022react,schick2024toolformer}. 
+In enterprise operations—such as multi-warehouse replenishment, inventory reconciliation, and procurement logistics—agents interact with transactional backends via standardized tool-calling protocols.
+The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission.
 
-\subsection{The Architectural Divergence: Monolithic vs. Standardized Protocols}
-
-Historically, equipping LLMs with external execution capabilities relied on proprietary, monolithic tool-calling APIs provided directly by model vendors (e.g., OpenAI Function Calling, Google Gemini Tools)~\cite{patil2023gorilla,qin2023toolllm}. 
-In these conventional baseline architectures, software engineers embed exhaustive JSON Schema definitions and database specifications directly into the system prompt or API invocation payload. 
-While effective for constrained, single-purpose scripts, this monolithic integration paradigm exhibits severe limitations when scaled across enterprise infrastructures:
+\subsection{The Dilemma of Enterprise Tool Schemas}
+Despite MCP's architectural standardization, exposing enterprise-grade tools to LLMs presents a challenging systems dilemma:
 \begin{enumerate}
-    \item \textbf{Schema Rigidity and Brittle Coupling}: Any modification to internal database column definitions, endpoint signatures, or security credentials necessitates manual refactoring and redeployment of the orchestration harness and prompt templates.
-    \item \textbf{Context Window Bloat}: Exposing an entire enterprise catalog of database tables and operational tools statically degrades the effective context window, escalating API consumption costs and diluting attention mechanisms over long multi-turn interactions.
-    \item \textbf{Security and Boundary Leaks}: Monolithic tool integrations frequently execute within the same runtime process space as the agent orchestrator, impeding granular privilege separation, tenant sandboxing, and standardized auditability.
+    \item \textbf{The Monolithic Full-Schema Tax}: Enterprise tools enforce intricate data contracts governed by JSON Schema Draft 2020-12~\cite{jsonschema202012} (e.g., supplier regex patterns, item-level quantity bounds, warehouse routing enums, and budget restrictions). Transmitting complete monolithic schemas (often exceeding 500 tokens per tool) on every turn inflates prompt token overhead, drives up financial API costs, and degrades inference throughput~\cite{patil2023gorilla}.
+    \item \textbf{The Brittleness of Naive Truncation}: Conversely, statically stripping schemas down to basic primitive types eliminates vital domain rules. In our benchmarks, when task-conditioned rules (such as warehouse routing enums) are omitted, models hallucinate non-existent identifiers, resulting in catastrophic validation failures that cannot be resolved through unassisted retries.
 \end{enumerate}
 
-To address these architectural bottlenecks, the \textit{Model Context Protocol} (MCP)~\cite{anthropic2024mcp} was introduced as an open standard for universal AI-data integration. 
-Analogous to how the Language Server Protocol (LSP) standardized communication between integrated development environments (IDEs) and programming language toolchains, MCP standardizes how AI agents discover, query, and invoke tools, context resources, and prompt templates across disparate backends. 
-Operating over lightweight JSON-RPC 2.0 transport layers—principally inter-process standard input/output (\texttt{stdio}) and Server-Sent Events over HTTP (\texttt{SSE})—MCP decouples the agent's reasoning core from the data environment. 
-Under MCP, an agent dynamically queries the server for accessible tools and relational schemas at runtime, retrieving only the metadata necessary to complete the current operational sub-goal.
-
-\subsection{The Empirical Problem: The Discovery Token Tax and Tail-Latency Penalties}
-
-Despite the architectural elegance and modularity promised by the Model Context Protocol, introducing an abstracted protocol boundary into the agent execution loop incurs real systems costs that remain uncharacterized in the empirical literature. 
-Every tool invocation in an MCP-governed workflow traverses client-side JSON serialization, operating system process pipe or network socket transport, server-side parameter parsing, authorization verification, database execution, and return serialization. 
-
-Crucially, dynamic tool discovery via the standard \texttt{tools/list} endpoint introduces a significant \textit{``discovery token tax''}. 
-Because raw JSON Schema specifications mandate verbose boilerplate keys (\texttt{\$schema}, \texttt{type: "object"}, \texttt{properties}, \texttt{description}, and nested structural wrappers), transmitting these verbose schemas into the LLM context inflates initial prompt token counts by $18$--$30\%$. 
-This token inflation directly translates to increased financial API billing and degrades Time-to-First-Token (TTFT) latency during initial reasoning turns.
-
-Furthermore, in high-throughput enterprise settings characterized by strict Service Level Agreements (SLAs), mean performance metrics often obscure catastrophic latency degradation at the tail ($p_{95}, p_{99}$)~\cite{dean2013tail,suchak2025auth}. 
-When tens or hundreds of autonomous agents concurrently access shared MCP servers, the underlying transport protocol and process scheduling behavior dictate whether the system scales gracefully or suffers from thread exhaustion and severe head-of-line blocking.
-
-\subsection{The Proposed Optimization: The 3-Way Architectural Paradigm}
-
-To resolve the tension between dynamic decoupling and token efficiency, this paper evaluates closed-loop agent execution across three distinct architectural paradigms:
-\begin{enumerate}
-    \item \textbf{Architecture 1 (Direct Agent - Baseline)}: A monolithic design where full relational database schemas and function signatures are statically embedded in the agent's system prompt and executed via direct in-process database drivers.
-    \item \textbf{Architecture 2 (Vanilla MCP Agent)}: A decoupled design employing standard dynamic \texttt{tools/list} discovery over JSON-RPC 2.0, accepting the standard schema token tax.
-    \item \textbf{Architecture 3 (Compressed MCP Agent - Optimized)}: An optimized design that interposes an intermediary prompt/schema compression layer~\cite{jiang2023llmlingua,pan2024llmlingua2} between the MCP discovery endpoint and the LLM context. This layer applies semantic schema pruning, transforming verbose JSON Schema specifications into dense, declarative Interface Definition Language (IDL) signatures while preserving $100\%$ of parameter names, required constraints, and data types.
-\end{enumerate}
-
-\subsection{Research Questions}
-To rigorously evaluate the operational trade-offs of these architectures, we investigate four primary research questions:
-
+\subsection{Our Approach: Three-Tier Adaptive Resolution}
+To overcome this trade-off, we propose \textbf{Learned Adaptive Schema Resolution (LASR-MCP)}. Rather than treating schema resolution as static compression or isolated error string dumping, LASR-MCP introduces a tripartite schema hierarchy:
+\begin{equation}
+C_{\text{active}}^{(t)} = C_I^* \;\cup\; \hat{C}_T(x) \;\cup\; C_R^{(t)}
+\end{equation}
+combining:
 \begin{itemize}
-    \item \textbf{RQ$_1$ (Tail Latency \& Protocol Overhead)}: What is the exact tail-latency overhead ($p_{50}, p_{90}, p_{95}, p_{99}$) introduced by the MCP JSON-RPC abstraction layer across transport mechanisms compared to direct in-process calling, and does prompt compression introduce noticeable computational pre-processing delay?
-    \item \textbf{RQ$_2$ (Token Economy \& TTFT Efficiency)}: How does dynamic MCP schema discovery compare against static baseline schemas, and can an intermediary schema compression layer neutralize the discovery token tax and reduce Time-to-First-Token (TTFT)?
-    \item \textbf{RQ$_3$ (Determinism \& Robustness Under Schema Evolution)}: Does dynamic schema inspection via MCP—with and without prompt compression—reduce tool hallucinations, invalid parameter generation, and schema drift failures when relational database structures evolve?
-    \item \textbf{RQ$_4$ (Concurrency Scalability \& Saturation)}: How do the three architectures scale under concurrent multi-agent workloads ($N \in \{1, 5, 10, 20\}$), and at what saturation thresholds does transport serialization become the primary system bottleneck?
+    \item \textbf{Tier 1 (Invariant Foundation Floor, $C_I^*$)}: A core subset of constraints ($339$ tokens for the evaluated purchase-order schema) that establishes the non-negotiable structural foundation required for syntactically valid submissions.
+    \item \textbf{Tier 2 (Proactive Intent Prediction, $\hat{C}_T(x)$)}: A lightweight semantic classifier that predicts task-relevant constraint bundles from user intent prior to execution.
+    \item \textbf{Tier 3 (Dynamic In-Tree Recomposition, $C_R^{(t)}$)}: A reactive operator that extracts the full set of concurrent schema violations from validator feedback and splices the missing constraint nodes directly into the native JSON Schema hierarchy on Attempt 2.
+\end{itemize}
+
+\subsection{Hypotheses \& Empirical Findings}
+We investigate four central hypotheses across a synthetic enterprise-style supply-chain tool benchmark:
+\begin{itemize}
+    \item \textbf{$H_1$ (Semantic Predictability)}: \textit{Task intent contains sufficient signal to predict constraint requirements beyond frequency priors on unseen template families.} $\rightarrow$ \textbf{Strongly Supported}: LASR achieves $F_1 = 0.863$ versus $0.250$ for the frequency prior ($\Delta F_1 = +0.612$, $p < 0.001$).
+    \item \textbf{$H_2$ (Invariant Safety Floor)}: \textit{A minimal invariant foundation is necessary to prevent structural collapse.} $\rightarrow$ \textbf{Supported within the Evaluated Benchmark}: $C_I^* = 339$ tokens is the empirically selected invariant foundation meeting the pre-specified 70\% structural-validity floor; further pruning drops structural validity from $75\%$ to $50\%$.
+    \item \textbf{$H_3$ (Reactive In-Tree Recovery)}: \textit{Pass-level dynamic in-tree recovery provides empirical evidence consistent with a causal contribution over static adaptive exposure.} $\rightarrow$ \textbf{Strongly Supported}: Structural success increases from $78.1\%$ to $100.0\%$ ($\Delta\text{Success} = +21.9\text{ pp}$, $95\%\text{ CI: } [+9.4, +37.5]\text{ pp}$, exact one-sided McNemar/binomial test $p = 0.0078125$, $p < 0.01$), recovering all $27$ initially failed trajectories in the benchmark.
+    \item \textbf{$H_4$ (Workload Token Efficiency)}: \textit{Adaptive resolution reduces net API token consumption across enterprise workloads.} $\rightarrow$ \textbf{Supported for Workload-Level Tokens}: Reactive LASR cuts total API token consumption by $20.2\%$ ($k=1$) and $22.1\%$ ($k=2$) compared to monolithic full-schema control ($96,629 \rightarrow 75,248$ tokens).
 \end{itemize}
 
 \subsection{Contributions}
-The primary contributions of this paper are summarized as follows:
 \begin{enumerate}
-    \item \textbf{An Open-Source Empirical Testbed}: We design and implement \texttt{mcp-inventory-bench}, a fully reproducible, open-source benchmarking testbed modeling an enterprise multi-warehouse inventory replenishment workflow with parameterized SKU catalogs, dynamic sales velocities, supplier contracts, and immutable audit trails.
-    \item \textbf{A 3-Way Comparative Evaluation}: We execute comprehensive empirical benchmarking comparing Direct Baseline agents, Vanilla MCP agents, and Compressed MCP agents under increasing concurrency ($N=1$ to $N=20$).
-    \item \textbf{A High-Efficiency Schema Compression Layer}: We engineer and open-source a sub-millisecond semantic schema compression layer that achieves a $74.9\%$ reduction in MCP discovery tokens, reducing overall agent context footprint below the direct baseline without sacrificing tool accuracy.
-    \item \textbf{Empirical Tail-Latency and Token Characterization}: We provide high-resolution latency distributions ($p_{50}$ through $p_{99}$) isolating client-server protocol serialization from underlying database execution, alongside detailed token consumption profiles.
-    \item \textbf{Architectural Production Guidelines}: We formulate concrete systems-engineering guidelines for deploying cost-effective, high-throughput MCP agents in mission-critical closed-loop operations.
+    \item \textbf{Formalization of Three-Tier Schema Resolution}: We formalize the interaction between invariant structural baselines, proactive intent prediction, and pass-level in-tree recomposition.
+    \item \textbf{Controlled Systems Benchmark}: We execute a six-arm controlled systems evaluation across 32 tasks spanning four operational archetypes on the primary frozen benchmark, providing empirical evidence consistent with a causal contribution of reactive recovery.
+    \item \textbf{Open Reproducibility Package}: We release the benchmark code, traces, and frozen dataset with an automated SHA-256 cryptographic integrity manifest.
 \end{enumerate}
-
-\subsection{Paper Organization}
-The remainder of this paper is structured as follows: 
-Section~\ref{sec:background} surveys background concepts in autonomous agent architectures, native tool-calling mechanisms, and the Model Context Protocol specification. 
-Section~\ref{sec:testbed} details the design and implementation of the \texttt{mcp-inventory-bench} enterprise testbed, database schema, and closed-loop replenishment workflow. 
-Section~\ref{sec:compression} details the architecture and formal algorithm of the intermediary prompt/schema compression layer.
-Section~\ref{sec:methodology} describes our experimental methodology, evaluation metrics, and benchmarking harness. 
-Section~\ref{sec:results} presents the empirical results addressing $RQ_1$ through $RQ_4$. 
-Section~\ref{sec:discussion} discusses architectural implications, failure modes, and threats to validity. 
-Finally, Section~\ref{sec:conclusion} concludes the paper and outlines directions for future research.

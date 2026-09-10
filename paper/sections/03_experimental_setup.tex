@@ -1,0 +1,53 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Task Corpus \& Stratified Template Splits}
+We evaluate LASR-MCP on a synthetic enterprise-style supply-chain tool execution benchmark (\texttt{create\_purchase\_order}) governing multi-item warehouse replenishment. The benchmark corpus comprises 80 blinded task instances partitioned strictly across syntactic template families:
+\begin{itemize}
+    \item \textbf{Training Tasks ($N=48$)}: Derived from template families \texttt{family\_a} and \texttt{family\_b}, used to train the frozen semantic predictor.
+    \item \textbf{Evaluation Tasks ($N=32$)}: Drawn exclusively from \texttt{family\_c} with distinct lexical and syntactic structures (serving as unseen held-out test tasks for $H_1$ intent prediction, and development/validation tasks for $H_2$--$H_4$ systems evaluation).
+\end{itemize}
+The 32 evaluation tasks span four diverse operational archetypes ($N=8$ tasks each):
+\begin{enumerate}
+    \item \textbf{C1: Routine Regional Replenishment}: High-frequency, standard priority orders governed by basic warehouse routing.
+    \item \textbf{C2: Expedited Emergency Orders}: Critical priority dispatches with accelerated freight logistics and rigid budget limits.
+    \item \textbf{C3: Specialized Bulk Procurement}: Large-quantity orders where queries omit explicit warehouse locations, testing model behavior under unstated default enums.
+    \item \textbf{C4: Multi-Item Depot Rebalancing}: Complex multi-line consignments enforcing nested \texttt{maxItems} and item-level SKU validation.
+\end{enumerate}
+
+\subsection{Controlled Experimental System Arms}
+To compare the contributions of the schema-resolution components in Equation~\eqref{eq:three_tier}, we evaluate six controlled system arms under identical prompt conditions:
+\begin{itemize}
+    \item \textbf{Full Schema Control (\texttt{full})}: Static exposure of the monolithic 552-token schema upfront.
+    \item \textbf{Invariant Baseline (\texttt{ci\_k0})}: Invariant Foundation alone ($C_I^* = 339$ tokens) without task-conditioned prediction or reactive recovery.
+    \item \textbf{Proactive Static Control (\texttt{ci\_k1\_static})}: Invariant Foundation + Top-1 LASR predicted constraint without reactive recovery.
+    \item \textbf{Proactive-Reactive LASR (\texttt{ci\_k1\_reactive})}: Invariant Foundation + Top-1 LASR predicted constraint with dynamic in-tree recovery.
+    \item \textbf{Proactive-Reactive LASR (\texttt{ci\_k2\_reactive})}: Invariant Foundation + Top-2 LASR predicted constraints with dynamic in-tree recovery.
+    \item \textbf{Model-Conditional Reference (\texttt{oracle\_reactive})}: Invariant Foundation + reference constraint set $O(x) = C_I^* \cup C_T^*(x)$ with reactive recovery. $O(x)$ was constructed from task specifications prior to execution and validated against the schema validator.
+\end{itemize}
+
+\subsection{Dual Evaluation Criteria}
+Submissions are evaluated on two orthogonal metrics:
+\begin{enumerate}
+    \item \textbf{Structural Schema Validity (\%)}: Conformance to JSON Schema Draft 2020-12 verified by an independent automated validator.
+    \item \textbf{Semantic Task Correctness (\%)}: Exact domain logic validation verifying that extracted line items, quantities, priority codes, and supplier IDs satisfy user intent. Evaluation is strictly hierarchical: semantic correctness requires structural validity as a precondition, bounding semantic correctness by structural success.
+\end{enumerate}
+
+\subsection{Execution Environment}
+All experiments run using \texttt{gemini-3.5-flash-lite} hosted on Google Cloud Generative Language API via direct REST HTTP endpoints. Generation used temperature $0.0$ with fixed decoding seeds where supported; all reported experiments use frozen recorded traces and provider-reported usage metadata.
+
+\subsection{Evaluation Hygiene \& Benchmark Scope}
+To maintain strict methodological hygiene, we explicitly delineate the empirical role of each benchmark split:
+\begin{itemize}
+    \item \textbf{Held-Out Family Generalization for $H_1$}: The multi-label linear predictor was trained on 48 tasks (\texttt{family\_a}, \texttt{family\_b}) and evaluated on 32 tasks (\texttt{family\_c}) drawn from an unseen syntactic template family, evaluating held-out generalization across template families. The predictor weights were formally frozen prior to all subsequent experiments.
+    \item \textbf{Primary Frozen Benchmark for $H_2$--$H_4$}: The invariant foundation $C_I^* = 339$ tokens was calibrated on the \texttt{family\_c} task distribution. Consequently, the 32-task controlled systems benchmark evaluates system behavior within this primary frozen benchmark corpus rather than serving as an untouched, blind end-to-end generalization test.
+\end{itemize}
+
+\subsection{Data Provenance \& Cryptographic Manifest}
+All benchmark code, traces, and frozen datasets are archived at \url{https://github.com/AnandSuchak/mcp-inventory-bench}. The frozen summary artifact (\texttt{invariant\_optimization\_summary.json}) is verified by a SHA-256 cryptographic manifest:
+\begin{center}
+{\scriptsize\texttt{SHA-256: 78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11}} \\
+{\scriptsize\texttt{Frozen Benchmark Commit: 9807340abc38170e0090a102547ee4309c01d78b}}
+\end{center}
+Automated regression test suites ensure complete data immutability.
+

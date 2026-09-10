@@ -48,3 +48,10 @@ Thumbs.db
 results/raw/
 datasets/cache/
 
+# Local build binaries & renders
+bin/
+paper/page-*.png
+scratch/
+release_archive/
+
+

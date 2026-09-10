@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\caption{Paired Confidence Intervals and Hypothesis Tests ($N=32$ Development/Validation Tasks)}
+\label{tab:paired_bootstrap}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Pairwise Contrast} & \textbf{Metric} & \textbf{Point Est.} & \textbf{95\% Bootstrap CI} & \textbf{Significance Test ($p$)} \\
+\midrule
+LASR Reactive vs Static & $\Delta$ Structural Succ. & \textbf{+21.9 pp} & [9.4, 37.5] pp & Exact one-sided McNemar/binomial ($p = 0.0078125$) \\
+& $\Delta$ Semantic Corr. & \textbf{+21.9 pp} & [9.4, 37.5] pp & Exact one-sided McNemar/binomial ($p = 0.0078125$) \\
+\midrule
+LASR Reactive vs Full & $\Delta$ Structural Succ. & +6.2 pp & [0.0, 15.6] pp & Exact one-sided McNemar/binomial ($p = 0.250$) \\
+& $\Delta$ Semantic Corr. & +3.1 pp & [-6.2, 12.5] pp & Exact one-sided McNemar/binomial ($p = 0.500$) \\
+\midrule
+Workload Token Lift ($k=1$) & Total API Tokens & \textbf{-20.2\%} & -19,489 tokens & Paired Empirical Workload \\
+Workload Token Lift ($k=2$) & Total API Tokens & \textbf{-22.1\%} & -21,381 tokens & Paired Empirical Workload \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

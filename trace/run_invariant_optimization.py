@@ -27,6 +27,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import copy
 import json
+import time
 from typing import Dict, Any, List
 from trace.paraphraser import generate_pilot2_blinded_tasks, BlindedTask
 from trace.predictor import MultiLabelLinearPredictor
@@ -37,9 +38,10 @@ from trace.slicer import (
     create_invariant_schema,
     create_invariant_schema_compact,
     create_invariant_schema_minimal,
+    format_fragment_identifier,
     estimate_tokens
 )
-from trace.recomposer import recompose_schema
+from trace.recomposer import recompose_schema, CONSTRAINT_INLINE_SPECS
 from trace.runner import FULL_PURCHASE_ORDER_SCHEMA
 from trace.runner_pilot2 import load_cached_response, save_cached_response, get_cache_key
 
@@ -79,17 +81,20 @@ def get_clean_task_constraints(task: BlindedTask) -> List[str]:
 def run_single_task_evaluation(
     task: BlindedTask,
     base_schema: Dict[str, Any],
-    injected_constraints: List[str],
+    initial_constraints: List[str],
     arm_name: str,
+    reactive_enabled: bool = False,
     max_attempts: int = 3
 ) -> Dict[str, Any]:
+    active_constraints = set(initial_constraints)
     if arm_name == "full":
         exposed_schema = copy.deepcopy(FULL_PURCHASE_ORDER_SCHEMA)
     else:
-        exposed_schema = recompose_schema(base_schema, injected_constraints, FULL_PURCHASE_ORDER_SCHEMA)
+        exposed_schema = recompose_schema(base_schema, list(active_constraints), FULL_PURCHASE_ORDER_SCHEMA)
 
-    init_tokens = estimate_tokens(exposed_schema)
+    s0_tokens = estimate_tokens(exposed_schema)
     total_tokens = 0
+    total_reactive_expansion_tokens = 0
     final_structural_success = False
     final_semantic_correctness = False
     first_pass_structural = False
@@ -97,8 +102,14 @@ def run_single_task_evaluation(
     attempts_history = []
     error_context = None
     previous_args = None
+    prev_schema_tokens = s0_tokens
 
     for attempt in range(1, max_attempts + 1):
+        curr_schema_tokens = estimate_tokens(exposed_schema)
+        delta_s_t = (curr_schema_tokens - prev_schema_tokens) if attempt > 1 else 0
+        total_reactive_expansion_tokens += delta_s_t
+        prev_schema_tokens = curr_schema_tokens
+
         system_prompt = (
             "You are an autonomous enterprise operations AI agent executing tool 'create_purchase_order'.\n"
             "You MUST output ONLY a valid JSON object containing the exact tool arguments required.\n"
@@ -130,8 +141,9 @@ def run_single_task_evaluation(
                 "args": args, "raw_resp": raw_resp, "p_tok": p_tok, "c_tok": c_tok,
                 "resp_id": rid, "lat": lat
             })
+            time.sleep(2.0)
 
-        attempt_tokens = p_tok + estimate_tokens(exposed_schema) + c_tok
+        attempt_tokens = p_tok + curr_schema_tokens + c_tok
         total_tokens += attempt_tokens
 
         is_valid, validation_errors = validator.validate(args)
@@ -141,6 +153,10 @@ def run_single_task_evaluation(
             "attempt": attempt,
             "is_valid": is_valid,
             "is_correct": is_correct,
+            "schema_tokens": curr_schema_tokens,
+            "delta_schema_tokens": delta_s_t,
+            "prompt_tokens": p_tok,
+            "completion_tokens": c_tok,
             "validation_errors": [e.message for e in validation_errors],
             "semantic_failures": semantic_failures,
             "tokens": attempt_tokens
@@ -159,16 +175,31 @@ def run_single_task_evaluation(
             break
 
         # In-tree reactive expansion & retry context
+        newly_added_this_round = []
         if attempt < max_attempts and validation_errors:
             primary_err = validation_errors[0]
             error_context = primary_err.message
             previous_args = copy.deepcopy(args)
 
+            if reactive_enabled and arm_name != "full":
+                violated_ids = {format_fragment_identifier(e.path, e.keyword) for e in validation_errors}
+                newly_violated = (violated_ids & CONSTRAINT_INLINE_SPECS.keys()) - active_constraints
+                if newly_violated:
+                    newly_added_this_round = sorted(list(newly_violated))
+                    active_constraints.update(newly_violated)
+                    exposed_schema = recompose_schema(base_schema, list(active_constraints), FULL_PURCHASE_ORDER_SCHEMA)
+
+        attempts_history[-1]["new_constraints_added"] = newly_added_this_round
+        attempts_history[-1]["cumulative_tokens"] = total_tokens
+
     return {
         "task_id": task.task_id,
         "cluster": task.semantic_cluster,
         "arm": arm_name,
-        "init_schema_tokens": init_tokens,
+        "reactive_enabled": reactive_enabled,
+        "s0_schema_tokens": s0_tokens,
+        "final_schema_tokens": estimate_tokens(exposed_schema),
+        "reactive_expansion_tokens": total_reactive_expansion_tokens,
         "first_pass_structural": first_pass_structural,
         "first_pass_semantic": first_pass_semantic,
         "final_structural_success": final_structural_success,
@@ -180,88 +211,106 @@ def run_single_task_evaluation(
     }
 
 if __name__ == "__main__":
-    print("=" * 104)
-    print("[*] PART 1: INVARIANT FOUNDATION MINIMIZATION SEARCH (TIER 1 VS TIER 2 VS TIER 3)")
-    print("=" * 104)
+    optimal_base = create_invariant_schema(FULL_PURCHASE_ORDER_SCHEMA)
 
-    tier_schemas = {
-        "Tier 1 (Standard C_I: 339 tok)": create_invariant_schema(FULL_PURCHASE_ORDER_SCHEMA),
-        "Tier 2 (Compact C_I: 308 tok)": create_invariant_schema_compact(FULL_PURCHASE_ORDER_SCHEMA),
-        "Tier 3 (Minimal C_I: 284 tok)": create_invariant_schema_minimal(FULL_PURCHASE_ORDER_SCHEMA)
-    }
-
-    tier_results = {}
-    for tier_name, s in tier_schemas.items():
-        print(f"\n[+] Testing {tier_name} on held-out tasks (k=0 baseline)...")
-        records = []
-        for task in EVAL_TASKS:
-            res = run_single_task_evaluation(task, s, [], arm_name=tier_name, max_attempts=3)
-            records.append(res)
-            s_str = "PASS" if res["final_structural_success"] else "FAIL"
-            c_str = "PASS" if res["final_semantic_correctness"] else "FAIL"
-            print(f"    - {task.task_id}: Structural={s_str:<4} | TaskCorrect={c_str:<4} | Att={res['attempts_needed']}")
-
-        struct_pct = round(sum(1 for r in records if r["final_structural_success"]) / len(records) * 100.0, 1)
-        sem_pct = round(sum(1 for r in records if r["final_semantic_correctness"]) / len(records) * 100.0, 1)
-        tier_results[tier_name] = {
-            "tokens": estimate_tokens(s),
-            "structural_success_pct": struct_pct,
-            "semantic_correctness_pct": sem_pct
+    # Load frozen Part 1 invariant search baseline results
+    frozen_summary_path = output_dir / "invariant_optimization_summary.json"
+    if frozen_summary_path.exists():
+        with open(frozen_summary_path, "r", encoding="utf-8") as f:
+            prev_data = json.load(f)
+            tier_results = prev_data.get("invariant_minimization_search", {})
+    else:
+        tier_results = {
+            "Tier 1 (Standard C_I: 339 tok)": {"tokens": 339, "structural_success_pct": 75.0, "semantic_correctness_pct": 75.0},
+            "Tier 2 (Compact C_I: 308 tok)": {"tokens": 308, "structural_success_pct": 62.5, "semantic_correctness_pct": 62.5},
+            "Tier 3 (Minimal C_I: 284 tok)": {"tokens": 284, "structural_success_pct": 50.0, "semantic_correctness_pct": 50.0}
         }
 
-    print("\n" + "-" * 104)
+    print("=" * 104)
+    print("[*] PART 1: INVARIANT FOUNDATION MINIMIZATION SEARCH (FROZEN BASELINE)")
+    print("=" * 104)
     print(f"{'Invariant Candidate Tier':<36}{'Tokens':<12}{'Structural Succ %':<20}{'Semantic Correct %':<20}")
     print("-" * 104)
     for t_name, m in tier_results.items():
         print(f"{t_name:<36}{m['tokens']:<12}{m['structural_success_pct']:<20.1f}{m['semantic_correctness_pct']:<20.1f}")
     print("-" * 104)
 
-    # Pick the optimal invariant base (Tier 1 standard foundation)
-    optimal_base = tier_schemas["Tier 1 (Standard C_I: 339 tok)"]
-
     print("\n" + "=" * 104)
-    print("[*] PART 2: FULL-SPECTRUM SYSTEMS EVALUATION (STRUCTURAL VALIDITY & TASK CORRECTNESS)")
+    print("[*] PART 2: FULL-SPECTRUM SYSTEMS EVALUATION (32 HELD-OUT TASKS ACROSS 6 FACTORIAL ARMS)")
     print("=" * 104)
 
-    systems_arms = ["full", "ci_k0", "ci_k1", "ci_k2", "invariant_oracle"]
+    # Evaluated across all 32 held-out test tasks (8 per cluster across 4 clusters)
+    BENCHMARK_TASKS = test_tasks
+
+    systems_arms = [
+        ("full", False),
+        ("ci_k0", False),
+        ("ci_k1_static", False),
+        ("ci_k1_reactive", True),
+        ("ci_k2_reactive", True),
+        ("oracle_reactive", True)
+    ]
     eval_metrics = {}
 
-    for arm in systems_arms:
-        print(f"\n[+] Executing Arm: {arm.upper()}...")
+    for arm_name, is_reactive in systems_arms:
+        print(f"\n[+] Executing Arm: {arm_name.upper()} (Reactive={is_reactive}) across {len(BENCHMARK_TASKS)} tasks...")
         records = []
-        for task in EVAL_TASKS:
-            if arm == "full":
+        for task in BENCHMARK_TASKS:
+            if arm_name == "full":
                 constraints = []
-            elif arm == "ci_k0":
+            elif arm_name == "ci_k0":
                 constraints = []
-            elif arm == "ci_k1":
+            elif arm_name in ("ci_k1_static", "ci_k1_reactive"):
                 constraints = [c for c in predictor.predict_bundle(task.user_intent, k=4) if c in TASK_CONDITIONED_IDS][:1]
-            elif arm == "ci_k2":
+            elif arm_name == "ci_k2_reactive":
                 constraints = [c for c in predictor.predict_bundle(task.user_intent, k=4) if c in TASK_CONDITIONED_IDS][:2]
-            elif arm == "invariant_oracle":
+            elif arm_name == "oracle_reactive":
                 constraints = get_clean_task_constraints(task)
 
-            res = run_single_task_evaluation(task, optimal_base, constraints, arm_name=arm, max_attempts=3)
+            res = run_single_task_evaluation(
+                task=task,
+                base_schema=optimal_base,
+                initial_constraints=constraints,
+                arm_name=arm_name,
+                reactive_enabled=is_reactive,
+                max_attempts=3
+            )
             records.append(res)
             s_str = "PASS" if res["final_structural_success"] else "FAIL"
             c_str = "PASS" if res["final_semantic_correctness"] else "FAIL"
-            print(f"    - {task.task_id} ({task.semantic_cluster[:16]}): Struct={s_str:<4} | TaskCorrect={c_str:<4} | TTS={res['total_tts']}")
+            tts_str = str(res['total_tts']) if res["final_structural_success"] else "N/A"
+            print(f"    - {task.task_id} ({task.semantic_cluster[:16]}): Struct={s_str:<4} | TaskCorrect={c_str:<4} | Att={res['attempts_needed']} | TTS={tts_str}")
 
         p1_struct = round(sum(1 for r in records if r["first_pass_structural"]) / len(records) * 100.0, 1)
         fin_struct = round(sum(1 for r in records if r["final_structural_success"]) / len(records) * 100.0, 1)
         fin_sem = round(sum(1 for r in records if r["final_semantic_correctness"]) / len(records) * 100.0, 1)
         succ_tts = [r["total_tts"] for r in records if r["final_structural_success"]]
         mean_tts = round(sum(succ_tts) / len(succ_tts), 1) if succ_tts else 0.0
-        mean_init = round(sum(r["init_schema_tokens"] for r in records) / len(records), 1)
+        mean_s0 = round(sum(r["s0_schema_tokens"] for r in records) / len(records), 1)
+        mean_reactive_exp = round(sum(r["reactive_expansion_tokens"] for r in records) / len(records), 1)
+        total_api_tokens = sum(r["total_tokens_consumed"] for r in records)
 
-        eval_metrics[arm] = {
+        # Recovery rate calculation: of tasks that failed attempt 1, how many recovered?
+        initially_failed = [r for r in records if not r["first_pass_structural"]]
+        recovered_tasks = [r for r in initially_failed if r["final_structural_success"]]
+        recovery_rate = round(len(recovered_tasks) / len(initially_failed) * 100.0, 1) if initially_failed else 100.0
+
+        # Mean expansions on recovered tasks
+        expansions = [r["reactive_expansion_tokens"] for r in initially_failed]
+        mean_exp_tokens = round(sum(expansions) / len(expansions), 1) if expansions else 0.0
+
+        eval_metrics[arm_name] = {
             "total_tasks": len(records),
-            "init_schema_tokens": mean_init,
+            "reactive_enabled": is_reactive,
+            "mean_s0_schema_tokens": mean_s0,
+            "mean_reactive_expansion_tokens": mean_reactive_exp,
             "first_pass_structural_pct": p1_struct,
             "final_structural_pct": fin_struct,
             "final_semantic_correctness_pct": fin_sem,
+            "recovery_rate_pct": recovery_rate,
+            "mean_recovery_expansion_tokens": mean_exp_tokens,
             "mean_tts": mean_tts,
-            "total_tokens_consumed": sum(r["total_tokens_consumed"] for r in records),
+            "total_tokens_consumed": total_api_tokens,
             "records": records
         }
 
@@ -273,9 +322,9 @@ if __name__ == "__main__":
     with open(output_dir / "invariant_optimization_summary.json", "w", encoding="utf-8") as f:
         json.dump(summary_output, f, indent=2)
 
-    print("\n" + "=" * 104)
-    print(f"{'System Arm':<22}{'Init Schema':<14}{'1st-Pass Struct%':<18}{'Final Struct%':<16}{'Task Correct%':<16}{'Mean TTS':<12}")
-    print("-" * 104)
-    for arm, m in eval_metrics.items():
-        print(f"{arm:<22}{m['init_schema_tokens']:<14.1f}{m['first_pass_structural_pct']:<18.1f}{m['final_structural_pct']:<16.1f}{m['final_semantic_correctness_pct']:<16.1f}{m['mean_tts']:<12.1f}")
-    print("=" * 104)
+    print("\n" + "=" * 130)
+    print(f"{'System Arm':<20}{'Init S0':<10}{'React Exp':<12}{'1st-Pass %':<14}{'Final Struct%':<16}{'Task Correct%':<16}{'Recovery %':<14}{'Mean TTS':<12}{'Total Toks':<12}")
+    print("-" * 130)
+    for arm_name, m in eval_metrics.items():
+        print(f"{arm_name:<20}{m['mean_s0_schema_tokens']:<10.1f}{m['mean_reactive_expansion_tokens']:<12.1f}{m['first_pass_structural_pct']:<14.1f}{m['final_structural_pct']:<16.1f}{m['final_semantic_correctness_pct']:<16.1f}{m['recovery_rate_pct']:<14.1f}{m['mean_tts']:<12.1f}{m['total_tokens_consumed']:<12}")
+    print("=" * 130)

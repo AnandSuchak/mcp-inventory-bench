@@ -138,7 +138,7 @@ class LiveLLMClient:
                 text = re.sub(r"\s*```$", "", text)
             return json.loads(text.strip())
 
-        def http_post(url: str, headers: Dict[str, str], payload_dict: Dict[str, Any], timeout: float = 60.0, max_retries: int = 8) -> Dict[str, Any]:
+        def http_post(url: str, headers: Dict[str, str], payload_dict: Dict[str, Any], timeout: float = 60.0, max_retries: int = 15) -> Dict[str, Any]:
             req = urllib.request.Request(
                 url,
                 data=json.dumps(payload_dict).encode("utf-8"),
@@ -158,13 +158,14 @@ class LiveLLMClient:
                             try:
                                 body_bytes = e.read()
                                 err_data = json.loads(body_bytes.decode("utf-8"))
-                                details = err_data.get("error", {}).get("details", [])
+                                details = err_data.get("details", []) or err_data.get("error", {}).get("details", [])
                                 for d in details:
                                     if "retryDelay" in d:
-                                        delay_str = d["retryDelay"].rstrip("s")
+                                        delay_str = str(d["retryDelay"]).rstrip("s")
                                         sleep_seconds = max(sleep_seconds, float(delay_str) + 1.0)
                             except Exception:
-                                sleep_seconds = max(sleep_seconds, 15.0)
+                                sleep_seconds = max(sleep_seconds, 20.0)
+                        print(f"      [~] Rate limit (429) encountered. Backing off for {sleep_seconds:.1f}s (Attempt {attempt+1}/{max_retries})...", flush=True)
                         time.sleep(sleep_seconds)
                         continue
                     raise
