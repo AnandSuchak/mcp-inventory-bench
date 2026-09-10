@@ -14,13 +14,15 @@ This strongly supports $H_1$, demonstrating that task text contains predictive s
 \input{tables/table1_systems_evaluation.tex}
 
 \subsection{$H_2$: Invariant Foundation Requirement on the Evaluated Benchmark}
-To determine the minimal invariant floor $C_I^*$ meeting the pre-specified 70\% structural-validity threshold ($\tau_{\text{floor}} = 0.70$), we benchmarked three candidate compression tiers prior to task conditioning:
+To identify the minimal invariant floor $C_I^*$ meeting the pre-specified 70\% structural-validity threshold ($\tau_{\text{floor}} = 0.70$), we followed a formal sequential design: \textit{pre-specify threshold} $\rightarrow$ \textit{candidate calibration} $\rightarrow$ \textit{freeze $C_I^*$} $\rightarrow$ \textit{final 32-task systems evaluation}.
+During candidate calibration on an 8-task calibration probe, we benchmarked three candidate compression tiers prior to task conditioning:
 \begin{itemize}
-    \item \textbf{Tier 1 (Standard $C_I^*$, 339 tokens)}: 75.0\% structural validity.
-    \item \textbf{Tier 2 (Compact $C_I$, 308 tokens)}: 62.5\% structural validity (-12.5 pp).
-    \item \textbf{Tier 3 (Minimal $C_I$, 284 tokens)}: 50.0\% structural validity (-25.0 pp).
+    \item \textbf{Tier 1 (Standard $C_I^*$, 339 tokens)}: 75.0\% structural validity (6/8 tasks).
+    \item \textbf{Tier 2 (Compact $C_I$, 308 tokens)}: 62.5\% structural validity (5/8 tasks).
+    \item \textbf{Tier 3 (Minimal $C_I$, 284 tokens)}: 50.0\% structural validity (4/8 tasks).
 \end{itemize}
-Within the evaluated benchmark, $H_2$ is supported: $C_I^* = 339$ tokens represents the empirically selected invariant foundation satisfying the 70\% floor for the evaluated purchase-order schema. Further compression below 339 tokens progressively reduced structural validity, from 75.0\% at 339 tokens to 62.5\% at 308 tokens and 50.0\% at 284 tokens, due to the omission of structural definitions for nested array item requirements. We emphasize that 339 tokens represents the smallest tested invariant candidate satisfying this operational threshold for this schema, not an unconstrained universal constant.
+Tier 1 ($C_I^* = 339$ tokens) was the smallest tested candidate meeting the 70\% floor and was frozen for all subsequent experiments.
+In the subsequent full 32-task systems benchmark (Table~\ref{tab:systems_evaluation}), this frozen foundation alone without task prediction (\texttt{ci\_k0}) yielded 68.8\% structural validity (22/32 tasks), confirming that without task-conditioned augmentation or reactive recovery, structural validity hovers near the 70\% baseline floor. Compressing below 339 tokens triggers progressive degradation due to missing definitions for nested items. We emphasize that 339 tokens represents the smallest tested candidate meeting this threshold, not an unconstrained universal constant.
 
 \subsection{$H_3$: Evidence Consistent with a Causal Contribution of Reactive Recovery}
 \input{tables/table2_paired_bootstrap.tex}

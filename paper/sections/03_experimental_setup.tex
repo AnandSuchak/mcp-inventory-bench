@@ -43,8 +43,8 @@ To maintain strict methodological hygiene, we explicitly delineate the empirical
     \item \textbf{Primary Frozen Benchmark for $H_2$--$H_4$}: The invariant foundation $C_I^* = 339$ tokens was calibrated on the \texttt{family\_c} task distribution. Consequently, the 32-task controlled systems benchmark evaluates system behavior within this primary frozen benchmark corpus rather than serving as an untouched, blind end-to-end generalization test.
 \end{itemize}
 
-\subsection{Data Provenance \& Cryptographic Manifest}
-All benchmark code, traces, and frozen datasets are archived at \url{https://github.com/AnandSuchak/mcp-inventory-bench}. The frozen summary artifact (\texttt{invariant\_optimization\_summary.json}) is verified by a SHA-256 cryptographic manifest:
+\subsection{Data Provenance \& Trace Replay Verification}
+All benchmark code, traces, and frozen datasets are archived at \url{https://github.com/AnandSuchak/mcp-inventory-bench}. While live API re-executions may exhibit variance from hosted model updates, deterministic reproduction of our experimental results is guaranteed via recorded execution traces verified by an automated SHA-256 cryptographic manifest:
 \begin{center}
 {\scriptsize\texttt{SHA-256: 78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11}} \\
 {\scriptsize\texttt{Frozen Benchmark Commit: 9807340abc38170e0090a102547ee4309c01d78b}}
