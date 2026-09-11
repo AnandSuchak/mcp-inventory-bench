@@ -7,12 +7,12 @@
 \toprule
 \textbf{Enterprise-Style Tool Schema} & \textbf{Domain / Key Constraints} & \textbf{Init $S_0$} & \textbf{Full $S$} & \textbf{Token Savings} & \textbf{1st-Pass (Exp/Amb)} & \textbf{Final Struct.} & \textbf{Semantic} & \textbf{Ambiguous Recovery} \\
 \midrule
-\texttt{create\_purchase\_order} & Procurement (Regex, enums, nested items) & 339 & 552 & \textbf{-21.3\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
-\texttt{inventory\_adjustment} & Warehouse Stock (Signed deltas, reason codes) & 299 & 541 & \textbf{-22.4\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
-\texttt{shipment\_creation} & Freight Logistics (Nested packages, tracking regex) & 337 & 646 & \textbf{-25.2\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
-\texttt{customer\_refund} & Financial Accounting (Bounds, currency enums) & 292 & 474 & \textbf{-20.5\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
+\texttt{create\_purchase\_order} & Procurement (Regex, enums, nested items) & 339 & 552 & \textbf{21.3\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
+\texttt{inventory\_adjustment} & Warehouse Stock (Signed deltas, reason codes) & 299 & 541 & \textbf{22.4\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
+\texttt{shipment\_creation} & Freight Logistics (Nested packages, tracking regex) & 337 & 646 & \textbf{25.2\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
+\texttt{customer\_refund} & Financial Accounting (Bounds, currency enums) & 292 & 474 & \textbf{20.5\%} & 50.0\% (4/4, 0/4) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
 \midrule
-\textbf{Macro Mean / Aggregate} & \textbf{Cross-Domain Summary ($N=32$)} & \textbf{316.8} & \textbf{553.2} & \textbf{-22.5\%} & \textbf{50.0\%} (16/16, 0/16) & \textbf{100.0\%} & \textbf{93.8\%} & \textbf{100.0\%} (16/16) \\
+\textbf{Macro Mean / Aggregate} & \textbf{Cross-Domain Summary ($N=32$)} & \textbf{316.8} & \textbf{553.2} & \textbf{22.5\%} & \textbf{50.0\%} (16/16, 0/16) & \textbf{100.0\%} & \textbf{93.8\%} & \textbf{100.0\%} (16/16) \\
 \bottomrule
 \end{tabular}%
 }
