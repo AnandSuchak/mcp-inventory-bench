@@ -43,7 +43,7 @@ C_active^(t) = C_I^*  ∪  Ĉ_T(x)  ∪  C_R^(t)
 - **Multi-Label Intent-Conditioned Constraint Prediction:** Linguistic and semantic mapping of task prompts to domain constraints without requiring prompt-level schema leakage.
 - **Multi-Error Validator Interception:** Extraction of fine-grained error paths from JSON Schema validators for surgical error recovery.
 - **Native In-Tree Schema Recomposition:** Deterministic mutation of active schema abstract syntax trees via RFC 6901 JSON Pointers, preserving full dialect compliance.
-- **Finite Monotonic Recovery Bound:** Theoretical proof guaranteeing recovery termination within $K \le M - |A_0|$ retry turns without non-monotonic schema oscillations.
+- **Finite Monotonic Recovery Bound:** Theoretical proof guaranteeing recovery termination within $K \le M - |A_0|$ schema-expansion transitions without non-monotonic schema oscillations.
 - **Empirical Retry-Amortization Analysis:** Characterization of the *Retry-Amortization Boundary*, establishing the exact operational conditions under which adaptive pruning outperforms or underperforms monolithic schema delivery.
 - **Open-Science Telemetry & Benchmark:** Full raw call ledgers ($7,860$ response-bearing Gemini API invocations, $154$ transport retries, $3,840$ trials) released under open-access terms.
 
@@ -51,7 +51,7 @@ C_active^(t) = C_I^*  ∪  Ĉ_T(x)  ∪  C_R^(t)
 
 ## 3. Experimental Setup
 
-The canonical live evaluation reported in manuscript v2.0.3 was conducted under the following pre-registered, audited parameters:
+The canonical live evaluation reported in manuscript v2.0.3 was conducted under the following pre-specified and audited parameters:
 
 | Parameter | Specification |
 | :--- | :--- |

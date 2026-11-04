@@ -42,7 +42,7 @@ The research artifacts in this repository span three distinct experimental scope
 
 ### Scope 1: Historical Frozen Benchmark ($N=32$ Tasks)
 
-- **Directory:** [`datasets/frozen_benchmark_n32/`](file:///c:/paper/mcp/datasets/frozen_benchmark_n32/)
+- **Directory:** [`datasets/frozen_benchmark_n32/`](../../datasets/frozen_benchmark_n32/)
 - **Primary Data File:** `invariant_optimization_summary.json` (388,286 bytes)
   - **SHA-256:** `78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11`
 - **Origin & Version:** Generated in September 2026 for Version 1.0.
@@ -55,7 +55,7 @@ The research artifacts in this repository span three distinct experimental scope
 
 ### Scope 2: Canonical Live Benchmark ($N=3,840$ Trials) — Primary Empirical Basis
 
-- **Directory:** [`datasets/fresh_live_benchmark_n32/`](file:///c:/paper/mcp/datasets/fresh_live_benchmark_n32/)
+- **Directory:** [`datasets/fresh_live_benchmark_n32/`](../../datasets/fresh_live_benchmark_n32/)
 - **Benchmark Parameters:**
   - Total completed trials: 3,840
   - Distinct evaluation tasks: 32 (8 per archetype cluster C1–C4)
@@ -78,16 +78,16 @@ The research artifacts in this repository span three distinct experimental scope
   4. **`run_manifest.json`** (1,106 bytes)
      - **SHA-256:** `83d36e1bbdeeee9a59e26408368fbb9b7c210bb7643a5ca70feb4a2b6b1d0602`
 - **Analysis & Reproduction Scripts:**
-  - [`version_2/analyze_fresh_benchmark.py`](file:///c:/paper/mcp/version_2/analyze_fresh_benchmark.py): Computes the 10,000-resample paired task-cluster bootstrap and 95% confidence intervals.
-  - [`version_2/reconcile_canonical_metrics.py`](file:///c:/paper/mcp/version_2/reconcile_canonical_metrics.py): Read-only audit verifier checking that all manuscript claims match the raw telemetry.
-  - [`version_2/generate_paper_tables_v2.py`](file:///c:/paper/mcp/version_2/generate_paper_tables_v2.py): Deterministically derives Table IV LaTeX from canonical JSON.
+  - [`version_2/analyze_fresh_benchmark.py`](../../version_2/analyze_fresh_benchmark.py): Computes the 10,000-resample paired task-cluster bootstrap and 95% confidence intervals.
+  - [`version_2/reconcile_canonical_metrics.py`](../../version_2/reconcile_canonical_metrics.py): Read-only audit verifier checking that all manuscript claims match the raw telemetry.
+  - [`version_2/generate_paper_tables_v2.py`](../../version_2/generate_paper_tables_v2.py): Deterministically derives Table IV LaTeX from canonical JSON.
 - **Manuscript Usage:** Table IV, Figure 3 (Workload comparison and C1 savings), Figure 4 (Retry distribution), Section IV (Empirical Results), and Section VII (Discussion).
 
 ---
 
 ### Scope 3: Post-Freeze Cross-Schema Stress Test ($N=32$ Tasks)
 
-- **Directory:** [`datasets/cross_schema_validation/`](file:///c:/paper/mcp/datasets/cross_schema_validation/)
+- **Directory:** [`datasets/cross_schema_validation/`](../../datasets/cross_schema_validation/)
 - **Primary Data File:** `cross_schema_results.json` (28,496 bytes)
   - **SHA-256:** `b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a`
 - **Origin & Nature:** Deterministic structural simulation designed to test whether in-tree JSON Pointer recomposition transfers across 4 enterprise domains without schema-specific heuristics.
@@ -127,7 +127,7 @@ with open(manifest, 'r') as f:
 
 | Artifact | Workspace Path | Size | SHA-256 Checksum | Description |
 | :--- | :--- | :---: | :--- | :--- |
-| **Authoritative Manuscript** | [`version_2/paper_v2/main_v2.pdf`](version_2/paper_v2/main_v2.pdf)<br>[`zenodo_deposit_v2_0_3/LASR_MCP_v2.0.3_Manuscript.pdf`](zenodo_deposit_v2_0_3/LASR_MCP_v2.0.3_Manuscript.pdf) | 525,419 B | `73e1b92e1308b57c5760f3b9ef0a2d82355daa1858227a263eca36c0fcece82d` | Complete 15.0-page IEEE conference/transactions preprint |
-| **LaTeX Source Bundle** | [`lasr_v2_203_manuscript_bundle.zip`](lasr_v2_203_manuscript_bundle.zip)<br>[`zenodo_deposit_v2_0_3/lasr_v2_203_manuscript_bundle.zip`](zenodo_deposit_v2_0_3/lasr_v2_203_manuscript_bundle.zip) | 843,694 B | `ae9599564b55a5e19004f32ded7c91fe2b46c480b12914b5343834bcf789044f` | Complete 24-file self-contained LaTeX source bundle |
-| **Raw Telemetry Archive** | [`zenodo_deposit_v2_0_3/lasr_v2_203_raw_benchmark_telemetry.zip`](zenodo_deposit_v2_0_3/lasr_v2_203_raw_benchmark_telemetry.zip) | 4,319,241 B | `9ee32f32dd332c06b978c4dc37482eebba95216a131961adbbb742b1d1c23b90` | Complete raw 3,840-trial records and 7,860-call JSONL ledgers |
-| **Historical V1.0 Draft** | [`paper/main.pdf`](paper/main.pdf) | 143,557 B | `f0dd6be85a4dd0e51410886adab2ca98ef3f486a2468305e9ea2fb1cceb22e17` | Historical 8-page preliminary draft (preserved for audit provenance) |
+| **Authoritative Manuscript** | [`version_2/paper_v2/main_v2.pdf`](../../version_2/paper_v2/main_v2.pdf)<br>[`zenodo_deposit_v2_0_3/LASR_MCP_v2.0.3_Manuscript.pdf`](../../zenodo_deposit_v2_0_3/LASR_MCP_v2.0.3_Manuscript.pdf) | 525,419 B | `73e1b92e1308b57c5760f3b9ef0a2d82355daa1858227a263eca36c0fcece82d` | Complete 15.0-page IEEE conference/transactions preprint |
+| **LaTeX Source Bundle** | [`lasr_v2_203_manuscript_bundle.zip`](../../lasr_v2_203_manuscript_bundle.zip)<br>[`zenodo_deposit_v2_0_3/lasr_v2_203_manuscript_bundle.zip`](../../zenodo_deposit_v2_0_3/lasr_v2_203_manuscript_bundle.zip) | 843,694 B | `ae9599564b55a5e19004f32ded7c91fe2b46c480b12914b5343834bcf789044f` | Complete 24-file self-contained LaTeX source bundle |
+| **Raw Telemetry Archive** | [`zenodo_deposit_v2_0_3/lasr_v2_203_raw_benchmark_telemetry.zip`](../../zenodo_deposit_v2_0_3/lasr_v2_203_raw_benchmark_telemetry.zip) | 4,319,241 B | `9ee32f32dd332c06b978c4dc37482eebba95216a131961adbbb742b1d1c23b90` | Complete raw 3,840-trial records and 7,860-call JSONL ledgers |
+| **Historical V1.0 Draft** | [`paper/main.pdf`](../../paper/main.pdf) | 143,557 B | `f0dd6be85a4dd0e51410886adab2ca98ef3f486a2468305e9ea2fb1cceb22e17` | Historical 8-page preliminary draft (preserved for audit provenance) |

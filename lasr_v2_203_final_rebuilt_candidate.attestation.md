@@ -47,7 +47,7 @@ This document certifies the final rebuilt release candidate for **LASR-MCP Versi
 ---
 
 ## 3. Telemetry Ledger, Retries, and Financial Reconciliation
-- **Response-Bearing API Calls**: Exactly **7,860 calls** recorded in [`benchmark_call_records.jsonl`](file:///c:/paper/mcp/datasets/fresh_live_benchmark_n32/benchmark_call_records.jsonl).
+- **Response-Bearing API Calls**: Exactly **7,860 calls** recorded in [`benchmark_call_records.jsonl`](datasets/fresh_live_benchmark_n32/benchmark_call_records.jsonl).
   - All 7,860 calls completed with HTTP 200 status.
   - Complete provider `usageMetadata` (`promptTokenCount`, `candidatesTokenCount`, `totalTokenCount`) present on 100.0% of records.
 - **Client Transport Retries**: Exactly **154 transport retries** (handling transient HTTP 429 / 503 network backoffs and quota rate limits). Transport retries are cleanly isolated and reported separately from response-bearing turns.

@@ -31,7 +31,7 @@ LASR-MCP Version 2.0.3 is the definitive publication-ready release of the LASR-M
 - **Scientific Takeaway:** The paper demonstrates that adaptive schema pruning is highly effective for predictable, routine tasks, but monolithic full schemas remain economically optimal when tasks frequently trigger multi-turn retry cascades.
 
 ### C. 15-Page IEEE Transactions-Scope Manuscript
-- Expanded from the preliminary 8-page conference draft to a comprehensive 15.0-page IEEE manuscript ([`version_2/paper_v2/main_v2.pdf`](version_2/paper_v2/main_v2.pdf)).
+- Expanded from the preliminary 8-page conference draft to a comprehensive 15.0-page IEEE manuscript ([`version_2/paper_v2/main_v2.pdf`](../../version_2/paper_v2/main_v2.pdf)).
 - Contains formal proofs of finite monotonic recovery, 10,000-resample paired cluster bootstrap statistics, and exhaustive ablation across six experimental arms.
 
 ---
