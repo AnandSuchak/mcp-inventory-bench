@@ -1,4 +1,4 @@
-﻿"""
+"""
 Pilot-2 Experiment 1 & 2 Execution Runner
 Project: mcp-inventory-bench
 Author: Anand S. Suchak
@@ -199,6 +199,8 @@ class Pilot2ExperimentRunner:
                 final_status = "SUCCESS"
                 trace.final_outcome = "SUCCESS"
                 trace.tokens_to_success = account.total_cumulative_tokens
+                trace.tokens_to_success_provider_total = account.total_provider_total_tokens
+                trace.schema_exposure_to_success = cur_schema_tokens
                 break
 
             # If validation failed, extract next constraint slice

@@ -1,0 +1,53 @@
+{
+  "archive_name": "lasr_v2_203_final_rebuilt_candidate.zip",
+  "sha256": "fc82d33b8992914ee130ef2805427ef2a4f01541243e0f93be120e2d20ae7f5b",
+  "size_bytes": 4319876,
+  "archive_entries": 665,
+  "cache_traces": 556,
+  "created_iso": "2026-10-26T14:04:13+05:30",
+  "version": "2.0.3-final-rebuilt-candidate",
+  "status": "FULL_BENCHMARK_COMPLETE_VERIFIED",
+  "protocol": {
+    "planned_trials": 3840,
+    "completed_trials": 3840,
+    "completion_rate_pct": 100.0,
+    "tasks": 32,
+    "arms": 6,
+    "replicates_per_pair": 20
+  },
+  "provider_telemetry": {
+    "model": "gemini-3.5-flash-lite",
+    "response_bearing_calls": 7860,
+    "response_status_200_count": 7860,
+    "client_transport_retries": 154,
+    "usage_metadata_coverage_pct": 100.0
+  },
+  "billing_reconciliation": {
+    "prepayment_initial_inr": 500.00,
+    "prepayment_balance_remaining_inr": 383.84,
+    "total_expenditure_inr": 116.16,
+    "key1_trials_completed": 3149,
+    "key1_expenditure_inr": 116.16,
+    "keys_2_to_6_trials_completed": 691,
+    "keys_2_to_6_expenditure_inr": 0.00
+  },
+  "statistical_evaluation": {
+    "bootstrap_method": "paired task-cluster percentile bootstrap",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 42,
+    "lasr_k2_vs_full_savings_point_est_pct": -25.94,
+    "lasr_k2_vs_full_savings_95_ci_pct": [
+      -52.55,
+      -3.16
+    ],
+    "cluster_1_routine_savings_pct": 13.5
+  },
+  "verification_status": {
+    "static_token_formula_audit": "PASS (0 forbidden formulas)",
+    "regression_suite": "PASS (36/36 tests)",
+    "master_integrity_verifier": "PASS (9/9 checks, pre_packaging & clean_extraction)",
+    "canonical_metrics_read_only_check": "PASS",
+    "historical_archives_immutable": "PASS (all 8 historical archives match pinned SHA-256)",
+    "frozen_datasets_immutable": "PASS (frozen_benchmark_n32 & cross_schema_validation manifests verified)"
+  }
+}

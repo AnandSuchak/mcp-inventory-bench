@@ -1,0 +1,42 @@
+\section{Introduction}
+\label{sec:intro}
+
+The deployment of Large Language Models (LLMs) in mission-critical enterprise workflows has shifted from conversational assistants toward autonomous, closed-loop execution agents~\cite{yao2022react,schick2024toolformer}. 
+In enterprise operations—such as multi-warehouse replenishment, inventory reconciliation, and procurement logistics—agents interact with transactional backends via standardized tool-calling protocols.
+The Model Context Protocol (MCP)~\cite{anthropic2024mcp} (formalized in specification 2026-07-28) formalizes this client-server interaction, providing structured JSON-RPC interfaces for tool discovery and parameter submission. Our experiments target MCP tool-schema exposure and tool-call argument generation; protocol transport, session, and discovery semantics are outside the evaluation scope.
+
+\subsection{The Dilemma of Enterprise Tool Schemas}
+Despite MCP's architectural standardization, exposing enterprise-grade tools to LLMs presents a challenging systems dilemma:
+\begin{enumerate}
+    \item \textbf{The Monolithic Full-Schema Tax}: Enterprise tools enforce intricate data contracts governed by JSON Schema Draft 2020-12~\cite{jsonschema202012} (e.g., supplier regex patterns, item-level quantity bounds, warehouse routing enums, and budget restrictions). Transmitting complete monolithic schemas (often exceeding 500 tokens per tool) on every turn inflates prompt token overhead, drives up financial API costs, and degrades inference throughput~\cite{patil2023gorilla}.
+    \item \textbf{The Brittleness of Naive Truncation}: Conversely, statically stripping schemas down to basic primitive types eliminates vital domain rules. In our benchmarks, when task-conditioned rules (such as warehouse routing enums) are omitted, models hallucinate non-existent identifiers, resulting in catastrophic validation failures that may remain unresolved through unassisted retries.
+\end{enumerate}
+
+\subsection{Our Approach: Three-Tier Adaptive Resolution}
+To overcome this trade-off, we propose \textbf{Learned Adaptive Schema Resolution (LASR-MCP)}. Rather than treating schema resolution as static compression or isolated error string dumping, LASR-MCP introduces a tripartite schema hierarchy:
+\begin{equation}
+C_{\text{active}}^{(t)} = C_I^* \;\cup\; \hat{C}_T(x) \;\cup\; C_R^{(t)}
+\end{equation}
+combining:
+\begin{itemize}
+    \item \textbf{Tier 1 (Invariant Foundation Floor, $C_I^*$)}: A core subset of constraints ($339$ tokens for the evaluated purchase-order schema) that establishes the non-negotiable structural foundation required for syntactically valid submissions.
+    \item \textbf{Tier 2 (Proactive Intent Prediction, $\hat{C}_T(x)$)}: A lightweight semantic classifier that predicts task-relevant constraint bundles from user intent prior to execution.
+    \item \textbf{Tier 3 (Dynamic In-Tree Recomposition, $C_R^{(t)}$)}: A reactive operator that extracts the full set of concurrent schema violations from validator feedback and splices the missing constraint nodes directly into the native JSON Schema hierarchy on Attempt 2.
+\end{itemize}
+
+\subsection{Hypotheses \& Empirical Findings}
+We investigate four central hypotheses across a synthetic enterprise-style supply-chain tool benchmark:
+\begin{itemize}
+    \item \textbf{$H_1$ (Semantic Predictability)}: \textit{Task intent contains sufficient signal to predict constraint requirements beyond frequency priors on held-out template families with recurring constraint bundles.} $\rightarrow$ \textbf{Supported for Template Family C}: LASR achieves $F_1 = 0.863$ versus $0.250$ for the frequency prior ($\Delta F_1 = +0.613$, Monte Carlo sign-flip $p < 0.001$; four-cluster sensitivity $p = 0.125$).
+    \item \textbf{$H_2$ (Invariant Safety Floor)}: \textit{A minimal invariant foundation is necessary to prevent structural collapse.} $\rightarrow$ \textbf{Supported within the Evaluated Benchmark}: $C_I^* = 339$ tokens is the empirically selected invariant foundation meeting the pre-specified 70\% structural-validity floor; further pruning drops structural validity from $75\%$ to $50\%$.
+    \item \textbf{$H_3$ (Reactive In-Tree Recovery)}: \textit{Pass-level dynamic in-tree recovery improves structural completion over static adaptive exposure on the evaluated benchmark.} $\rightarrow$ \textbf{Supported on Primary Benchmark}: Structural success increases from $78.1\%$ to $100.0\%$ ($\Delta\text{Success} = +21.9\text{ pp}$, $95\%\text{ CI: } [+9.4, +37.5]\text{ pp}$, exact one-sided McNemar/binomial test $p = 0.0078125$, $p < 0.01$; cluster-level sensitivity $p = 0.125$), recovering all 27 trajectories that initially failed structural validation in the historical $N=32$ development benchmark (where 5/32 initially passed structural validation and 27/32 failed, achieving 27/27 = 100.0\% structural recovery by Attempt 3). In the canonical live benchmark ($N=3,840$ trials), reactive recovery similarly improves final structural completion from $90.625\%$ to $96.875\%$ ($+6.25\text{ pp}$) and semantic correctness from $87.500\%$ to $93.750\%$ ($+6.25\text{ pp}$).
+    \item \textbf{$H_4$ (Workload Token Efficiency)}: \textit{Adaptive resolution reduces net recorded token consumption across enterprise workloads.} $\rightarrow$ \textbf{Regime-Dependent}: In initial single-trial exploratory evaluations on the primary frozen benchmark ($N=32$), reactive LASR cut recorded prompt-plus-candidate token consumption by $16.6\%$ ($k=1$) and $18.7\%$ ($k=2$) compared to monolithic control ($61,853 \rightarrow 50,276$ tokens). However, in our comprehensive live benchmark ($N=3,840$ completed trials across 32 tasks, 6 arms, and 20 fixed-seed executions per task-arm pair at temperature $0.2$), Full Control achieved a mean recorded $P+C$ subtotal of $1,116.8$ tokens per trial versus $1,406.5$ for LASR $k=2$, such that LASR $k=2$'s overall workload is approximately $25.94\%$ higher than Full Control's ($95\%$ CI on workload increase: $[+3.16\%, +52.55\%]$; signed relative savings: $-25.94\%$, $95\%$ CI: $[-52.55\%, -3.16\%]$, where the 95\% bootstrap CI excludes zero); we do not describe the overall benchmark result as token savings. Relative to the unassisted zero-constraint baseline (\texttt{ci\_k0}, $2,057.7$ mean tokens), LASR $k=2$ achieves a descriptive mean workload reduction of $31.65\%$ (paired task-cluster percentile bootstrap 95\% CI: $[26.57\%, 36.72\%]$). Token savings vs.\ Full Control are strictly cluster-specific: in routine operational regimes ($C_1, m_{\text{task}}(x) \le k$), LASR $k=2$ delivers approximately $13.5\%$ lower $P+C$ usage ($847.6$ vs.\ $979.8$ tokens) at $100.0\%$ reliability, whereas in deep inter-field constraint regimes ($C_2\text{--}C_4$, $m_{\text{task}}(x) > k$), Full Control avoids multi-turn prompt re-transmission.
+\end{itemize}
+
+\subsection{Contributions}
+\begin{enumerate}
+    \item \textbf{Formalization of Three-Tier Schema Resolution}: We formalize the interaction between invariant structural baselines, proactive intent prediction, and pass-level in-tree recomposition.
+    \item \textbf{Controlled Systems Benchmark}: We execute a six-arm controlled systems evaluation across 32 tasks spanning four operational archetypes on the primary frozen benchmark, providing empirical evidence for the structural contribution of reactive recovery under paired conditions.
+    \item \textbf{The Retry-Amortization Boundary}: Through our comprehensive $N=3,840$ completed trial evaluation (32 tasks, 6 arms, 20 fixed-seed executions per task-arm pair at temperature $0.2$, comprising 7,860 response-bearing API invocations alongside 154 client transport retries), we characterize the break-even boundary between upfront schema compression and multi-turn retry cascades: demonstrating that LASR $k=2$ achieves approximately $13.5\%$ lower $P+C$ token usage in routine domains ($C_1, m_{\text{task}}(x) \le k$), while overall across all 32 tasks, LASR $k=2$'s workload is approximately $25.94\%$ higher than Full Control's ($1,406.5$ vs.\ $1,116.8$ mean recorded $P+C$ tokens) in single-tool isolation because multi-turn prompt re-transmission penalties outweigh initial schema compression.
+    \item \textbf{Open Reproducibility Package}: We release the benchmark code, traces, and frozen dataset with an automated SHA-256 cryptographic integrity manifest.
+\end{enumerate}

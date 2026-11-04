@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Historical Paired Differences and Hypothesis Tests ($N=32$ Single-Trial Development Benchmark)}
+\label{tab:paired_bootstrap}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Pairwise Contrast} & \textbf{Metric} & \textbf{Point Est.} & \textbf{95\% CI} & \textbf{Token Diff.} & \textbf{Statistical Method} \\
+\midrule
+LASR Reactive vs Static ($k=1$) & $\Delta$ Structural Succ. & \textbf{+21.9 pp} & [9.4, 37.5] pp & --- & Exact McNemar ($p = 0.0078125$) \\
+& $\Delta$ Semantic Corr. & \textbf{+21.9 pp} & [9.4, 37.5] pp & --- & Exact McNemar ($p = 0.0078125$) \\
+\midrule
+LASR Reactive ($k=1$) vs Full & $\Delta$ Structural Succ. & +6.3 pp & [0.0, 15.6] pp & --- & Exact McNemar ($p = 0.250$) \\
+& $\Delta$ Semantic Corr. & +3.1 pp & [-6.3, 15.6] pp & --- & Exact McNemar ($p = 0.500$) \\
+\midrule
+LASR Reactive ($k=1$) vs Full & Signed Token Savings & \textbf{+16.6\%} & --- & -10,259 tokens & Total Token Diff (No CI) \\
+LASR Reactive ($k=2$) vs Full & Signed Token Savings & \textbf{+18.7\%} & --- & -11,577 tokens & Total Token Diff (No CI) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

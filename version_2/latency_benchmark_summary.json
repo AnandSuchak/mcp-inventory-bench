@@ -1,0 +1,48 @@
+{
+  "benchmark_name": "LASR-MCP AST Splicing & Recomposition Wall-Clock Benchmark",
+  "iterations": 1000,
+  "timing_method": "time.perf_counter_ns()",
+  "environment": {
+    "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "os": "win32"
+  },
+  "ast_slice_latency": {
+    "samples": 1000,
+    "mean_ms": 0.000905,
+    "stdev_ms": 0.000603,
+    "min_ms": 0.0002,
+    "p50_ms": 0.0008,
+    "p90_ms": 0.0014,
+    "p95_ms": 0.0016,
+    "p99_ms": 0.003101,
+    "max_ms": 0.0107,
+    "p50_us": 0.8,
+    "p99_us": 3.1
+  },
+  "ast_recomposition_latency": {
+    "samples": 1000,
+    "mean_ms": 0.021293,
+    "stdev_ms": 0.017948,
+    "min_ms": 0.0167,
+    "p50_ms": 0.0192,
+    "p90_ms": 0.0231,
+    "p95_ms": 0.02521,
+    "p99_ms": 0.041042,
+    "max_ms": 0.4862,
+    "p50_us": 19.2,
+    "p99_us": 41.04
+  },
+  "total_ast_pipeline_latency": {
+    "samples": 1000,
+    "mean_ms": 0.022199,
+    "stdev_ms": 0.018016,
+    "min_ms": 0.0169,
+    "p50_ms": 0.0201,
+    "p90_ms": 0.0243,
+    "p95_ms": 0.02641,
+    "p99_ms": 0.046103,
+    "max_ms": 0.4871,
+    "p50_us": 20.1,
+    "p99_us": 46.1
+  }
+}

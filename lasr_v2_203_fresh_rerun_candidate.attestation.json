@@ -1,0 +1,11 @@
+{
+  "archive_name": "lasr_v2_203_fresh_rerun_candidate.zip",
+  "sha256": "9ee32f32dd332c06b978c4dc37482eebba95216a131961adbbb742b1d1c23b90",
+  "size_bytes": 4319241,
+  "created_iso": "2026-10-26T06:50:17.479778+00:00",
+  "version": "2.0.3-candidate",
+  "status": "MANUSCRIPT_AND_BENCHMARK_RECONCILED",
+  "planned_trials": 3840,
+  "completed_trials": 3840,
+  "live_api_calls": 7860
+}

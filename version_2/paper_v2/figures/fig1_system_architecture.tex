@@ -1,0 +1,44 @@
+\begin{figure*}[t]
+\centering
+\resizebox{0.90\textwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=1.4cm and 1.2cm,
+    block/.style={rectangle, draw=black, thick, fill=blue!5, text width=2.3cm, text centered, rounded corners=2pt, minimum height=1.1cm, font=\footnotesize},
+    process/.style={rectangle, draw=black, thick, fill=orange!10, text width=2.5cm, text centered, rounded corners=2pt, minimum height=1.1cm, font=\footnotesize},
+    decision/.style={diamond, draw=black, thick, fill=green!10, text width=1.4cm, text centered, aspect=1.8, font=\footnotesize},
+    output/.style={rectangle, draw=black, thick, fill=teal!10, text width=2.3cm, text centered, rounded corners=2pt, minimum height=1.1cm, font=\footnotesize},
+    line/.style={draw=black, -stealth, thick},
+    dashline/.style={draw=black, -stealth, thick, dashed}
+]
+
+% Nodes
+\node [block] (input) {\textbf{Tool Contract Tree}\\ $\mathcal{T} = (\mathcal{V}, \mathcal{E}, \tau)$ \\ \scriptsize Exhaustive Schema (552 tok)};
+
+\node [process, right=of input] (bundler) {\textbf{Priority Bundler}\\ Lean Projection $C_I^* \cup \hat{C}_T(x)$\\ Upfront $k=2$ ($S_0=359.4$ tok)};
+
+\node [block, right=of bundler] (llm) {\textbf{LLM Execution}\\ \scriptsize\texttt{gemini-3.5-}\\ \scriptsize\texttt{flash-lite}\\ Attempt $t$};
+
+\node [decision, right=of llm] (val) {\textbf{Contract}\\ \textbf{Valid?}};
+
+\node [output, right=of val] (success) {\textbf{Execution Pass}\\ Validated Payload\\ $y_t \models S$};
+
+\node [process, below=1.2cm of llm] (slicer) {\textbf{Reactive Slicer}\\ Multi-Error Delta $\Delta S$\\ $\mathcal{T}_{t+1} = \mathcal{T}_t \cup \text{Slice}(\mathcal{T}, \mathcal{E}_t)$\\ \scriptsize Mean $\Delta S = 45.2$ tok};
+
+% Paths
+\path [line] (input) -- (bundler);
+\path [line] (bundler) -- (llm);
+\path [line] (llm) -- (val);
+\path [line] (val) -- node[above, font=\footnotesize\bfseries] {Yes} (success);
+\path [line] (val) |- node[right, font=\footnotesize\bfseries, near start] {No (Errors $\mathcal{E}_t$)} (slicer);
+\path [line] (slicer) -- node[left, font=\footnotesize] {Inject $\Delta S$} (llm);
+
+% Background box for in-tree recovery
+\begin{scope}[on background layer]
+    \node [draw=blue!40, dashed, fill=blue!2, rounded corners=4pt, fit=(llm) (val) (slicer), label=above:{\footnotesize\textbf{Dynamic In-Tree Recovery Loop} \scriptsize(Bound: $K \le M - |A_0|)$}] {};
+\end{scope}
+
+\end{tikzpicture}%
+}
+\caption{System Architecture of LASR-MCP: The full tool contract tree $\mathcal{T}$ is structurally projected into an invariant foundation $C_I^*$ with $k=2$ prioritized constraint bundles ($S_0 = 359.4$ tokens). Upon validation failure, the reactive slicer dynamically splices concurrent violated constraint subtrees ($\Delta S = 45.2$ tokens) corresponding to the diagnostic error set $\mathcal{E}_t$ into Attempt $t+1$, bounded by the monotonic convergence invariant $K \le M - |A_0|$.}
+\label{fig:system_architecture}
+\end{figure*}

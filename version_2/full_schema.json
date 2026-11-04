@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "create_purchase_order",
+  "type": "object",
+  "properties": {
+    "supplier_id": {
+      "type": "string",
+      "pattern": "^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$",
+      "description": "Standard vendor identifier format SUP-XXXX-XXXX"
+    },
+    "warehouse_code": {
+      "type": "string",
+      "enum": [
+        "WH-US-EAST",
+        "WH-US-WEST",
+        "WH-EU-CENTRAL",
+        "WH-APAC-SOUTH",
+        "WH-LATAM-NORTH"
+      ],
+      "description": "Authorized regional warehouse code"
+    },
+    "order_priority": {
+      "type": "string",
+      "enum": [
+        "STANDARD",
+        "EXPEDITED",
+        "CRITICAL"
+      ],
+      "default": "STANDARD"
+    },
+    "total_budget_limit": {
+      "type": "number",
+      "minimum": 100.0,
+      "maximum": 500000.0,
+      "description": "Max allowable authorization ceiling"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "pattern": "^SKU-[0-9]{5}$",
+            "description": "Unique SKU code format SKU-XXXXX"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 10000,
+            "description": "Quantity to reorder, must meet MOQ >= 10"
+          },
+          "unit_cost": {
+            "type": "number",
+            "minimum": 0.01,
+            "description": "Contract unit price"
+          }
+        },
+        "required": [
+          "sku",
+          "quantity",
+          "unit_cost"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "authorized_by": {
+      "type": "string",
+      "pattern": "^[a-z]{3,8}\\.[a-z]{3,8}@enterprise\\.mock$",
+      "description": "Corporate email signature of the authorizing agent"
+    }
+  },
+  "required": [
+    "supplier_id",
+    "warehouse_code",
+    "items",
+    "authorized_by"
+  ],
+  "additionalProperties": false
+}

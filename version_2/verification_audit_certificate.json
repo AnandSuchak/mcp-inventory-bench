@@ -1,0 +1,57 @@
+{
+  "audit_name": "LASR-MCP Scientific Integrity & Verification Certificate",
+  "release_version": "2.0.3",
+  "audit_stage": "pre_packaging_audit",
+  "status": "ALL_CHECKS_PASSED",
+  "total_checks": 9,
+  "passed_checks": 9,
+  "failed_checks": 0,
+  "audit_timestamp": "2026-10-26T14:01:47.720016+05:30",
+  "checks": [
+    {
+      "check": "Cryptographic Manifest Validation & Trusted Pinned Hashes",
+      "passed": true,
+      "details": "Frozen Manifest=True (Verified 1 file entries against disk), Frozen Manifest Hash Match=True, Cross Manifest=True (Verified 1 file entries against disk), Trusted Frozen Hash Match=True, Trusted Cross Hash Match=True, Trusted Meta Hash Match=True, Cross Records=64 (exp 64)"
+    },
+    {
+      "check": "Raw Attempt-by-Attempt Token Accounting Recomputation",
+      "passed": true,
+      "details": "Full tokens=61853 (exp 61853, succ=30/32), k1 reactive tokens=51594 (exp 51594, succ=32/32), k2 reactive tokens=50276 (exp 50276, succ=32/32)"
+    },
+    {
+      "check": "Dual Metric Token Reconciliation (Workload vs. Conditional TTS)",
+      "passed": true,
+      "details": "Workload Savings=18.72% (exp 18.72%), Conditional TTS Savings=15.73% (exp 15.73%), Full TTS=1864.4, k2 TTS=1571.1"
+    },
+    {
+      "check": "Empirical Latency Hierarchy & AST Overhead Recomputation",
+      "passed": true,
+      "details": "556 Cache traces: p50=3407.1ms, p90=14738.0ms, p99=56708.4ms. 1000 AST runs: p50=20.1us (0.0201ms), Ratio=0.00059%"
+    },
+    {
+      "check": "Retrieval Baselines Direct Programmatic Recomputation & Curve Validation",
+      "passed": true,
+      "details": "TF-IDF Recall@2=15.62% (zero: 21/32), LSA SVD Recall@2=16.15% (zero: 21/32). Full curves (k=1,2,3,5) validated across JSON & CSV."
+    },
+    {
+      "check": "LangGraph Counterfactual Model Token Overhead Audit",
+      "passed": true,
+      "details": "LangGraph Total=69119 tok (+11.75% overhead vs Full; LASR k=2 vs LangGraph savings=27.26%)"
+    },
+    {
+      "check": "Formal Mathematical Theorem Source-Invariant & Human Review Check",
+      "passed": true,
+      "details": "Source invariants: Bound=K<=M-|A0| (True), IEEEproof (True), Sibling Leaf Counterexample (True), Depth Bound Explicitly Rejected (True). Human review checklist verified (4 criteria)."
+    },
+    {
+      "check": "Read-Only Canonical Metric Reconciliation & Consistency Validator",
+      "passed": true,
+      "details": "All tables, README, manuscript sections match canonical evidence, and zero forbidden token formulas"
+    },
+    {
+      "check": "Behavioral Audit Archive Packaging & Structure Verification",
+      "passed": true,
+      "details": "Production validator result: Archive verified successfully (665 entries, 556 cache traces, 0 nested zips); Stats: {'total_entries': 665, 'cache_traces': 556, 'uncompressed_bytes': 34267975, 'compressed_bytes': 4167996, 'has_root_packager': True, 'has_frozen_data': True, 'has_cross_data': True}"
+    }
+  ]
+}

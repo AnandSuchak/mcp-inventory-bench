@@ -1,0 +1,45 @@
+{
+  "run_title": "LASR-MCP Phase 1 \u2014 Fresh Live Primary Benchmark Rerun",
+  "timestamp_start": "2026-10-22T12:30:37Z",
+  "timestamp_end": "2026-10-22T14:46:40Z",
+  "elapsed_seconds": 8163.33,
+  "elapsed_display": "136m 3s (8163.33s)",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "cache_entries_count": 285,
+  "mean_latency_ms": 26628.44,
+  "candidate_source_archive": {
+    "name": "lasr_v2_203_final_candidate.zip",
+    "sha256": "811bd1864ea6889931ecdc337372a0a0639e4bbb88bf7950f66967e3a1ebd457"
+  },
+  "artifacts_checksums": {
+    "invariant_optimization_summary.json": {
+      "sha256": "46f249ba50be9b27621492ec4227a4bf8ada4e08751f7f8edb7a3a8abc61ca27",
+      "size_bytes": 391654
+    },
+    "run_console.log": {
+      "sha256": "9f1b79b04d8dce258407831fa5bb687f79e6cd82af4f63a73971f06cacefbbf5",
+      "size_bytes": 22606
+    },
+    "independent_recalculation.json": {
+      "sha256": "5e8cd4e0ceb1ae4207139d5cd452b43063816493386efc02aadc0e70dd65e117",
+      "size_bytes": 2635
+    },
+    "independent_recalculation.csv": {
+      "sha256": "ae9ccfc5b00d94a4ad49e2b826a8fea9009d00b0a48bf470e3f0983378a091fb",
+      "size_bytes": 565
+    },
+    "comparison_vs_frozen.csv": {
+      "sha256": "6f328c5b0cc48bde0a7e5a8a689a819bc8e848899734ec20343a744ef9b5c518",
+      "size_bytes": 792
+    },
+    "comparison_report.md": {
+      "sha256": "a66543023ba96cd8509a301a18d7b84f75c5dae7a5c22b0281c3ba17e44f9f46",
+      "size_bytes": 2795
+    },
+    "live_rerun_cache_entries.zip": {
+      "sha256": "621aaf61711723b2b300ce6c46956523452f6dfdc76baf5dfb3d230b7dafe43a",
+      "size_bytes": 161183
+    }
+  }
+}

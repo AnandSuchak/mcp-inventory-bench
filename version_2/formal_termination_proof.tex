@@ -1,0 +1,75 @@
+% ==============================================================================
+% LASR-MCP Version 2.0: Formal Foundation & Invariant Termination Proof
+% Corrected Formulation: Monotonic Constraint Cardinality Bound
+% Author: Anand S. Suchak
+% ==============================================================================
+
+\subsection{Formal Model of In-Tree Reactive Expansion}
+\label{sec:formal_proof}
+
+Let $\mathcal{S}$ denote a canonical tool specification expressed in JSON Schema Draft 2020-12, represented as an abstract syntax tree (AST). We define $\mathcal{C} = \{c_1, c_2, \dots, c_M\}$ as the finite universe of structural constraint nodes in $\mathcal{S}$ ($|\mathcal{C}| = M < \infty$), where each constraint node $c_i$ corresponds to an unambiguous validation keyword (e.g., \texttt{pattern}, \texttt{enum}, \texttt{minimum}, \texttt{required}) situated at a specific JSON Pointer path $\pi(c_i)$.
+
+The LASR-MCP dynamic resolution framework operates over a sequence of active constraint sets $A_t \subseteq \mathcal{C}$ at recovery step $t \ge 0$. The initial active constraint set is defined by the three-tier composition:
+\begin{equation}
+A_0 = C_I^* \cup \widehat{C}_T(x)
+\end{equation}
+where $C_I^* \subseteq \mathcal{C}$ is the pre-computed universal invariant foundation, and $\widehat{C}_T(x) \subseteq \mathcal{C} \setminus C_I^*$ is the top-$k$ predictive constraint bundle inferred from user prompt $x$.
+
+At each invocation step $t$, the agent receives a prompt conditioned on $A_t$ and outputs argument payload $y_t$. An execution-time JSON Schema validator evaluates $y_t$ against the full specification $\mathcal{S}$. If $y_t$ violates one or more schema constraints, the validator returns a non-empty set of diagnostics $\mathcal{E}(y_t, \mathcal{S}) \neq \emptyset$. The deterministic schema slicer $\sigma$ maps each diagnostic to its canonical constraint node in $\mathcal{C}$:
+\begin{equation}
+\Delta_t = \bigcup_{e \in \mathcal{E}(y_t, \mathcal{S})} \sigma(e, \mathcal{S}) \subseteq \mathcal{C} \setminus A_t
+\end{equation}
+The reactive recomposer structurally inlines $\Delta_t$ in-tree, updating the active set:
+\begin{equation}
+A_{t+1} = A_t \cup \Delta_t
+\end{equation}
+
+\begin{definition}[Admissible Reactive System]
+A reactive tool-calling system $(\mathcal{S}, \sigma, \mathcal{G})$ is admissible if:
+\begin{enumerate}
+    \item \textbf{Finite Constraint Universe}: The target schema AST contains a finite number of constraint keyword nodes, $|\mathcal{C}| = M < \infty$.
+    \item \textbf{Strict Monotonicity}: On any validation failure at step $t$, the fault localization slicer identifies at least one previously inactive constraint: $|\Delta_t| \ge 1$ and $\Delta_t \cap A_t = \emptyset$.
+    \item \textbf{Deterministic Splicing}: Each identified constraint $c \in \Delta_t$ is merged into $A_{t+1}$ idempotently without pruning previously active constraints ($A_t \subset A_{t+1}$).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Finite Monotonic Recovery Bound]
+\label{thm:termination}
+Let $(\mathcal{S}, \sigma, \mathcal{G})$ be an admissible reactive tool-calling system with initial active constraint set $A_0 \subseteq \mathcal{C}$. The dynamic in-tree recovery process terminates in at most
+\begin{equation}
+\boxed{K \le M - |A_0|}
+\end{equation}
+schema-expansion transitions, resulting in either a structurally valid payload or complete exhaustion of the schema ($A_K = \mathcal{C}$).
+\end{theorem}
+
+\begin{IEEEproof}
+By the strict monotonicity property (Condition 2), whenever $y_t$ is structurally invalid, $\Delta_t \subseteq \mathcal{C} \setminus A_t$ and $|\Delta_t| \ge 1$. Consequently:
+\begin{equation}
+|A_{t+1}| = |A_t \cup \Delta_t| = |A_t| + |\Delta_t| \ge |A_t| + 1
+\end{equation}
+Thus, the cardinality sequence $\{|A_0|, |A_1|, |A_2|, \dots\}$ is strictly monotonically increasing:
+\begin{equation}
+|A_0| < |A_1| < |A_2| < \dots < |A_K|
+\end{equation}
+Because every $A_t \subseteq \mathcal{C}$ and $|\mathcal{C}| = M$ is finite, the maximum possible cardinality of any active set is bounded by $M$.
+
+By induction, after $K$ recovery expansion transitions:
+\begin{equation}
+|A_K| \ge |A_0| + \sum_{t=0}^{K-1} |\Delta_t| \ge |A_0| + K
+\end{equation}
+Since $|A_K| \le M$, it follows directly that:
+\begin{equation}
+|A_0| + K \le M \implies K \le M - |A_0|
+\end{equation}
+Because the state space is finite and the set of omitted constraints strictly decreases at each step, the recovery loop cannot cycle or run indefinitely, guaranteeing termination in at most $M - |A_0|$ steps.
+\end{IEEEproof}
+
+\begin{remark}[Analysis of the Invalid Tree-Depth Bound $K \le D$]
+Earlier heuristic drafts proposed a bound of $K \le \min(D, M - |C_I^*|)$, where $D$ represents the maximum depth of the schema AST. This claim is invalid. 
+
+Consider a schema with two independent constraints located at the identical shallow depth ($D = 1$): $c_1 =$ \texttt{properties/warehouse\_code/enum} and $c_2 =$ \texttt{properties/order\_priority/enum}. If $A_0 = \emptyset$, a stochastic model may generate an argument violating $c_1$ on Attempt 1, prompting the injection of $c_1$. On Attempt 2, the model may satisfy $c_1$ but violate $c_2$, prompting the injection of $c_2$. On Attempt 3, both constraints are satisfied. This yields $K = 2$ recovery transitions even though $D = 1$. Because $2 \not\le 1$, tree depth does not constrain the number of iterative recovery passes. Theorem~\ref{thm:termination} establishes the correct, defensible cardinality-based bound.
+\end{remark}
+
+\begin{proposition}[Structural Validity Guarantee]
+If the generator model $\mathcal{G}$ satisfies the \emph{exposed-constraint compliance assumption}---namely, that $\mathcal{G}$ never violates any constraint explicitly present in its active schema prompt $A_t$, and failures arise strictly from omitted constraints $\mathcal{C} \setminus A_t$---then the process terminates with a structurally valid invocation ($y_K \models \mathcal{S}$) in $K \le M - |A_0|$ transitions.
+\end{proposition}

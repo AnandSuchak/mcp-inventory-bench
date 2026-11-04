@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\centering
+\caption{Cross-Schema Mechanism Stress Test across Four Heterogeneous Enterprise Domains ($N=32$ Tasks total, 8 per Schema)}
+\label{tab:cross_schema}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccccccc}
+\toprule
+\textbf{Enterprise-Style Tool Schema} & \textbf{Domain / Key Constraints} & \textbf{Floor $C_I^*$} & \textbf{Mean $S_0$} & \textbf{Full $S$} & \textbf{Workload Savings} & \textbf{1st-Pass (Exp/Amb)} & \textbf{Final Struct.} & \textbf{Semantic} & \textbf{Ambiguous Recovery} \\
+\midrule
+\texttt{create\_purchase\_order} & Procurement (Regex, enums, nested items) & 339 & 371 & 552 & \textbf{21.3\%} & 50.0\% (4/4 exp, 0/4 amb) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
+\texttt{inventory\_adjustment} & Warehouse Stock (Signed deltas, reason codes) & 299 & 354 & 541 & \textbf{22.4\%} & 50.0\% (4/4 exp, 0/4 amb) & \textbf{100.0\%} & 87.5\% & \textbf{100.0\%} (4/4) \\
+\texttt{shipment\_creation} & Freight Logistics (Nested packages, tracking regex) & 337 & 402 & 646 & \textbf{25.2\%} & 50.0\% (4/4 exp, 0/4 amb) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
+\texttt{customer\_refund} & Financial Accounting (Bounds, currency enums) & 292 & 318 & 474 & \textbf{20.5\%} & 50.0\% (4/4 exp, 0/4 amb) & \textbf{100.0\%} & 100.0\% & \textbf{100.0\%} (4/4) \\
+\midrule
+\textbf{Unweighted Macro Mean} & Four-Domain Average ($N=4$ domains) & \textbf{316.8} & \textbf{361.3} & \textbf{553.3} & \textbf{22.3\%} & \textbf{50.0\%} (16/16, 0/16) & \textbf{100.0\%} & \textbf{93.8\%} & \textbf{100.0\%} (16/16) \\
+\textbf{Pooled Workload Aggregate} & Total Workload Tokens (32 independent tasks, 64 task-arm records) & -- & -- & -- & \textbf{22.5\%} & \textbf{50.0\%} (16/16, 0/16) & \textbf{100.0\%} & \textbf{93.8\%} & \textbf{100.0\%} (16/16) \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\begin{minipage}{\textwidth}
+\scriptsize
+\textit{Note}: Evaluated across 32 independent tasks (4 schemas $\times$ 8 tasks) under a deterministic simulation-based mechanism stress test using whitespace/punctuation heuristic token estimates. Workload savings measure total token reduction relative to monolithic full schema. The \textbf{Unweighted Macro Mean} (22.3\%) averages unrounded per-domain percentage reductions $(21.2691\% + 22.3935\% + 25.1936\% + 20.4859\%) / 4 = 22.3355\%$, while the three new domains average 22.7\% ($(22.3935\% + 25.1936\% + 20.4859\%) / 3 = 22.691\%$). The \textbf{Pooled Workload Aggregate} (22.5\%) computes total token reduction across 32 independent tasks evaluated over two arms (64 task-arm records, reducing pooled tokens from 54,657 to 42,369 tokens across 4 schemas). In this deterministic simulation, both arms share identical modeled structural and recovery outcomes (16/32 first-pass, 32/32 final structural, 30/32 semantic); reported savings reflect lower token exposure under matched simulated completion outcomes. \textbf{Floor $C_I^*$} denotes the schema invariant token floor; \textbf{Mean $S_0$} denotes the actual initial active schema size across evaluated tasks (macro mean: 361.3).
+\end{minipage}
+\end{table*}

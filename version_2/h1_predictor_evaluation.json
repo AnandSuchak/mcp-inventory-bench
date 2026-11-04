@@ -1,0 +1,756 @@
+{
+  "hypothesis": "H1: Intent-Conditioned Constraint Bundle Prediction Accuracy",
+  "evaluation_task_count": 32,
+  "training_task_count": 48,
+  "algorithm_details": {
+    "model_type": "Custom multi-label log-odds weighted lexical classifier",
+    "features": "Word tokens (length >= 3, min_df=2) with custom smoothed IDF weights",
+    "scoring": "Sigmoid probability over summed log-odds and class prior log-odds",
+    "ranking": "Top-k highest scoring candidate constraint nodes",
+    "k_value": 2
+  },
+  "metrics_summary": {
+    "frequency_prior_baseline": {
+      "mean_precision": 0.25,
+      "mean_recall": 0.25,
+      "mean_f1": 0.25,
+      "exact_match_pct": 25.0
+    },
+    "lasr_predictive_model": {
+      "mean_precision": 0.9062,
+      "mean_recall": 0.8333,
+      "mean_f1": 0.8625,
+      "exact_match_pct": 68.75
+    },
+    "paired_delta": {
+      "f1_difference_unrounded": 0.6125,
+      "f1_difference_display": "+0.613",
+      "exact_f1_difference": 0.6125,
+      "bootstrap_95_ci": [
+        0.4188,
+        0.7812
+      ],
+      "bootstrap_replications": 10000,
+      "bootstrap_seed": 42,
+      "permutation_test_type": "Monte Carlo one-sided paired sign-flip permutation test",
+      "permutation_replications": 10000,
+      "permutation_seed": 42,
+      "extreme_replications_count": 0,
+      "paired_permutation_p_value": 0.0001,
+      "plus_one_corrected_p_value": 9.999000099990002e-05,
+      "significance_statement": "p < 0.001"
+    }
+  },
+  "cluster_dependence_sensitivity": {
+    "unit_of_analysis": "4 semantic task clusters (8 tasks each)",
+    "clusters_evaluated": [
+      "expedited_emergency_order",
+      "multi_item_depot_rebalance",
+      "routine_regional_replenish",
+      "specialized_bulk_procurement"
+    ],
+    "cluster_mean_f1_deltas": {
+      "routine_regional_replenish": -0.125,
+      "expedited_emergency_order": 0.875,
+      "specialized_bulk_procurement": 1.0,
+      "multi_item_depot_rebalance": 0.7
+    },
+    "equal_weight_four_cluster_mean_delta": 0.6125,
+    "exhaustive_permutations_count": 16,
+    "exhaustive_extreme_count": 2,
+    "exhaustive_sign_flip_p_value": 0.125,
+    "sensitivity_disclosure": "Task-level significance (p < 0.001) reflects paired comparisons across 32 template-family tasks. However, equal-weighting across the 4 semantic clusters and exhaustively testing all 16 sign flips yields mean delta +0.6125 with exact one-sided p = 0.125. This confirms that inference is sensitive to the unit of analysis, and evidence supports predictive accuracy within this held-out template family with recurring constraint bundles rather than general semantic generalization."
+  },
+  "overlap_analysis": {
+    "train_unique_vocabulary_words": 192,
+    "test_unique_vocabulary_words": 149,
+    "shared_vocabulary_words": 103,
+    "test_vocabulary_overlap_pct": 69.13,
+    "train_unique_bundles": 4,
+    "test_unique_bundles": 4,
+    "shared_bundles": 4,
+    "scientific_characterization": "Train and test sets are partitioned by template families (A/B train vs C test). There is 103/149 (69.1%) vocabulary overlap due to shared enterprise procurement terminology. All 4 target constraint combinations recur across train and test families."
+  },
+  "per_task_results": [
+    {
+      "task_id": "BLIND-C1-013",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-014",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-015",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-016",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-017",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-018",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-019",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C1-020",
+      "cluster": "routine_regional_replenish",
+      "gold": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 1.0,
+      "freq_prior_exact": true,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.0,
+      "lasr_exact": false,
+      "f1_delta": -1.0
+    },
+    {
+      "task_id": "BLIND-C2-013",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-014",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-015",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-016",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-017",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-018",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C2-019",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 0.0,
+      "lasr_exact": false,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C2-020",
+      "cluster": "expedited_emergency_order",
+      "gold": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "order_priority.enum",
+        "total_budget_limit.maximum"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-013",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-014",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-015",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-016",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-017",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-018",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-019",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C3-020",
+      "cluster": "specialized_bulk_procurement",
+      "gold": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.quantity.minimum",
+        "supplier_id.pattern"
+      ],
+      "lasr_f1": 1.0,
+      "lasr_exact": true,
+      "f1_delta": 1.0
+    },
+    {
+      "task_id": "BLIND-C4-013",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-014",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "lasr_f1": 0.0,
+      "lasr_exact": false,
+      "f1_delta": 0.0
+    },
+    {
+      "task_id": "BLIND-C4-015",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-016",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-017",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-018",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-019",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    },
+    {
+      "task_id": "BLIND-C4-020",
+      "cluster": "multi_item_depot_rebalance",
+      "gold": [
+        "items.minItems",
+        "items.required",
+        "items.sku.pattern"
+      ],
+      "freq_prior_pred": [
+        "authorized_by.pattern",
+        "warehouse_code.enum"
+      ],
+      "freq_prior_f1": 0.0,
+      "freq_prior_exact": false,
+      "lasr_pred": [
+        "items.minItems",
+        "items.required"
+      ],
+      "lasr_f1": 0.8,
+      "lasr_exact": false,
+      "f1_delta": 0.8
+    }
+  ]
+}

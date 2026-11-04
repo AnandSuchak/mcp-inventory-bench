@@ -1,0 +1,4 @@
+73e1b92e1308b57c5760f3b9ef0a2d82355daa1858227a263eca36c0fcece82d  LASR_MCP_v2.0.3_Manuscript.pdf  (525,419 bytes)
+ae9599564b55a5e19004f32ded7c91fe2b46c480b12914b5343834bcf789044f  lasr_v2_203_manuscript_bundle.zip  (843,694 bytes)
+9ee32f32dd332c06b978c4dc37482eebba95216a131961adbbb742b1d1c23b90  lasr_v2_203_raw_benchmark_telemetry.zip  (4,319,241 bytes)
+a980566d33b0eb12e3cb7cc2ba2ccd1325f26e0244077ecda88d5844d198e953  zenodo_metadata.json  (2,348 bytes)

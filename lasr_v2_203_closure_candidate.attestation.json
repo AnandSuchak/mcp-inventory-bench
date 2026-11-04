@@ -1,0 +1,131 @@
+{
+  "attestation_schema": "https://json-schema.org/draft/2020-12/schema",
+  "attestation_type": "DETACHED_POST_PACKAGING_RELEASE_ATTESTATION",
+  "release_version": "2.0.3",
+  "candidate_label": "lasr_v2_203_closure_candidate",
+  "archive_metadata": {
+    "filename": "lasr_v2_203_closure_candidate.zip",
+    "sha256": "d43c20a7b32d13e17bba03d7e1d05a1824413db13f859d08d01179697e2bce50",
+    "byte_size": 674352,
+    "entry_count": 645,
+    "cache_traces_count": 556,
+    "zip_integrity_test": "PASSED (ZipFile.testzip() == None)",
+    "duplicate_entries": 0,
+    "nested_zips": 0,
+    "transient_latex_files": 0,
+    "detached_sidecars_inside_zip": 0
+  },
+  "verification_execution": {
+    "audit_stage": "clean_extraction_verification",
+    "execution_directory": "isolated_clean_temp_directory",
+    "verifier_script": "version_2/verify_version_2_integrity.py",
+    "exit_code": 0,
+    "status": "ALL_CHECKS_PASSED",
+    "total_checks": 9,
+    "passed_checks": 9,
+    "failed_checks": 0,
+    "timestamp": "2026-10-20T19:28:01+05:30",
+    "checks_summary": [
+      {
+        "check": "Cryptographic Manifest Validation & Trusted Pinned Hashes",
+        "status": "PASS",
+        "evidence": "Strict manifest traversal/duplicate validation; pinned hashes 78c2c88e... and b3d57636... matched"
+      },
+      {
+        "check": "Raw Attempt Token Sums & Structural Success Recomputation",
+        "status": "PASS",
+        "evidence": "Full=96629 tok (30/32), k1=77140 tok (32/32), k2=75248 tok (32/32)"
+      },
+      {
+        "check": "Dual Metric Token Reconciliation (Workload vs. Conditional TTS)",
+        "status": "PASS",
+        "evidence": "Workload savings=22.13% (k=2 vs Full), conditional TTS savings=19.28%"
+      },
+      {
+        "check": "Empirical Latency Hierarchy & AST Overhead Recomputation",
+        "status": "PASS",
+        "evidence": "556 Cache traces p50=3407.11ms, 1000 AST runs p50=20.1us, overhead ratio=0.00059%"
+      },
+      {
+        "check": "Retrieval Baselines Direct Programmatic Recomputation",
+        "status": "PASS",
+        "evidence": "TF-IDF macro recall@2=15.62% (21/32 zero), LSA macro recall@2=16.15% (21/32 zero); normalized C4 gold-target aliases"
+      },
+      {
+        "check": "LangGraph Counterfactual Model Token Overhead Audit",
+        "status": "PASS",
+        "evidence": "103,895 tokens (+7.52% overhead vs Full, LASR k=2 savings=27.57%)"
+      },
+      {
+        "check": "Formal Mathematical Theorem Source-Invariant & Human Review Check",
+        "status": "PASS",
+        "evidence": "Bound K<=M-|A0|, IEEEproof environment, sibling leaf counterexample, depth-bound rejected"
+      },
+      {
+        "check": "Canonical Metric Audit & Pure Read-Only Reconciliation",
+        "status": "PASS",
+        "evidence": "reconcile_canonical_metrics.py --check verified all targets against raw evidence without mutating files"
+      },
+      {
+        "check": "Behavioral Audit Archive Packaging & Structure Verification",
+        "status": "PASS",
+        "evidence": "Production validator verified 645 entries, 556 cache traces, 0 nested zips"
+      }
+    ],
+    "regression_suite": {
+      "test_script": "version_2/test_verifier_regressions.py",
+      "exit_code": 0,
+      "passed_tests": "26/26",
+      "tests": [
+        "Manifest Directory Traversal Rejection ('..' & absolute) (PASS)",
+        "Manifest Duplicate Entry Rejection (PASS)",
+        "Manifest Corrupted Hash Detection (PASS)",
+        "Manifest Missing Sibling Metadata Rejection (PASS)",
+        "Archive Validator Required Path Omission Rejection (PASS)",
+        "Archive Validator Nested ZIP Rejection (PASS)",
+        "Archive Validator Stale In-Package Attestation Rejection (PASS)",
+        "Canonical Table Metric Tampering Detection (PASS)",
+        "Table IV Invariant Floor Tampering Detection (PASS)",
+        "Stale Derived Summary Detection (PASS)",
+        "Non-Finite & Boolean Latency Value Rejection (PASS)",
+        "Multi-Arm Task ID Mismatch Rejection (PASS)",
+        "Missing Packager Subprocess & Structured Certificate Failure (PASS)",
+        "H1 JSON Summary Metric Tampering Detection (PASS)",
+        "H1 JSON Per-Task Row Prediction Tampering Detection (PASS)",
+        "H1 CSV Metric Tampering Detection (PASS)",
+        "Canonical H1 Subtree Tampering Detection (PASS)",
+        "Missing H1 Evaluation File Rejection (PASS)",
+        "Retrieval CSV Curve Tampering Detection (PASS)",
+        "Retrieval JSON Macro Recall Tampering Detection (PASS)",
+        "Canonical Retrieval Subtree Tampering Detection (PASS)",
+        "Table I Init S0 / Exp Delta S Tampering Detection (PASS)",
+        "Table I Structural Success Rate Tampering Detection (PASS)",
+        "Table II Exact McNemar p-value Tampering Detection (PASS)",
+        "Table III Cluster Lift Tampering Detection (PASS)",
+        "Zero-Mutation Source Immutability During Verification (PASS)"
+      ]
+    },
+    "immutability_verification": {
+      "source_file_mutations_during_audit": 0,
+      "status": "PASSED"
+    }
+  },
+  "runtime_environment": {
+    "os": "Windows (win32)",
+    "python_version": "3.13.5",
+    "numpy_version": "2.2.2",
+    "scikit_learn_version": "1.9.1"
+  },
+  "manuscript_build_status": {
+    "status": "BLOCKED",
+    "reason": "Host environment lacks local pdflatex / bibtex executable on PATH (WinError 2). Sources are validated, lint-clean, and self-contained in paper_v2/.",
+    "packaging_policy": "Transient LaTeX files (.aux, .log, .fls, .bbl, etc.) excluded from ZIP to ensure archive determinism."
+  },
+  "baseline_preservation": {
+    "version_1_files": "100% pristine and preserved",
+    "release_2_0_0_hash": "36cf1def3de7bde589c02839b26ed10ac0fb2ec923eaffb46282e96e43fd00f3 (MATCH)",
+    "release_2_0_1_hash": "43e9f09cceeb55407c8639777648f98d630059cb6bf64fe2b38121704e58bd71 (MATCH)",
+    "release_2_0_2_hash": "4e916c6216473c7cfdf1185d58000bbb3ece709325599c287430df8a12064be8 (MATCH)",
+    "prior_2_0_3_candidate_hash": "22183ed47f596373324ba09889bc5f54dd5b2012b3fa4d0d602210a8b2d4b138 (MATCH)"
+  }
+}

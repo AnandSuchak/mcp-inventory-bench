@@ -140,7 +140,8 @@ def run_evaluation_arm(task: BlindedTask, arm_name: str, max_attempts: int = 3) 
                 "resp_id": rid, "lat": lat
             })
 
-        attempt_tokens = p_tok + estimate_tokens(exposed_schema) + c_tok
+        curr_schema_tok = estimate_tokens(exposed_schema)
+        attempt_tokens = p_tok + c_tok
         total_tokens += attempt_tokens
 
         is_valid, validation_errors = validator.validate(args)
@@ -149,7 +150,11 @@ def run_evaluation_arm(task: BlindedTask, arm_name: str, max_attempts: int = 3) 
             "is_valid": is_valid,
             "error_count": len(validation_errors),
             "errors": [e.message for e in validation_errors],
-            "tokens": attempt_tokens
+            "tokens": attempt_tokens,
+            "prompt_tokens": p_tok,
+            "completion_tokens": c_tok,
+            "recorded_prompt_candidate_tokens": attempt_tokens,
+            "estimated_schema_exposure_tokens": curr_schema_tok
         })
 
         if attempt == 1 and is_valid:

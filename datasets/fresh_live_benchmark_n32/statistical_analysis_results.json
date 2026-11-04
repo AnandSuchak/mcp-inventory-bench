@@ -1,0 +1,206 @@
+{
+  "analysis_name": "LASR-MCP Clustered Bootstrap Statistical Analysis",
+  "timestamp": "2026-11-03T10:06:31.084813+00:00",
+  "primary_comparison": {
+    "treatment_arm": "ci_k2_reactive",
+    "control_arm": "full",
+    "n_tasks": 32,
+    "n_resamples": 10000,
+    "prompt_candidate_tokens": {
+      "control_total": 35737.0,
+      "treatment_total": 45007.0,
+      "point_estimate_savings_pct": -25.94,
+      "ci_95_pct": [
+        -52.55,
+        -3.16
+      ],
+      "crosses_zero": false
+    },
+    "provider_total_tokens": {
+      "control_total": 35737.0,
+      "treatment_total": 45007.0,
+      "point_estimate_savings_pct": -25.94,
+      "ci_95_pct": [
+        -52.55,
+        -3.16
+      ],
+      "crosses_zero": false
+    },
+    "final_structural_success_diff": {
+      "point_estimate_pct": -3.12,
+      "ci_95_pct": [
+        -9.38,
+        0.0
+      ]
+    },
+    "first_pass_hierarchical_success_diff": {
+      "point_estimate_pct": -62.5,
+      "ci_95_pct": [
+        -81.25,
+        -43.75
+      ]
+    }
+  },
+  "secondary_comparisons": {
+    "ci_k0": {
+      "treatment_arm": "ci_k0",
+      "control_arm": "full",
+      "n_tasks": 32,
+      "n_resamples": 10000,
+      "prompt_candidate_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 65845.0,
+        "point_estimate_savings_pct": -84.25,
+        "ci_95_pct": [
+          -125.15,
+          -49.21
+        ],
+        "crosses_zero": false
+      },
+      "provider_total_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 65845.0,
+        "point_estimate_savings_pct": -84.25,
+        "ci_95_pct": [
+          -125.15,
+          -49.21
+        ],
+        "crosses_zero": false
+      },
+      "final_structural_success_diff": {
+        "point_estimate_pct": -12.5,
+        "ci_95_pct": [
+          -25.0,
+          -3.12
+        ]
+      },
+      "first_pass_hierarchical_success_diff": {
+        "point_estimate_pct": -81.25,
+        "ci_95_pct": [
+          -93.75,
+          -65.62
+        ]
+      }
+    },
+    "ci_k1_static": {
+      "treatment_arm": "ci_k1_static",
+      "control_arm": "full",
+      "n_tasks": 32,
+      "n_resamples": 10000,
+      "prompt_candidate_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 61417.0,
+        "point_estimate_savings_pct": -71.86,
+        "ci_95_pct": [
+          -109.18,
+          -40.22
+        ],
+        "crosses_zero": false
+      },
+      "provider_total_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 61417.0,
+        "point_estimate_savings_pct": -71.86,
+        "ci_95_pct": [
+          -109.18,
+          -40.22
+        ],
+        "crosses_zero": false
+      },
+      "final_structural_success_diff": {
+        "point_estimate_pct": -9.38,
+        "ci_95_pct": [
+          -21.88,
+          0.0
+        ]
+      },
+      "first_pass_hierarchical_success_diff": {
+        "point_estimate_pct": -81.25,
+        "ci_95_pct": [
+          -93.75,
+          -65.62
+        ]
+      }
+    },
+    "ci_k1_reactive": {
+      "treatment_arm": "ci_k1_reactive",
+      "control_arm": "full",
+      "n_tasks": 32,
+      "n_resamples": 10000,
+      "prompt_candidate_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 51244.0,
+        "point_estimate_savings_pct": -43.39,
+        "ci_95_pct": [
+          -70.15,
+          -19.7
+        ],
+        "crosses_zero": false
+      },
+      "provider_total_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 51244.0,
+        "point_estimate_savings_pct": -43.39,
+        "ci_95_pct": [
+          -70.15,
+          -19.7
+        ],
+        "crosses_zero": false
+      },
+      "final_structural_success_diff": {
+        "point_estimate_pct": -3.12,
+        "ci_95_pct": [
+          -9.38,
+          0.0
+        ]
+      },
+      "first_pass_hierarchical_success_diff": {
+        "point_estimate_pct": -81.25,
+        "ci_95_pct": [
+          -93.75,
+          -65.62
+        ]
+      }
+    },
+    "oracle_reactive": {
+      "treatment_arm": "oracle_reactive",
+      "control_arm": "full",
+      "n_tasks": 32,
+      "n_resamples": 10000,
+      "prompt_candidate_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 44091.0,
+        "point_estimate_savings_pct": -23.38,
+        "ci_95_pct": [
+          -49.56,
+          -1.17
+        ],
+        "crosses_zero": false
+      },
+      "provider_total_tokens": {
+        "control_total": 35737.0,
+        "treatment_total": 44091.0,
+        "point_estimate_savings_pct": -23.38,
+        "ci_95_pct": [
+          -49.56,
+          -1.17
+        ],
+        "crosses_zero": false
+      },
+      "final_structural_success_diff": {
+        "point_estimate_pct": -3.12,
+        "ci_95_pct": [
+          -9.38,
+          0.0
+        ]
+      },
+      "first_pass_hierarchical_success_diff": {
+        "point_estimate_pct": -59.38,
+        "ci_95_pct": [
+          -78.12,
+          -40.62
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Initial Single-Trial Frozen Benchmark Systems Evaluation ($N=32$ Tasks, Gemini 3.5 Flash-Lite)}
+\label{tab:systems_evaluation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{System Arm} & \textbf{Reactive?} & \textbf{Init $S_0$} & \textbf{Exp. $\Delta S$} & \textbf{1st-Pass Hier. (\%)} & \textbf{Struct. (\%)} & \textbf{Sem. (\%)} & \textbf{Mean $TTS_{\text{P+C}}$} & \textbf{Recorded P+C Tokens} \\
+\midrule
+Full Schema Control (\texttt{full}) & No & 552.0 & 0.0 & 31.3\% & \textbf{93.8\%} & 90.6\% & 1864.4 & \textbf{61,853} \\
+$C_I^*$ Baseline (\texttt{ci\_k0}, $k=0$) & No & 339.0 & 0.0 & 0.0\% & 68.8\% & 65.6\% & 2196.7 & 70,541 \\
+LASR Static (\texttt{ci\_k1\_static}, $k=1$) & No & 361.1 & 0.0 & 15.6\% & 78.1\% & 71.9\% & 1631.0 & 56,947 \\
+LASR Reactive (\texttt{ci\_k1\_reactive}, $k=1$) & Yes & 361.1 & 45.4 & 15.6\% & \textbf{100.0\%} & 93.8\% & 1612.3 & 51,594 \\
+LASR Reactive (\texttt{ci\_k2\_reactive}, $k=2$) & Yes & 366.8 & 43.8 & 18.8\% & \textbf{100.0\%} & 93.8\% & 1571.1 & \textbf{50,276} \\
+Oracle Reference* (\texttt{oracle\_reactive}) & Yes & 359.0 & 48.3 & 15.6\% & 96.9\% & 93.8\% & 1554.0 & 50,578 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\begin{minipage}{\textwidth}
+\footnotesize
+*\textit{Note}: Oracle $O(x)$ is a model-conditional reference baseline. 1st-Pass Hierarchical success requires both structural validity and semantic correctness on Attempt 1 (Full Schema: 10/32 tasks, 31.25\%, displayed 31.3\%). Mean $TTS_{\text{P+C}}$ is the average recorded prompt-plus-candidate token subtotal over structurally successful trajectories ($N_{\text{succ}}$); Recorded P+C Tokens accounts for all prompt and completion tokens across all attempts without heuristic schema double-counting.
+\end{minipage}
+\end{table*}

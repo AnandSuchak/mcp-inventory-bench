@@ -47,6 +47,13 @@ class Attempt:
     response_id: str = ""
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    provider_total_tokens: Optional[int] = None
+    recorded_prompt_candidate_tokens: int = 0
+    call_record: Optional[Dict[str, Any]] = None
+
+    def __post_init__(self):
+        if not self.recorded_prompt_candidate_tokens:
+            self.recorded_prompt_candidate_tokens = self.prompt_tokens + self.completion_tokens
 
 @dataclass
 class ConstraintLifecycleRecord:
@@ -77,6 +84,8 @@ class Trace:
     constraint_lifecycles: List[ConstraintLifecycleRecord] = field(default_factory=list)
     total_schema_tokens_exposed: int = 0
     tokens_to_success: Optional[int] = None
+    tokens_to_success_provider_total: Optional[int] = None
+    schema_exposure_to_success: Optional[int] = None
     final_outcome: str = "PENDING"  # 'SUCCESS', 'FAIL', 'ABORTED'
 
     def to_dict(self) -> Dict[str, Any]:

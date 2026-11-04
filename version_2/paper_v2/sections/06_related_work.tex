@@ -1,0 +1,13 @@
+\section{Related Work and Novelty Positioning}
+\label{sec:related_work}
+
+\noindent\textbf{1) Tool Retrieval in MCP}: While tool catalogs exhaust context windows as registries grow, frameworks such as RAG-MCP~\cite{rag_mcp2024} and MCP-Zero~\cite{mcp_zero2024} employ dense retrieval to filter catalogs, and Gorilla~\cite{patil2023gorilla} and ToolLLM~\cite{qin2023toolllm} retrieve APIs from large sets. \textit{Distinction}: These frameworks operate at the \textit{inter-tool catalog level} (which tools to load), whereas LASR-MCP operates \textit{intra-tool}, resolving parameter constraints once a tool is chosen.
+
+\noindent\textbf{2) Schema Compression and Context Efficiency}: Tool Attention~\cite{tool_attention2024} lazily loads parameter docs via intent gating. TSCG~\cite{tscg2024} compiles verbose schemas into dense interfaces; prompt compression (LLMLingua~\cite{jiang2023llmlingua}, LLMLingua-2~\cite{pan2024llmlingua2}) and recent evaluations show tool-schema compression enables agentic workflows under constrained context budgets. \textit{Distinction}: TSCG changes the representation of the schema at the API boundary, whereas LASR retains the native JSON Schema representation for the exposed constraints, adaptively exposing and recomposing constraint nodes within an already selected tool while enforcing an Invariant Foundation Floor ($C_I^*$).
+
+\noindent\textbf{3) Field-Aware and Schema Routing}: SchemaRouter~\cite{schemarouter2024} evaluates field-aware routing, noting under-fetching risks, while HyperAgent~\cite{hyperagent2024} plans over schema hypergraphs. \textit{Distinction}: SchemaRouter routes fields across an API graph; LASR resolves validation constraints inside an already selected executable tool and expands those constraints from execution-time validator feedback, achieving $96.9\%$ final structural success for LASR $k=2$ in the live primary benchmark ($100.0\%$ under historical single-trial and deterministic-simulation conditions).
+
+\noindent\textbf{4) Execution Traces and Tool Adaptation}: ReAct~\cite{yao2022react} and Toolformer~\cite{schick2024toolformer} demonstrate self-correction, and ToolSpec~\cite{toolspec2024} uses speculative decoding. \textit{Distinction}: A simple trace-based recovery strategy may append raw validator errors to conversation history; LASR-MCP intercepts validator paths for \textbf{in-tree JSON Schema recomposition}, splicing missing constraint subtrees directly into the schema on Attempt~2.
+
+\noindent\textbf{Summary of Novelty}: LASR-MCP resolves constraints within an already selected tool schema, combining intent-conditioned proactive prediction with validator-derived in-tree recomposition.
+

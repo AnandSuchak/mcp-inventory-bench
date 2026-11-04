@@ -1,0 +1,72 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Task Corpus \& Stratified Template Splits}
+We evaluate LASR-MCP on a synthetic enterprise-style supply-chain tool execution benchmark (\texttt{create\_purchase\_order}) governing multi-item warehouse replenishment. The benchmark corpus comprises 80 pre-specified task instances partitioned strictly across syntactic template families:
+\begin{itemize}
+    \item \textbf{Training Tasks ($N=48$)}: Derived from template families \texttt{family\_a} and \texttt{family\_b}, used to train the frozen semantic predictor.
+    \item \textbf{Evaluation Tasks ($N=32$)}: Drawn exclusively from \texttt{family\_c} with distinct lexical and syntactic structures (serving as unseen held-out test tasks for $H_1$ intent prediction, and development/validation tasks for $H_2$--$H_4$ systems evaluation).
+\end{itemize}
+The 32 evaluation tasks span four diverse operational archetypes ($N=8$ tasks each):
+\begin{enumerate}
+    \item \textbf{C1: Routine Regional Replenishment}: High-frequency, standard priority orders governed by basic warehouse routing.
+    \item \textbf{C2: Expedited Emergency Orders}: Critical priority dispatches with accelerated freight logistics and rigid budget limits.
+    \item \textbf{C3: Specialized Bulk Procurement}: Large-quantity orders where queries omit explicit warehouse locations, testing model behavior under unstated default enums.
+    \item \textbf{C4: Multi-Item Depot Rebalancing}: Complex multi-line consignments enforcing nested \texttt{maxItems} and item-level SKU validation.
+\end{enumerate}
+
+\subsection{Controlled Experimental System Arms}
+To compare the contributions of the schema-resolution components in Equation~\eqref{eq:three_tier}, we evaluate six controlled system arms under identical prompt conditions:
+\begin{itemize}
+    \item \textbf{Full Schema Control (\texttt{full})}: Static exposure of the monolithic 552-token schema upfront.
+    \item \textbf{Invariant Baseline (\texttt{ci\_k0})}: Invariant Foundation alone ($C_I^* = 339$ tokens) without task-conditioned prediction or reactive recovery.
+    \item \textbf{Proactive Static Control (\texttt{ci\_k1\_static})}: Invariant Foundation + Top-1 LASR predicted constraint without reactive recovery.
+    \item \textbf{Proactive-Reactive LASR (\texttt{ci\_k1\_reactive})}: Invariant Foundation + Top-1 LASR predicted constraint with dynamic in-tree recovery.
+    \item \textbf{Proactive-Reactive LASR (\texttt{ci\_k2\_reactive})}: Invariant Foundation + Top-2 LASR predicted constraints with dynamic in-tree recovery.
+    \item \textbf{Model-Conditional Reference (\texttt{oracle\_reactive})}: Invariant Foundation + reference constraint set $O(x) = C_I^* \cup C_T^*(x)$ with reactive recovery. $O(x)$ was constructed from task specifications prior to execution and validated against the schema validator.
+\end{itemize}
+
+\subsection{Dual Evaluation Criteria \& Metric Definitions}
+Submissions are evaluated on two orthogonal metrics alongside token efficiency:
+\begin{enumerate}
+    \item \textbf{Structural Schema Validity (\%)}: Conformance to JSON Schema Draft 2020-12 verified by an independent automated validator.
+    \item \textbf{Semantic Task Correctness (\%)}: Exact domain logic validation verifying that extracted line items, quantities, priority codes, and supplier IDs satisfy user intent. Evaluation is strictly hierarchical: semantic correctness requires structural validity as a precondition ($\text{First-Pass Hierarchical} = \text{Structural} \land \text{Semantic}$), bounding semantic correctness by structural success.
+    \item \textbf{Recorded Token Metric \& Accounting Reconciliation}: The primary token metric is defined strictly as the provider-recorded prompt-plus-candidate token subtotal per recorded attempt:
+    \begin{equation}
+    \text{Recorded } P+C = \text{prompt\_tokens} + \text{completion\_tokens}
+    \end{equation}
+    directly derived from Google's \texttt{usageMetadata} (\texttt{promptTokenCount} + \texttt{candidatesTokenCount}, which identically equals provider \texttt{totalTokenCount} across all 7,860 calls in our benchmark dataset as thinking and client tool prompt tokens are zero). In earlier preliminary benchmark drafts, heuristic offline schema token estimates ($S_0 + \Delta S$) were inadvertently added to provider prompt tokens, creating an artificial double-counting distortion that heavily penalized Full Control (whose monolithic schema is already serialized inside the prompt). In v2.0.3, we eliminate this double-counting artifact entirely: heuristic schema sizes ($S_0, \Delta S$) are decoupled and retained strictly as offline structural diagnostics, while all economic and token workload evaluations rely exclusively on provider-reported $P+C$ token usage from \texttt{usageMetadata}.
+\end{enumerate}
+
+\subsection{Execution Environment \& Live Telemetry Ledger}
+All live experiments were executed against model ID \texttt{gemini-3.5-flash-lite} hosted on Google Cloud Generative Language API via direct REST HTTP endpoints. The provider telemetry explicitly records \texttt{requested\_model} and \texttt{provider\_resolved\_model\_version} as \texttt{gemini-3.5-flash-lite} (returned in the API \texttt{modelVersion} field); the API reported this model alias directly, and a separate immutable backend snapshot tag was not exposed by the endpoint. In our client configuration, \texttt{LiveLLMClient} operated at temperature $0.2$, and requests transmitted a fixed execution seed (\texttt{seed=42}). Across the 20 repeated executions per task-arm combination, the model produced deterministic identical first responses and outcomes under the repeated fixed seed; the 32 distinct task IDs represent the paired resampling units of inference, and the 20 replicates verify execution determinism under fixed decoding conditions rather than representing independent stochastic draws. 
+
+The live empirical dataset comprises exactly $N=3,840$ completed trials across the 32 tasks and 6 experimental arms, producing $7,860$ response-bearing provider calls (all HTTP 200, with 100\% complete provider \texttt{usageMetadata} recording \texttt{promptTokenCount}, \texttt{candidatesTokenCount}, and \texttt{totalTokenCount}). Transient network rate limits (HTTP 429 and 503) triggered exactly 154 client transport retries; these transport-level backoffs are cleanly isolated and reported separately from logical agent attempts. 
+
+We distinguish the full multi-session data collection timeline from the duration of the final resumed session: the total collection spanned multiple days across paid and quota-limited API sessions, completing 3,149 trials in initial sessions followed by a final resumed session completing the remaining 691 trials in approximately 2.8 hours. Operational execution ledgers are preserved in the reproducibility archive.
+
+\subsection{Statistical Inference: Paired Task-Cluster Percentile Bootstrap}
+For all comparative workload evaluations between experimental arms, we employ a paired task-cluster percentile bootstrap over the 32 task clusters. The 32 distinct task IDs constitute the resampling units of inference. For each bootstrap iteration ($B=10,000$ resamples, deterministic seed 42), task clusters are sampled with replacement, computing paired workload differences and cluster-level ratios. Confidence intervals are reported as empirical 2.5\% and 97.5\% percentiles of the bootstrap distribution.
+
+\subsection{Evaluation Hygiene \texorpdfstring{\&}{and} Benchmark Scope}
+To maintain strict methodological hygiene, we explicitly delineate the empirical role of each benchmark split:
+\begin{itemize}
+    \item \textbf{Held-Out Family Generalization for $H_1$}: The intent-conditioned predictor is implemented as a custom multi-label log-odds-weighted lexical classifier with class priors and smoothed IDF weights. It was trained on 48 tasks (\texttt{family\_a}, \texttt{family\_b}) and evaluated on 32 tasks (\texttt{family\_c}) drawn from a held-out syntactic template family. While template framing structures are strictly partitioned, shared enterprise procurement vocabulary exists across splits (103 of 149 test vocabulary words, $69.1\%$ overlap), and all four target constraint combinations recur across train and test families. Predictor weights were formally frozen prior to all systems evaluations.
+    \item \textbf{Primary Frozen Benchmark for $H_2$--$H_4$}: The invariant foundation $C_I^* = 339$ tokens was calibrated on an 8-task calibration probe (\texttt{BLIND-C1-013}, \texttt{BLIND-C1-014}, \texttt{BLIND-C2-013}, \texttt{BLIND-C2-014}, \texttt{BLIND-C3-013}, \texttt{BLIND-C3-014}, \texttt{BLIND-C4-013}, \texttt{BLIND-C4-014}) sampled directly from the \texttt{family\_c} task distribution (two tasks per cluster). Consequently, the 8-task probe overlaps the 32 evaluation tasks; we explicitly disclose this tuning/evaluation overlap and evaluate $H_2$--$H_4$ as characterizing systems behavior within this primary frozen benchmark corpus rather than serving as an untouched, blind end-to-end generalization test.
+\end{itemize}
+
+\subsection{Data Provenance \texorpdfstring{\&}{and} Trace Replay Verification}
+All benchmark code, traces, and frozen datasets are archived at \url{https://github.com/AnandSuchak/mcp-inventory-bench}. While live API re-executions may exhibit variance from hosted model updates, recorded execution traces support deterministic replay of the reported experiments, verified by automated cryptographic manifests:
+\begin{center}
+\footnotesize
+\textbf{Cryptographic Artifact Provenance:}\\
+\textit{Frozen Benchmark ($N=32$):}\\
+\texttt{\scriptsize SHA-256: 78c2c88ed5128e0f296fa29e0c258589}\\
+\texttt{\scriptsize \phantom{SHA-256: }b516f3adb14b0b8da491fa73bc3ffc11}\\
+\textit{v2.0.3 Live Benchmark Candidate ($N=3,840$):}\\
+\texttt{\scriptsize SHA-256: fc82d33b8992914ee130ef2805427ef2}\\
+\texttt{\scriptsize \phantom{SHA-256: }a4f01541243e0f93be120e2d20ae7f5b}\\
+\texttt{\scriptsize Commit: 9807340abc38170e0090a102547ee4309c01d78b}
+\end{center}
+Automated regression test suites ensure complete data immutability.
+

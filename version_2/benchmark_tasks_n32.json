@@ -1,0 +1,530 @@
+[
+  {
+    "task_id": "BLIND-C1-013",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Restock our east depot with 50 units using our standard vendor agreement.",
+    "query": "Restock our east depot with 50 units using our standard vendor agreement.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-014",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Have procurement route forty units of SKU-10008 to the eastern facility.",
+    "query": "Have procurement route forty units of SKU-10008 to the eastern facility.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-015",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "We require thirty additional parts delivered to the western depot by next cycle.",
+    "query": "We require thirty additional parts delivered to the western depot by next cycle.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-016",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Supply chain notice: dispatch 45 units to our US East regional distribution site.",
+    "query": "Supply chain notice: dispatch 45 units to our US East regional distribution site.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-017",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Send forty inventory pieces to our western operations terminal.",
+    "query": "Send forty inventory pieces to our western operations terminal.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-018",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Order 50 replacement modules for delivery to our east coast branch.",
+    "query": "Order 50 replacement modules for delivery to our east coast branch.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-019",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Prepare standard shipment of 60 items to the west coast facility.",
+    "query": "Prepare standard shipment of 60 items to the west coast facility.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C1-020",
+    "semantic_cluster": "routine_regional_replenish",
+    "intent_family": "family_c",
+    "user_intent": "Execute routine replenishment: 40 units routed to east depot.",
+    "query": "Execute routine replenishment: 40 units routed to east depot.",
+    "target_constraints": [
+      "/properties/warehouse_code/enum",
+      "/properties/authorized_by/pattern"
+    ],
+    "target_constraints_dot": [
+      "warehouse_code.enum",
+      "authorized_by.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-013",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Top priority: rush 20 units to our eastern warehouse to avoid assembly shutdown.",
+    "query": "Top priority: rush 20 units to our eastern warehouse to avoid assembly shutdown.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-014",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Immediate replenishment needed: expedite 25 units for critical East terminal operations.",
+    "query": "Immediate replenishment needed: expedite 25 units for critical East terminal operations.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-015",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Factory emergency: order 15 replacement components under critical expedition terms.",
+    "query": "Factory emergency: order 15 replacement components under critical expedition terms.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-016",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Urgent order: send 30 essential parts to our West facility under highest priority.",
+    "query": "Urgent order: send 30 essential parts to our West facility under highest priority.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-017",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Rush shipment authorized: procure 20 units for immediate delivery to East depot.",
+    "query": "Rush shipment authorized: procure 20 units for immediate delivery to East depot.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-018",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Emergency ticket #409: expedite purchase of 25 items to prevent line stoppage.",
+    "query": "Emergency ticket #409: expedite purchase of 25 items to prevent line stoppage.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-019",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "High-severity stock failure: dispatch 15 urgent units to West regional hub.",
+    "query": "High-severity stock failure: dispatch 15 urgent units to West regional hub.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C2-020",
+    "semantic_cluster": "expedited_emergency_order",
+    "intent_family": "family_c",
+    "user_intent": "Critical stock alert: place urgent purchase for 20 modules heading to East dock.",
+    "query": "Critical stock alert: place urgent purchase for 20 modules heading to East dock.",
+    "target_constraints": [
+      "/properties/order_priority/enum",
+      "/properties/total_budget_limit/maximum"
+    ],
+    "target_constraints_dot": [
+      "order_priority.enum",
+      "total_budget_limit.maximum"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-013",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Execute bulk order of 100 items from contracted vendor meeting minimum batch requirements.",
+    "query": "Execute bulk order of 100 items from contracted vendor meeting minimum batch requirements.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-014",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Wholesale replenishment: procure 120 units from certified supplier Texas Semi.",
+    "query": "Wholesale replenishment: procure 120 units from certified supplier Texas Semi.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-015",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Contract requisition for 90 parts honoring supplier minimum order volume standards.",
+    "query": "Contract requisition for 90 parts honoring supplier minimum order volume standards.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-016",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Place bulk procurement request for 110 units from approved semiconductor supplier.",
+    "query": "Place bulk procurement request for 110 units from approved semiconductor supplier.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-017",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Order 100 replacement assemblies meeting certified vendor procurement specifications.",
+    "query": "Order 100 replacement assemblies meeting certified vendor procurement specifications.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-018",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Restock 80 specialized items ensuring manufacturer MOQ thresholds are satisfied.",
+    "query": "Restock 80 specialized items ensuring manufacturer MOQ thresholds are satisfied.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-019",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Commercial wholesale order: 125 units from primary contracted vendor.",
+    "query": "Commercial wholesale order: 125 units from primary contracted vendor.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C3-020",
+    "semantic_cluster": "specialized_bulk_procurement",
+    "intent_family": "family_c",
+    "user_intent": "Procure 95 batch components from certified supplier following volume agreements.",
+    "query": "Procure 95 batch components from certified supplier following volume agreements.",
+    "target_constraints": [
+      "/properties/items/items/properties/quantity/minimum",
+      "/properties/supplier_id/pattern"
+    ],
+    "target_constraints_dot": [
+      "items.quantity.minimum",
+      "supplier_id.pattern"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-013",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Issue dual-line replenishment order for 25 units of SKU-10006 and 35 units of SKU-10007.",
+    "query": "Issue dual-line replenishment order for 25 units of SKU-10006 and 35 units of SKU-10007.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-014",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Consolidate two product lines into one replenishment order for the eastern depot.",
+    "query": "Consolidate two product lines into one replenishment order for the eastern depot.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-015",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Multi-item stock order: acquire 30 units of component 1 and 20 units of component 2.",
+    "query": "Multi-item stock order: acquire 30 units of component 1 and 20 units of component 2.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-016",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Rebalance regional storage with a combined order of two separate catalog parts.",
+    "query": "Rebalance regional storage with a combined order of two separate catalog parts.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-017",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Dual-item requisition: place order for 25 units of SKU-10008 and 30 units of SKU-10009.",
+    "query": "Dual-item requisition: place order for 25 units of SKU-10008 and 30 units of SKU-10009.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-018",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Bundle replenishment request across multiple stock keeping units for West terminal.",
+    "query": "Bundle replenishment request across multiple stock keeping units for West terminal.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-019",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Assemble combined purchase order covering two inventory lines for East hub.",
+    "query": "Assemble combined purchase order covering two inventory lines for East hub.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  },
+  {
+    "task_id": "BLIND-C4-020",
+    "semantic_cluster": "multi_item_depot_rebalance",
+    "intent_family": "family_c",
+    "user_intent": "Multi-part dispatch: order 35 units of first item and 25 units of second item.",
+    "query": "Multi-part dispatch: order 35 units of first item and 25 units of second item.",
+    "target_constraints": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "target_constraints_dot": [
+      "items.minItems",
+      "items.sku.pattern",
+      "items.required"
+    ],
+    "arm": "lasr_k1_reactive"
+  }
+]

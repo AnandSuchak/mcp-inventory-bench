@@ -1,0 +1,33 @@
+{
+  "manifest_name": "LASR-MCP Fresh Live Benchmark Run Manifest",
+  "timestamp_start": "2026-10-26T03:45:04.860256+00:00",
+  "timestamp_end": "2026-10-26T04:51:07.469942+00:00",
+  "elapsed_seconds": 3962.61,
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "seed": 42,
+  "replicates": 20,
+  "run_status": "COMPLETED",
+  "is_complete": true,
+  "total_planned": 3840,
+  "completed_trials": 3840,
+  "cache_hits": 0,
+  "artifacts_checksums": {
+    "benchmark_call_records.jsonl": {
+      "sha256": "a50bd0f81c996a6e25b4a994631916a6a8f7f9aae32eed641fc6ef229bdb6a73",
+      "size_bytes": 22105099
+    },
+    "benchmark_trial_records.json": {
+      "sha256": "245503142784bda97036878ab0fef9bb105bd0b4b8998da2ea7edb804431dddc",
+      "size_bytes": 9421879
+    },
+    "benchmark_summary.json": {
+      "sha256": "cdf051693d6452e669f485dec53387046690d017f3513f07524499729722528b",
+      "size_bytes": 5264
+    },
+    "benchmark_checkpoint.json": {
+      "sha256": "5baf4694ce414b48b57aaf29a0f968ccf11c607c8f49ee10b68b6092902ba549",
+      "size_bytes": 147082
+    }
+  }
+}

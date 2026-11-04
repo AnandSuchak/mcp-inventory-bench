@@ -1,0 +1,21 @@
+# LASR-MCP v2.0.3 Cryptographic Release Manifest
+# Generated deterministically using SHA-256
+
+# Authoritative Manuscript & Distribution Archives
+73e1b92e1308b57c5760f3b9ef0a2d82355daa1858227a263eca36c0fcece82d  zenodo_deposit_v2_0_3/LASR_MCP_v2.0.3_Manuscript.pdf
+73e1b92e1308b57c5760f3b9ef0a2d82355daa1858227a263eca36c0fcece82d  version_2/paper_v2/main_v2.pdf
+ae9599564b55a5e19004f32ded7c91fe2b46c480b12914b5343834bcf789044f  zenodo_deposit_v2_0_3/lasr_v2_203_manuscript_bundle.zip
+ae9599564b55a5e19004f32ded7c91fe2b46c480b12914b5343834bcf789044f  lasr_v2_203_manuscript_bundle.zip
+9ee32f32dd332c06b978c4dc37482eebba95216a131961adbbb742b1d1c23b90  zenodo_deposit_v2_0_3/lasr_v2_203_raw_benchmark_telemetry.zip
+
+# Scope 2: Canonical Live Benchmark Telemetry (N=3,840 trials, 7,860 Gemini calls)
+a50bd0f81c996a6e25b4a994631916a6a8f7f9aae32eed641fc6ef229bdb6a73  datasets/fresh_live_benchmark_n32/benchmark_call_records.jsonl
+245503142784bda97036878ab0fef9bb105bd0b4b8998da2ea7edb804431dddc  datasets/fresh_live_benchmark_n32/benchmark_trial_records.json
+cdf051693d6452e669f485dec53387046690d017f3513f07524499729722528b  datasets/fresh_live_benchmark_n32/benchmark_summary.json
+83d36e1bbdeeee9a59e26408368fbb9b7c210bb7643a5ca70feb4a2b6b1d0602  datasets/fresh_live_benchmark_n32/run_manifest.json
+
+# Scope 1: Historical Frozen Benchmark (N=32 tasks, preliminary single-trial)
+78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11  datasets/frozen_benchmark_n32/invariant_optimization_summary.json
+
+# Scope 3: Post-Freeze Cross-Schema Mechanism Stress Test (4 schemas simulation)
+b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a  datasets/cross_schema_validation/cross_schema_results.json

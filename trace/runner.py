@@ -231,7 +231,8 @@ class TraceRunner:
 
             if is_valid:
                 trace.final_outcome = "SUCCESS"
-                trace.tokens_to_success = trace.total_schema_tokens_exposed
+                trace.tokens_to_success = sum(a.prompt_tokens + a.completion_tokens for a in trace.attempts)
+                trace.schema_exposure_to_success = trace.total_schema_tokens_exposed
                 break
 
             # If failed, extract constraint slice

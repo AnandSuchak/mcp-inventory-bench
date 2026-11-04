@@ -1,0 +1,7 @@
+arm,tasks_count,total_attempts,total_tokens_consumed,token_savings_pct_vs_full,first_pass_structural_pct,final_structural_pct,first_pass_semantic_pct,final_semantic_pct,recovery_rate_pct,mean_tts
+full,32,57,87013,0.0,40.6,96.9,96.9,93.8,94.7,2656.2
+ci_k0,32,93,101082,-16.17,0.0,65.6,9.4,59.4,65.6,3111.0
+ci_k1_static,32,78,87363,-0.4,6.2,81.2,15.6,75.0,80.0,2568.1
+ci_k1_reactive,32,67,78330,9.98,6.2,96.9,15.6,90.6,96.7,2401.5
+ci_k2_reactive,32,65,76607,11.96,12.5,93.8,25.0,87.5,92.9,2300.3
+oracle_reactive,32,68,79727,8.37,6.2,93.8,15.6,81.2,93.3,2415.0

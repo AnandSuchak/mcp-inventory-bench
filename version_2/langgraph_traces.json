@@ -1,0 +1,881 @@
+{
+  "benchmark_name": "LangGraph Stateful Recovery Trace-Grounded Evaluation",
+  "reference_source": "datasets/frozen_benchmark_n32/invariant_optimization_summary.json (Commit 9807340)",
+  "study_type": "Trace-derived counterfactual token overhead model (+45 tok compiler context)",
+  "total_tasks": 32,
+  "first_pass_structural_pct": 31.2,
+  "final_structural_pct": 93.8,
+  "mean_tts": 2073.9,
+  "total_workload_tokens": 69119,
+  "mean_tokens_per_task": 2160.0,
+  "net_workload_diff_vs_full_pct": "+11.7%",
+  "net_workload_diff_vs_lasr_k2_pct": "27.3%",
+  "overhead_vs_full_unrounded_pct": 11.747207087772622,
+  "savings_vs_lasr_k2_unrounded_pct": 27.261679133089313,
+  "architectural_finding": "Stateful LangGraph recovery incurs 69,119 recorded P+C tokens (2160.0 tok/task), representing a +11.7% overhead relative to the static full schema (61,853 tokens) due to message history accumulation over failed attempts. LASR-MCP k=2 Reactive achieves 50,276 total P+C tokens (1,571.1 tok/task), yielding a 27.3% token reduction against LangGraph stateful recovery while achieving 100.0% structural success.",
+  "trajectories": [
+    {
+      "task_id": "BLIND-C1-013",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2040,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 854,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 854,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1031,
+          "state_history_overhead_tokens": 155,
+          "total_attempt_tokens": 1186,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-014",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 874,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 874,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 874,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-015",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2000,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 844,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 844,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1009,
+          "state_history_overhead_tokens": 147,
+          "total_attempt_tokens": 1156,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-016",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2125,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 875,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 875,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-ABCD-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1075,
+          "state_history_overhead_tokens": 175,
+          "total_attempt_tokens": 1250,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-017",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 3,
+      "final_structural_success": false,
+      "total_tokens_consumed": 3347,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 842,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 842,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+            "'SUP-CORP-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1012,
+          "state_history_overhead_tokens": 149,
+          "total_attempt_tokens": 1161,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1046,
+          "state_history_overhead_tokens": 298,
+          "total_attempt_tokens": 1344,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP-123-ABC' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-018",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3358,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 845,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 845,
+          "is_valid": false,
+          "validation_errors": [
+            "'agent.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+            "'SUP-PARTS123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1022,
+          "state_history_overhead_tokens": 148,
+          "total_attempt_tokens": 1170,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-PARTS123-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1038,
+          "state_history_overhead_tokens": 305,
+          "total_attempt_tokens": 1343,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-019",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2121,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 873,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 873,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-ABCD-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1072,
+          "state_history_overhead_tokens": 176,
+          "total_attempt_tokens": 1248,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C1-020",
+      "cluster": "routine_regional_replenish",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2109,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 870,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 870,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1065,
+          "state_history_overhead_tokens": 174,
+          "total_attempt_tokens": 1239,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-013",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2134,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 877,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 877,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-ACME-999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1080,
+          "state_history_overhead_tokens": 177,
+          "total_attempt_tokens": 1257,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-014",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2121,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 874,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 874,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1071,
+          "state_history_overhead_tokens": 176,
+          "total_attempt_tokens": 1247,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-015",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3582,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 877,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 877,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-EMRG-9999-ABC' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1084,
+          "state_history_overhead_tokens": 180,
+          "total_attempt_tokens": 1264,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-EMRG-9999-ABCD' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1082,
+          "state_history_overhead_tokens": 359,
+          "total_attempt_tokens": 1441,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-016",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 874,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 874,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 874,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-017",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2136,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 877,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 877,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-ACME-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1081,
+          "state_history_overhead_tokens": 178,
+          "total_attempt_tokens": 1259,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-018",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2121,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 876,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 876,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1071,
+          "state_history_overhead_tokens": 174,
+          "total_attempt_tokens": 1245,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-019",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3528,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 873,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 873,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1067,
+          "state_history_overhead_tokens": 173,
+          "total_attempt_tokens": 1240,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-DEF-001' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1069,
+          "state_history_overhead_tokens": 346,
+          "total_attempt_tokens": 1415,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C2-020",
+      "cluster": "expedited_emergency_order",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2121,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 875,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 875,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1071,
+          "state_history_overhead_tokens": 175,
+          "total_attempt_tokens": 1246,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-013",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 876,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 876,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 876,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-014",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 871,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 871,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 871,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-015",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 871,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 871,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 871,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-016",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 3,
+      "final_structural_success": false,
+      "total_tokens_consumed": 3555,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 876,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 876,
+          "is_valid": false,
+          "validation_errors": [
+            "'agent.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+            "'SUP-SEMI-001-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1073,
+          "state_history_overhead_tokens": 178,
+          "total_attempt_tokens": 1251,
+          "is_valid": false,
+          "validation_errors": [
+            "'system.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+            "'SUP-SEMI-001-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1073,
+          "state_history_overhead_tokens": 355,
+          "total_attempt_tokens": 1428,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-SEMI-001-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-017",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2115,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 872,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 872,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1067,
+          "state_history_overhead_tokens": 176,
+          "total_attempt_tokens": 1243,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-018",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 871,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 871,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 871,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-019",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2123,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 874,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 874,
+          "is_valid": false,
+          "validation_errors": [
+            "'agent.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1072,
+          "state_history_overhead_tokens": 177,
+          "total_attempt_tokens": 1249,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C3-020",
+      "cluster": "specialized_bulk_procurement",
+      "attempts_needed": 2,
+      "final_structural_success": true,
+      "total_tokens_consumed": 2111,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 871,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 871,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1066,
+          "state_history_overhead_tokens": 174,
+          "total_attempt_tokens": 1240,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-013",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 932,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 932,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 932,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-014",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3909,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 919,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 919,
+          "is_valid": false,
+          "validation_errors": [
+            "'ai.agent@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'",
+            "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1161,
+          "state_history_overhead_tokens": 221,
+          "total_attempt_tokens": 1382,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-ACME-9999-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1166,
+          "state_history_overhead_tokens": 442,
+          "total_attempt_tokens": 1608,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-015",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3689,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 895,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 895,
+          "is_valid": false,
+          "validation_errors": [
+            "'agent.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1103,
+          "state_history_overhead_tokens": 187,
+          "total_attempt_tokens": 1290,
+          "is_valid": false,
+          "validation_errors": [
+            "'system.ai@enterprise.mock' does not match '^[a-z]{3,8}\\\\.[a-z]{3,8}@enterprise\\\\.mock$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1130,
+          "state_history_overhead_tokens": 374,
+          "total_attempt_tokens": 1504,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-016",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3908,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 920,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 920,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP-9021-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1165,
+          "state_history_overhead_tokens": 223,
+          "total_attempt_tokens": 1388,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP90-US' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1159,
+          "state_history_overhead_tokens": 441,
+          "total_attempt_tokens": 1600,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-017",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 3,
+      "final_structural_success": true,
+      "total_tokens_consumed": 3944,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 935,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 935,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP-1234-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 2,
+          "base_tokens": 1181,
+          "state_history_overhead_tokens": 218,
+          "total_attempt_tokens": 1399,
+          "is_valid": false,
+          "validation_errors": [
+            "'SUP-CORP-123-XYZ' does not match '^SUP-[A-Z0-9]{4,12}-[A-Z0-9]{3,6}$'"
+          ]
+        },
+        {
+          "attempt": 3,
+          "base_tokens": 1175,
+          "state_history_overhead_tokens": 435,
+          "total_attempt_tokens": 1610,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-018",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 917,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 917,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 917,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-019",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 915,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 915,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 915,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    },
+    {
+      "task_id": "BLIND-C4-020",
+      "cluster": "multi_item_depot_rebalance",
+      "attempts_needed": 1,
+      "final_structural_success": true,
+      "total_tokens_consumed": 921,
+      "attempts": [
+        {
+          "attempt": 1,
+          "base_tokens": 921,
+          "state_history_overhead_tokens": 0,
+          "total_attempt_tokens": 921,
+          "is_valid": true,
+          "validation_errors": []
+        }
+      ]
+    }
+  ]
+}

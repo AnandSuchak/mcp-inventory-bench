@@ -141,10 +141,10 @@ def run_single_task_evaluation(
                 "args": args, "raw_resp": raw_resp, "p_tok": p_tok, "c_tok": c_tok,
                 "resp_id": rid, "lat": lat
             })
-            time.sleep(2.0)
-
-        attempt_tokens = p_tok + curr_schema_tokens + c_tok
-        total_tokens += attempt_tokens
+        attempt_pc_tokens = p_tok + c_tok
+        attempt_provider_total = getattr(client, "last_call_record", {}).get("usage_metadata", {}).get("provider_total_tokens") if not cached else cached.get("total_tokens")
+        attempt_tokens = attempt_pc_tokens
+        total_tokens += attempt_pc_tokens
 
         is_valid, validation_errors = validator.validate(args)
         is_correct, semantic_failures = evaluate_task_correctness(task, args)
@@ -157,9 +157,15 @@ def run_single_task_evaluation(
             "delta_schema_tokens": delta_s_t,
             "prompt_tokens": p_tok,
             "completion_tokens": c_tok,
+            "provider_prompt_tokens": p_tok,
+            "provider_candidate_tokens": c_tok,
+            "provider_total_tokens": attempt_provider_total,
+            "recorded_prompt_candidate_tokens": attempt_pc_tokens,
+            "estimated_schema_exposure_tokens": curr_schema_tokens,
             "validation_errors": [e.message for e in validation_errors],
             "semantic_failures": semantic_failures,
-            "tokens": attempt_tokens
+            "tokens": attempt_pc_tokens,
+            "call_record": getattr(client, "last_call_record", None)
         })
 
         if attempt == 1:
@@ -202,11 +208,13 @@ def run_single_task_evaluation(
         "reactive_expansion_tokens": total_reactive_expansion_tokens,
         "first_pass_structural": first_pass_structural,
         "first_pass_semantic": first_pass_semantic,
+        "first_pass_hierarchical_success": (first_pass_structural and first_pass_semantic),
         "final_structural_success": final_structural_success,
         "final_semantic_correctness": final_semantic_correctness,
         "attempts_needed": len(attempts_history),
         "total_tts": total_tokens if final_structural_success else 0,
         "total_tokens_consumed": total_tokens,
+        "recorded_prompt_candidate_tokens": total_tokens,
         "attempts": attempts_history
     }
 

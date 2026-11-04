@@ -1,0 +1,5010 @@
+{
+  "release_version": "2.0.3",
+  "provenance": {
+    "generator": "version_2/reconcile_canonical_metrics.py",
+    "workspace_relative": "version_2",
+    "primary_source_hashes": {
+      "datasets/frozen_benchmark_n32/invariant_optimization_summary.json": "78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11",
+      "datasets/cross_schema_validation/cross_schema_results.json": "b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a"
+    }
+  },
+  "primary_benchmark": {
+    "status": "VERIFIED_PRIMARY_BENCHMARK",
+    "reference_dataset": "datasets/frozen_benchmark_n32/invariant_optimization_summary.json",
+    "source_sha256": "78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11",
+    "formula": "recorded_prompt_candidate_tokens = prompt_tokens + completion_tokens; workload_token_savings_pct = (full_tokens - arm_tokens) / full_tokens * 100",
+    "arms": {
+      "full": {
+        "tasks_count": 32,
+        "total_workload_tokens": 61853,
+        "mean_tokens_per_task": 1932.9,
+        "mean_initial_s0_tokens": 552,
+        "mean_initial_s0_tokens_display": 552.0,
+        "mean_reactive_expansion_tokens": 0,
+        "mean_reactive_expansion_tokens_display": 0.0,
+        "first_pass_structural_count": 10,
+        "first_pass_structural_pct": 31.3,
+        "first_pass_structural_pct_unrounded": 31.25,
+        "first_pass_hierarchical_count": 10,
+        "first_pass_hierarchical_pct": 31.3,
+        "first_pass_hierarchical_pct_unrounded": 31.25,
+        "final_structural_success_count": 30,
+        "final_structural_success_pct": 93.8,
+        "final_semantic_correctness_count": 29,
+        "final_semantic_correctness_pct": 90.6,
+        "mean_tts_conditioned_on_success": 1864.4,
+        "workload_token_savings_pct": 0.0,
+        "tts_token_savings_pct": 0.0
+      },
+      "ci_k1_reactive": {
+        "tasks_count": 32,
+        "total_workload_tokens": 51594,
+        "mean_tokens_per_task": 1612.3,
+        "mean_initial_s0_tokens": 361.0625,
+        "mean_initial_s0_tokens_display": 361.1,
+        "mean_reactive_expansion_tokens": 45.4375,
+        "mean_reactive_expansion_tokens_display": 45.4,
+        "first_pass_structural_count": 5,
+        "first_pass_structural_pct": 15.6,
+        "first_pass_structural_pct_unrounded": 15.625,
+        "first_pass_hierarchical_count": 5,
+        "first_pass_hierarchical_pct": 15.6,
+        "first_pass_hierarchical_pct_unrounded": 15.625,
+        "final_structural_success_count": 32,
+        "final_structural_success_pct": 100.0,
+        "final_semantic_correctness_count": 30,
+        "final_semantic_correctness_pct": 93.8,
+        "mean_tts_conditioned_on_success": 1612.3,
+        "workload_token_savings_pct": 16.59,
+        "tts_token_savings_pct": 13.52
+      },
+      "ci_k2_reactive": {
+        "tasks_count": 32,
+        "total_workload_tokens": 50276,
+        "mean_tokens_per_task": 1571.1,
+        "mean_initial_s0_tokens": 366.8125,
+        "mean_initial_s0_tokens_display": 366.8,
+        "mean_reactive_expansion_tokens": 43.8125,
+        "mean_reactive_expansion_tokens_display": 43.8,
+        "first_pass_structural_count": 6,
+        "first_pass_structural_pct": 18.8,
+        "first_pass_structural_pct_unrounded": 18.75,
+        "first_pass_hierarchical_count": 6,
+        "first_pass_hierarchical_pct": 18.8,
+        "first_pass_hierarchical_pct_unrounded": 18.75,
+        "final_structural_success_count": 32,
+        "final_structural_success_pct": 100.0,
+        "final_semantic_correctness_count": 30,
+        "final_semantic_correctness_pct": 93.8,
+        "mean_tts_conditioned_on_success": 1571.1,
+        "workload_token_savings_pct": 18.72,
+        "tts_token_savings_pct": 15.73
+      },
+      "ci_k1_static": {
+        "tasks_count": 32,
+        "total_workload_tokens": 56947,
+        "mean_tokens_per_task": 1779.6,
+        "mean_initial_s0_tokens": 361.0625,
+        "mean_initial_s0_tokens_display": 361.1,
+        "mean_reactive_expansion_tokens": 0,
+        "mean_reactive_expansion_tokens_display": 0.0,
+        "first_pass_structural_count": 5,
+        "first_pass_structural_pct": 15.6,
+        "first_pass_structural_pct_unrounded": 15.625,
+        "first_pass_hierarchical_count": 5,
+        "first_pass_hierarchical_pct": 15.6,
+        "first_pass_hierarchical_pct_unrounded": 15.625,
+        "final_structural_success_count": 25,
+        "final_structural_success_pct": 78.1,
+        "final_semantic_correctness_count": 23,
+        "final_semantic_correctness_pct": 71.9,
+        "mean_tts_conditioned_on_success": 1631.0,
+        "workload_token_savings_pct": 7.93,
+        "tts_token_savings_pct": 12.52
+      },
+      "ci_k0": {
+        "tasks_count": 32,
+        "total_workload_tokens": 70541,
+        "mean_tokens_per_task": 2204.4,
+        "mean_initial_s0_tokens": 339,
+        "mean_initial_s0_tokens_display": 339.0,
+        "mean_reactive_expansion_tokens": 0,
+        "mean_reactive_expansion_tokens_display": 0.0,
+        "first_pass_structural_count": 0,
+        "first_pass_structural_pct": 0.0,
+        "first_pass_structural_pct_unrounded": 0.0,
+        "first_pass_hierarchical_count": 0,
+        "first_pass_hierarchical_pct": 0.0,
+        "first_pass_hierarchical_pct_unrounded": 0.0,
+        "final_structural_success_count": 22,
+        "final_structural_success_pct": 68.8,
+        "final_semantic_correctness_count": 21,
+        "final_semantic_correctness_pct": 65.6,
+        "mean_tts_conditioned_on_success": 2196.7,
+        "workload_token_savings_pct": -14.05,
+        "tts_token_savings_pct": -17.82
+      },
+      "oracle_reactive": {
+        "tasks_count": 32,
+        "total_workload_tokens": 50578,
+        "mean_tokens_per_task": 1580.6,
+        "mean_initial_s0_tokens": 359,
+        "mean_initial_s0_tokens_display": 359.0,
+        "mean_reactive_expansion_tokens": 48.3125,
+        "mean_reactive_expansion_tokens_display": 48.3,
+        "first_pass_structural_count": 5,
+        "first_pass_structural_pct": 15.6,
+        "first_pass_structural_pct_unrounded": 15.625,
+        "first_pass_hierarchical_count": 5,
+        "first_pass_hierarchical_pct": 15.6,
+        "first_pass_hierarchical_pct_unrounded": 15.625,
+        "final_structural_success_count": 31,
+        "final_structural_success_pct": 96.9,
+        "final_semantic_correctness_count": 30,
+        "final_semantic_correctness_pct": 93.8,
+        "mean_tts_conditioned_on_success": 1554.0,
+        "workload_token_savings_pct": 18.23,
+        "tts_token_savings_pct": 16.65
+      }
+    }
+  },
+  "latency_hierarchy": {
+    "status": "VERIFIED_LATENCY_HIERARCHY",
+    "provenance": {
+      "cache_traces_count": 556,
+      "ast_measurements_csv": "version_2/latency_benchmark_measurements.csv",
+      "ast_measurements_sha256": "e49fa388556e474747e5e17f2dffaa8c5a8d559ccaaf423d02af7794867a0dd2"
+    },
+    "request_level_model_turnaround_ms": {
+      "samples": 556,
+      "p50_ms": 3407.11,
+      "p90_ms": 14737.95,
+      "p95_ms": 28855.06,
+      "p99_ms": 56708.45,
+      "mean_ms": 7752.79,
+      "stdev_ms": 13613.1
+    },
+    "local_ast_pipeline_latency_ms": {
+      "samples": 1000,
+      "p50_ms": 0.0201,
+      "p50_us": 20.1,
+      "p90_ms": 0.0243,
+      "p99_ms": 0.0461,
+      "p99_us": 46.1,
+      "mean_ms": 0.022199,
+      "overhead_ratio_to_request_p50_pct": 0.00059,
+      "ratio_display": "0.00059%"
+    },
+    "simulated_task_trajectory_turnaround_ms": {
+      "methodology": "Monte Carlo convolution over empirical attempts (10,000 samples, seed=42)",
+      "attempts_distribution": {
+        "1_attempt": 6,
+        "2_attempts": 20,
+        "3_attempts": 6
+      },
+      "p50_ms": 9594.12,
+      "p90_ms": 34251.87,
+      "p99_ms": 94847.83,
+      "mean_ms": 15704.97
+    }
+  },
+  "retrieval_diagnostics": {
+    "status": "VERIFIED_RETRIEVAL_DIAGNOSTICS",
+    "description": "Inductive LSA and Lexical TF-IDF diagnostic recall on 32 tasks vs 27 schema chunks with normalized gold targets",
+    "source_schema": "version_2/full_schema.json",
+    "source_tasks": "version_2/benchmark_tasks_n32.json",
+    "gold_label_normalization": {
+      "alias_mapping": {
+        "items.minItems": "/properties/items/minItems",
+        "items.required": "/properties/items/items/required",
+        "items.sku.pattern": "/properties/items/items/properties/sku/pattern"
+      },
+      "strict_coverage_validated": true,
+      "schema_chunks_indexed": 27
+    },
+    "tfidf_curve": {
+      "top_1": {
+        "k": 1,
+        "macro_recall": 0.109375,
+        "macro_recall_pct": 10.9375,
+        "micro_recall": 0.111111,
+        "micro_recall_pct": 11.1111,
+        "tasks_with_zero_hits": 24,
+        "zero_hits_fraction": "24/32",
+        "zero_hits_pct": 75.0,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/properties/authorized_by/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/authorized_by/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/properties/items/minItems"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/minItems"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_2": {
+        "k": 2,
+        "macro_recall": 0.15625,
+        "macro_recall_pct": 15.625,
+        "micro_recall": 0.152778,
+        "micro_recall_pct": 15.2778,
+        "tasks_with_zero_hits": 21,
+        "zero_hits_fraction": "21/32",
+        "zero_hits_pct": 65.62,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/properties/items/minItems",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/minItems"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_3": {
+        "k": 3,
+        "macro_recall": 0.270833,
+        "macro_recall_pct": 27.0833,
+        "micro_recall": 0.263889,
+        "micro_recall_pct": 26.3889,
+        "tasks_with_zero_hits": 15,
+        "zero_hits_fraction": "15/32",
+        "zero_hits_pct": 46.88,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/authorized_by/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/properties/items/minItems",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/minItems"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_5": {
+        "k": 5,
+        "macro_recall": 0.302083,
+        "macro_recall_pct": 30.2083,
+        "micro_recall": 0.291667,
+        "micro_recall_pct": 29.1667,
+        "tasks_with_zero_hits": 13,
+        "zero_hits_fraction": "13/32",
+        "zero_hits_pct": 40.62,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required",
+              "/properties/authorized_by/pattern",
+              "/type",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/authorized_by/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/properties/quantity/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/required",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/authorized_by/type",
+              "/required",
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum",
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern",
+              "/type",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/unit_cost/minimum",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern",
+              "/type",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/properties/supplier_id/type",
+              "/required",
+              "/properties/supplier_id/pattern",
+              "/type",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/properties/items/minItems",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/minItems"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/properties/order_priority/type",
+              "/properties/order_priority/enum",
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      }
+    },
+    "lsa_curve": {
+      "top_1": {
+        "k": 1,
+        "macro_recall": 0.098958,
+        "macro_recall_pct": 9.8958,
+        "micro_recall": 0.097222,
+        "micro_recall_pct": 9.7222,
+        "tasks_with_zero_hits": 25,
+        "zero_hits_fraction": "25/32",
+        "zero_hits_pct": 78.12,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_2": {
+        "k": 2,
+        "macro_recall": 0.161458,
+        "macro_recall_pct": 16.1458,
+        "micro_recall": 0.152778,
+        "micro_recall_pct": 15.2778,
+        "tasks_with_zero_hits": 21,
+        "zero_hits_fraction": "21/32",
+        "zero_hits_pct": 65.62,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern"
+            ],
+            "recall": 0.333333
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/type",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_3": {
+        "k": 3,
+        "macro_recall": 0.244792,
+        "macro_recall_pct": 24.4792,
+        "micro_recall": 0.236111,
+        "micro_recall_pct": 23.6111,
+        "tasks_with_zero_hits": 17,
+        "zero_hits_fraction": "17/32",
+        "zero_hits_pct": 53.12,
+        "tasks_with_full_hits": 0,
+        "full_hits_pct": 0.0,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/required",
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type",
+              "/properties/warehouse_code/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type",
+              "/properties/items/items/properties/quantity/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/properties/order_priority/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/total_budget_limit/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type",
+              "/properties/items/items/properties/quantity/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      },
+      "top_5": {
+        "k": 5,
+        "macro_recall": 0.354167,
+        "macro_recall_pct": 35.4167,
+        "micro_recall": 0.333333,
+        "micro_recall_pct": 33.3333,
+        "tasks_with_zero_hits": 12,
+        "zero_hits_fraction": "12/32",
+        "zero_hits_pct": 37.5,
+        "tasks_with_full_hits": 2,
+        "full_hits_pct": 6.25,
+        "per_task_details": [
+          {
+            "task_id": "BLIND-C1-013",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/properties/order_priority/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-014",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/properties/items/items/additionalProperties",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-015",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 1.0
+          },
+          {
+            "task_id": "BLIND-C1-017",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C1-018",
+            "retrieved_ids": [
+              "/properties/items/maxItems",
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/items/items/additionalProperties"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-019",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/items/items/required",
+              "/properties/items/items/type",
+              "/properties/warehouse_code/enum",
+              "/properties/items/items/properties/quantity/type"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C1-020",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recalled_ids": [
+              "/properties/authorized_by/pattern",
+              "/properties/warehouse_code/enum"
+            ],
+            "recall": 1.0
+          },
+          {
+            "task_id": "BLIND-C2-013",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-014",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/properties/order_priority/type",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-015",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/order_priority/type",
+              "/properties/warehouse_code/enum",
+              "/properties/items/items/required",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-016",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-017",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C2-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C2-020",
+            "retrieved_ids": [
+              "/properties/order_priority/enum",
+              "/properties/warehouse_code/enum",
+              "/properties/order_priority/type",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/order_priority/enum",
+              "/properties/total_budget_limit/maximum"
+            ],
+            "recalled_ids": [
+              "/properties/order_priority/enum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-013",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-014",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-015",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/items/items/properties/unit_cost/minimum",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/properties/unit_cost/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-016",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-017",
+            "retrieved_ids": [
+              "/properties/total_budget_limit/minimum",
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/total_budget_limit/type",
+              "/properties/items/items/properties/unit_cost/minimum",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/quantity/minimum"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-018",
+            "retrieved_ids": [
+              "/properties/items/items/required",
+              "/properties/items/items/type",
+              "/properties/items/items/properties/quantity/type",
+              "/properties/items/items/additionalProperties",
+              "/properties/items/items/properties/sku/type"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C3-019",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C3-020",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/quantity/minimum",
+              "/properties/supplier_id/pattern"
+            ],
+            "recalled_ids": [
+              "/properties/supplier_id/pattern"
+            ],
+            "recall": 0.5
+          },
+          {
+            "task_id": "BLIND-C4-013",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/properties/items/items/additionalProperties",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-014",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-015",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-016",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-017",
+            "retrieved_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/properties/sku/type",
+              "/properties/items/items/required",
+              "/properties/items/items/additionalProperties",
+              "/required"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required"
+            ],
+            "recall": 0.666667
+          },
+          {
+            "task_id": "BLIND-C4-018",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-019",
+            "retrieved_ids": [
+              "/properties/warehouse_code/enum",
+              "/properties/warehouse_code/type",
+              "/properties/order_priority/enum",
+              "/properties/supplier_id/pattern",
+              "/properties/authorized_by/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          },
+          {
+            "task_id": "BLIND-C4-020",
+            "retrieved_ids": [
+              "/type",
+              "/required",
+              "/additionalProperties",
+              "/properties/supplier_id/type",
+              "/properties/supplier_id/pattern"
+            ],
+            "gold_ids": [
+              "/properties/items/items/properties/sku/pattern",
+              "/properties/items/items/required",
+              "/properties/items/minItems"
+            ],
+            "recalled_ids": [],
+            "recall": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "cross_schema_stress_test": {
+    "status": "VERIFIED_CROSS_SCHEMA_STRESS_TEST",
+    "study_characterization": "Deterministic simulation-based mechanism stress test (word/punctuation heuristic token estimates)",
+    "source_dataset": "datasets/cross_schema_validation/cross_schema_results.json",
+    "source_sha256": "b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a",
+    "derived_summary": {
+      "provenance": {
+        "source_dataset": "datasets/cross_schema_validation/cross_schema_results.json",
+        "study_characterization": "Deterministic simulation-based mechanism stress test using whitespace/punctuation heuristic token counts. Both full and lasr_reactive arms share identical modeled structural and recovery outcomes (16/32 first-pass, 32/32 final structural, 30/32 semantic). Reported savings represent token reduction under matched simulated completion outcomes.",
+        "evaluation_regime": "4 synthetic enterprise schemas, 8 tasks each (4 explicit, 4 ambiguous), 2 arms (full vs lasr_reactive), N=64 records total",
+        "total_records_verified": 64,
+        "derivation_tool": "version_2/derive_cross_schema_metrics.py"
+      },
+      "per_schema": {
+        "create_purchase_order": {
+          "domain_description": "Procurement (Regex, enums, nested items)",
+          "tasks_count": 8,
+          "invariant_floor_c_i": 339,
+          "mean_initial_s0": 371,
+          "full_schema_s": 552,
+          "full_tokens_total": 13616,
+          "lasr_tokens_total": 10720,
+          "workload_savings_pct": 21.3,
+          "exact_savings_pct": 21.2691,
+          "first_pass_pct": 50.0,
+          "first_pass_breakdown": "4/4 exp, 0/4 amb",
+          "final_struct_pct": 100.0,
+          "semantic_pct": 87.5,
+          "ambiguous_recovery_pct": 100.0,
+          "ambiguous_recovered_count": "4/4"
+        },
+        "inventory_adjustment": {
+          "domain_description": "Warehouse Stock (Signed deltas, reason codes)",
+          "tasks_count": 8,
+          "invariant_floor_c_i": 299,
+          "mean_initial_s0": 354,
+          "full_schema_s": 541,
+          "full_tokens_total": 13361,
+          "lasr_tokens_total": 10369,
+          "workload_savings_pct": 22.4,
+          "exact_savings_pct": 22.3935,
+          "first_pass_pct": 50.0,
+          "first_pass_breakdown": "4/4 exp, 0/4 amb",
+          "final_struct_pct": 100.0,
+          "semantic_pct": 87.5,
+          "ambiguous_recovery_pct": 100.0,
+          "ambiguous_recovered_count": "4/4"
+        },
+        "shipment_creation": {
+          "domain_description": "Freight Logistics (Nested packages, tracking regex)",
+          "tasks_count": 8,
+          "invariant_floor_c_i": 337,
+          "mean_initial_s0": 402,
+          "full_schema_s": 646,
+          "full_tokens_total": 15496,
+          "lasr_tokens_total": 11592,
+          "workload_savings_pct": 25.2,
+          "exact_savings_pct": 25.1936,
+          "first_pass_pct": 50.0,
+          "first_pass_breakdown": "4/4 exp, 0/4 amb",
+          "final_struct_pct": 100.0,
+          "semantic_pct": 100.0,
+          "ambiguous_recovery_pct": 100.0,
+          "ambiguous_recovered_count": "4/4"
+        },
+        "customer_refund": {
+          "domain_description": "Financial Accounting (Bounds, currency enums)",
+          "tasks_count": 8,
+          "invariant_floor_c_i": 292,
+          "mean_initial_s0": 318,
+          "full_schema_s": 474,
+          "full_tokens_total": 12184,
+          "lasr_tokens_total": 9688,
+          "workload_savings_pct": 20.5,
+          "exact_savings_pct": 20.4859,
+          "first_pass_pct": 50.0,
+          "first_pass_breakdown": "4/4 exp, 0/4 amb",
+          "final_struct_pct": 100.0,
+          "semantic_pct": 100.0,
+          "ambiguous_recovery_pct": 100.0,
+          "ambiguous_recovered_count": "4/4"
+        }
+      },
+      "unweighted_macro_mean": {
+        "macro_mean_savings_pct": 22.3,
+        "exact_macro_mean_savings_pct": 22.3355,
+        "three_new_domains_macro_savings_pct": 22.7,
+        "exact_three_new_domains_macro_savings_pct": 22.691,
+        "macro_mean_initial_s0": 361.3,
+        "exact_macro_mean_initial_s0": 361.25,
+        "macro_invariant_floor": 316.8,
+        "exact_macro_invariant_floor": 316.75,
+        "macro_full_schema_s": 553.3,
+        "exact_macro_full_schema_s": 553.25,
+        "macro_first_pass_pct": 50.0,
+        "macro_final_struct_pct": 100.0,
+        "macro_semantic_pct": 93.8,
+        "macro_ambiguous_recovery_pct": 100.0
+      },
+      "pooled_workload_aggregate": {
+        "pooled_full_tokens": 54657,
+        "pooled_lasr_tokens": 42369,
+        "pooled_tokens_reduction": 12288,
+        "pooled_workload_savings_pct": 22.5,
+        "exact_pooled_savings_pct": 22.482,
+        "pooled_first_pass_pct": 50.0,
+        "pooled_final_struct_pct": 100.0,
+        "pooled_semantic_pct": 93.8,
+        "pooled_ambiguous_recovery_pct": 100.0
+      }
+    }
+  },
+  "langgraph_counterfactual": {
+    "status": "VERIFIED_LANGGRAPH_COUNTERFACTUAL",
+    "characterization": "Counterfactual state-history accumulation token model (+45 tok compiler context)",
+    "source_dataset": "version_2/langgraph_traces.json",
+    "source_sha256": "666bc787eebe8a83d924f751693620f0661ceaa53d63b74fc84d22c8aeac5140",
+    "total_workload_tokens": 69119,
+    "mean_tokens_per_task": 2160.0,
+    "overhead_vs_full_schema_pct": 11.75,
+    "savings_lasr_k2_vs_langgraph_pct": 27.26,
+    "overhead_vs_lasr_k2_pct": 37.48
+  },
+  "h1_intent_prediction": {
+    "status": "VERIFIED_H1_PREDICTOR",
+    "source_dataset": "version_2/h1_predictor_evaluation.json",
+    "source_sha256": "697047e42c15e57ec536d19076e36b8324204c0485e6fee71112ea094fa0a767",
+    "provenance_source_hashes": {
+      "trace/paraphraser.py": "60215a6f6387cf2703f61c214793f47dde418b71973c1bdbca7a45e8a81fcb4b",
+      "trace/predictor.py": "c530f470e0233dda7a0c93e539e238e82aa15e9d541c89552a7f19a76235829d",
+      "version_2/reproduce_h1_predictor.py": "fef5149c100f52c3fb839b017534e28f3d56b3c33bf2afa352b3fa2fa13160cb",
+      "datasets/frozen_benchmark_n32/invariant_optimization_summary.json": "78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11"
+    },
+    "evaluation_summary": {
+      "frequency_prior_baseline": {
+        "mean_precision": 0.25,
+        "mean_recall": 0.25,
+        "mean_f1": 0.25,
+        "exact_match_pct": 25.0
+      },
+      "lasr_predictive_model": {
+        "mean_precision": 0.9062,
+        "mean_recall": 0.8333,
+        "mean_f1": 0.8625,
+        "exact_match_pct": 68.75
+      },
+      "paired_delta": {
+        "f1_difference_unrounded": 0.6125,
+        "f1_difference_display": "+0.613",
+        "exact_f1_difference": 0.6125,
+        "bootstrap_95_ci": [
+          0.4188,
+          0.7812
+        ],
+        "bootstrap_replications": 10000,
+        "bootstrap_seed": 42,
+        "permutation_test_type": "Monte Carlo one-sided paired sign-flip permutation test",
+        "permutation_replications": 10000,
+        "permutation_seed": 42,
+        "extreme_replications_count": 0,
+        "paired_permutation_p_value": 0.0001,
+        "plus_one_corrected_p_value": 9.999000099990002e-05,
+        "significance_statement": "p < 0.001"
+      }
+    },
+    "cluster_dependence_sensitivity": {
+      "unit_of_analysis": "4 semantic task clusters (8 tasks each)",
+      "clusters_evaluated": [
+        "expedited_emergency_order",
+        "multi_item_depot_rebalance",
+        "routine_regional_replenish",
+        "specialized_bulk_procurement"
+      ],
+      "cluster_mean_f1_deltas": {
+        "routine_regional_replenish": -0.125,
+        "expedited_emergency_order": 0.875,
+        "specialized_bulk_procurement": 1.0,
+        "multi_item_depot_rebalance": 0.7
+      },
+      "equal_weight_four_cluster_mean_delta": 0.6125,
+      "exhaustive_permutations_count": 16,
+      "exhaustive_extreme_count": 2,
+      "exhaustive_sign_flip_p_value": 0.125,
+      "sensitivity_disclosure": "Task-level significance (p < 0.001) reflects paired comparisons across 32 template-family tasks. However, equal-weighting across the 4 semantic clusters and exhaustively testing all 16 sign flips yields mean delta +0.6125 with exact one-sided p = 0.125. This confirms that inference is sensitive to the unit of analysis, and evidence supports predictive accuracy within this held-out template family with recurring constraint bundles rather than general semantic generalization."
+    },
+    "overlap_analysis": {
+      "train_unique_vocabulary_words": 192,
+      "test_unique_vocabulary_words": 149,
+      "shared_vocabulary_words": 103,
+      "test_vocabulary_overlap_pct": 69.13,
+      "train_unique_bundles": 4,
+      "test_unique_bundles": 4,
+      "shared_bundles": 4,
+      "scientific_characterization": "Train and test sets are partitioned by template families (A/B train vs C test). There is 103/149 (69.1%) vocabulary overlap due to shared enterprise procurement terminology. All 4 target constraint combinations recur across train and test families."
+    },
+    "per_task_results": [
+      {
+        "task_id": "BLIND-C1-013",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-014",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-015",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-016",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-017",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-018",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-019",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C1-020",
+        "cluster": "routine_regional_replenish",
+        "gold": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 1.0,
+        "freq_prior_exact": true,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.0,
+        "lasr_exact": false,
+        "f1_delta": -1.0
+      },
+      {
+        "task_id": "BLIND-C2-013",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-014",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-015",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-016",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-017",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-018",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C2-019",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 0.0,
+        "lasr_exact": false,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C2-020",
+        "cluster": "expedited_emergency_order",
+        "gold": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "order_priority.enum",
+          "total_budget_limit.maximum"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-013",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-014",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-015",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-016",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-017",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-018",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-019",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C3-020",
+        "cluster": "specialized_bulk_procurement",
+        "gold": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.quantity.minimum",
+          "supplier_id.pattern"
+        ],
+        "lasr_f1": 1.0,
+        "lasr_exact": true,
+        "f1_delta": 1.0
+      },
+      {
+        "task_id": "BLIND-C4-013",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-014",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "lasr_f1": 0.0,
+        "lasr_exact": false,
+        "f1_delta": 0.0
+      },
+      {
+        "task_id": "BLIND-C4-015",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-016",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-017",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-018",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-019",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      },
+      {
+        "task_id": "BLIND-C4-020",
+        "cluster": "multi_item_depot_rebalance",
+        "gold": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "freq_prior_pred": [
+          "authorized_by.pattern",
+          "warehouse_code.enum"
+        ],
+        "freq_prior_f1": 0.0,
+        "freq_prior_exact": false,
+        "lasr_pred": [
+          "items.minItems",
+          "items.required"
+        ],
+        "lasr_f1": 0.8,
+        "lasr_exact": false,
+        "f1_delta": 0.8
+      }
+    ]
+  }
+}

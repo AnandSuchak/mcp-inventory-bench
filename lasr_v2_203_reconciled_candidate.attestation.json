@@ -1,0 +1,232 @@
+{
+  "attestation_schema": "https://json-schema.org/draft/2020-12/schema",
+  "attestation_type": "DETACHED_POST_PACKAGING_RELEASE_ATTESTATION",
+  "release_version": "2.0.3",
+  "candidate_label": "lasr_v2_203_reconciled_candidate",
+  "archive_metadata": {
+    "filename": "lasr_v2_203_reconciled_candidate.zip",
+    "sha256": "513d40e5c7e8630a44d957b87121de22261cebff2c28ac106387925c78a84452",
+    "byte_size": 729505,
+    "entry_count": 647,
+    "cache_traces_count": 556,
+    "zip_integrity_test": "PASSED (ZipFile.testzip() == None)",
+    "duplicate_entries": 0,
+    "nested_zips": 0,
+    "transient_latex_files": 0,
+    "detached_sidecars_inside_zip": 0
+  },
+  "verification_execution": {
+    "audit_stage": "clean_extraction_verification",
+    "execution_directory": "isolated_clean_temp_directory",
+    "verifier_script": "version_2/verify_version_2_integrity.py",
+    "exit_code": 0,
+    "status": "ALL_CHECKS_PASSED",
+    "total_checks": 9,
+    "passed_checks": 9,
+    "failed_checks": 0,
+    "timestamp": "2026-10-23T10:56:00+05:30",
+    "checks_summary": [
+      {
+        "check": "Cryptographic Manifest Validation & Trusted Pinned Hashes",
+        "status": "PASS",
+        "evidence": "Strict manifest traversal/duplicate validation; baseline manifest hash 71e87aee... validated for frozen benchmark (single invariant_optimization_summary.json entry); independent metadata hash ab8ca76d... validated; pinned hashes 78c2c88e... and b3d57636... matched"
+      },
+      {
+        "check": "Raw Attempt Token Sums & Structural Success Recomputation",
+        "status": "PASS",
+        "evidence": "Reconciled prompt-plus-candidate token subtotal: Full=61,853 tok (30/32, 1st-pass structural 31.3%, hierarchical 31.3%), k1=51,594 tok (32/32, hierarchical 15.6%), k2=50,276 tok (32/32, hierarchical 18.8%)"
+      },
+      {
+        "check": "Dual Metric Token Reconciliation (Workload vs. Conditional TTS)",
+        "status": "PASS",
+        "evidence": "Workload savings=18.72% (k=2 vs Full), conditional TTS savings=15.73% (1864.4 -> 1571.1 mean TTS)"
+      },
+      {
+        "check": "Empirical Latency Hierarchy & AST Overhead Recomputation",
+        "status": "PASS",
+        "evidence": "556 Cache traces p50=3407.11ms, 1000 AST runs p50=20.1us, overhead ratio=0.00059%"
+      },
+      {
+        "check": "Retrieval Baselines Direct Programmatic Recomputation",
+        "status": "PASS",
+        "evidence": "TF-IDF macro recall@2=15.62% (21/32 zero), LSA macro recall@2=16.15% (21/32 zero); documented query-inclusive/transductive TF-IDF and inductive LSA protocols; derived retrieved chunk tokens"
+      },
+      {
+        "check": "LangGraph Counterfactual Model Token Overhead Audit",
+        "status": "PASS",
+        "evidence": "69,119 recorded P+C tokens (+11.75% overhead vs Full, LASR k=2 savings=27.26%)"
+      },
+      {
+        "check": "Formal Mathematical Theorem Source-Invariant & Human Review Check",
+        "status": "PASS",
+        "evidence": "Cardinality bound K <= M - |A0| verified in 02_system_architecture.tex and formal_termination_proof.tex; IEEEproof environment verified; sibling-leaf counterexample verified; heuristic depth bound explicitly rejected; human review checklist verified"
+      },
+      {
+        "check": "Read-Only Canonical Metric Reconciliation & Consistency Validator",
+        "status": "PASS",
+        "evidence": "canonical_metrics.json, baseline_comparison_table.csv, baseline_comparison_snapshot.json, Tables I-IV, and manuscript sections match canonical evidence byte-for-byte in pure read-only mode"
+      },
+      {
+        "check": "Behavioral Audit Archive Packaging & Structure Verification",
+        "status": "PASS",
+        "evidence": "Archive packager executed in isolated temp directory; zip validated via production validator with 647 entries, 556 cache traces, zero nested zips, zero transient files"
+      }
+    ]
+  },
+  "regression_suite_execution": {
+    "test_script": "version_2/test_verifier_regressions.py",
+    "exit_code": 0,
+    "status": "ALL_TESTS_PASSED",
+    "total_tests": 35,
+    "passed_tests": 35,
+    "failed_tests": 0,
+    "negative_mutation_tests": [
+      {
+        "name": "Negative Mutation 1: Injected Heuristic Schema Tokens Fails",
+        "status": "PASS",
+        "description": "Injecting heuristic schema tokens (yielding 96,629 tokens) fails verification against canonical prompt-plus-candidate subtotal (61,853 tokens)"
+      },
+      {
+        "name": "Negative Mutation 2: Bypassed Hierarchical Conjunction Fails",
+        "status": "PASS",
+        "description": "Bypassing structural validity condition (yielding 31 unconditioned semantic successes) fails verification against canonical hierarchical successes (10)"
+      },
+      {
+        "name": "Negative Mutation 3: Manuscript Table Tampering Fails",
+        "status": "PASS",
+        "description": "Tampering Table 1 cell values is rejected by audit_check"
+      },
+      {
+        "name": "Negative Mutation 4: Required Limitation / Provenance Omission Fails",
+        "status": "PASS",
+        "description": "Omitting required live replication disclosure (285 unique entries + cache reuse) is rejected by audit_check"
+      }
+    ]
+  },
+  "canonical_metrics_summary": {
+    "prompt_candidate_token_definition": "recorded_prompt_candidate_tokens = prompt_tokens + completion_tokens",
+    "primary_benchmark_p_plus_c_workload": {
+      "full_schema": 61853,
+      "ci_k0": 70541,
+      "ci_k1_static": 56947,
+      "ci_k1_reactive": 51594,
+      "ci_k2_reactive": 50276,
+      "oracle_reactive": 50578
+    },
+    "workload_token_savings_vs_full": {
+      "ci_k0": "-14.05%",
+      "ci_k1_static": "+7.93%",
+      "ci_k1_reactive": "+16.59%",
+      "ci_k2_reactive": "+18.72%",
+      "oracle_reactive": "+18.23%"
+    },
+    "conditional_mean_tts_p_plus_c": {
+      "full_schema": 1864.4,
+      "ci_k0": 2196.7,
+      "ci_k1_static": 1631.0,
+      "ci_k1_reactive": 1612.3,
+      "ci_k2_reactive": 1571.1,
+      "oracle_reactive": 1554.0
+    },
+    "conditional_mean_tts_savings_vs_full": {
+      "ci_k0": "-17.82%",
+      "ci_k1_static": "+12.52%",
+      "ci_k1_reactive": "+13.52%",
+      "ci_k2_reactive": "+15.73%",
+      "oracle_reactive": "+16.65%"
+    },
+    "first_pass_hierarchical_success": {
+      "full_schema": "10/32 (31.3%)",
+      "ci_k0": "0/32 (0.0%)",
+      "ci_k1_static": "5/32 (15.6%)",
+      "ci_k1_reactive": "5/32 (15.6%)",
+      "ci_k2_reactive": "6/32 (18.8%)",
+      "oracle_reactive": "5/32 (15.6%)"
+    },
+    "first_pass_structural_success": {
+      "full_schema": "10/32 (31.3%)",
+      "ci_k0": "0/32 (0.0%)",
+      "ci_k1_static": "5/32 (15.6%)",
+      "ci_k1_reactive": "5/32 (15.6%)",
+      "ci_k2_reactive": "6/32 (18.8%)",
+      "oracle_reactive": "5/32 (15.6%)"
+    },
+    "final_structural_success": {
+      "full_schema": "30/32 (93.8%)",
+      "ci_k0": "22/32 (68.8%)",
+      "ci_k1_static": "25/32 (78.1%)",
+      "ci_k1_reactive": "32/32 (100.0%)",
+      "ci_k2_reactive": "32/32 (100.0%)",
+      "oracle_reactive": "32/32 (100.0%)"
+    },
+    "exploratory_live_replication_sensitivity": {
+      "description": "Exploratory sensitivity rerun on Google Generative Language API (gemini-3.5-flash-lite)",
+      "total_attempt_records": 428,
+      "unique_live_api_responses": 285,
+      "within_run_exact_prompt_cache_reuse": 143,
+      "live_p_plus_c_tokens": {
+        "full_schema": 55549,
+        "ci_k0": 69555,
+        "ci_k1_static": 59445,
+        "ci_k1_reactive": 52389,
+        "ci_k2_reactive": 51224,
+        "oracle_reactive": 53415
+      },
+      "live_savings_point_estimates_vs_full": {
+        "ci_k0": "-25.21%",
+        "ci_k1_static": "-7.01%",
+        "ci_k1_reactive": "+5.69%",
+        "ci_k2_reactive": "+7.79%",
+        "oracle_reactive": "+3.84%"
+      },
+      "paired_bootstrap_intervals": "Cross zero (LASR k=1 [-13.2%, +24.4%]; LASR k=2 [-11.0%, +26.3%]); framed strictly as sensitivity replication, not identical point reproduction"
+    }
+  },
+  "protected_historical_artifacts": [
+    {
+      "filename": "lasr_v2_audit_bundle.zip",
+      "sha256": "36cf1def3de7bde589c02839b26ed10ac0fb2ec923eaffb46282e96e43fd00f3",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "lasr_v2_audit_bundle_v2.0.1.zip",
+      "sha256": "43e9f09cceeb55407c8639777648f98d630059cb6bf64fe2b38121704e58bd71",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "lasr_v2_audit_bundle_v2.0.2.zip",
+      "sha256": "4e916c6216473c7cfdf1185d58000bbb3ece709325599c287430df8a12064be8",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "lasr_v2_audit_bundle_v2.0.3.zip",
+      "sha256": "22183ed47f596373324ba09889bc5f54dd5b2012b3fa4d0d602210a8b2d4b138",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "lasr_v2_203_closure_candidate.zip",
+      "sha256": "d43c20a7b32d13e17bba03d7e1d05a1824413db13f859d08d01179697e2bce50",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "lasr_v2_203_final_candidate.zip",
+      "sha256": "811bd1864ea6889931ecdc337372a0a0639e4bbb88bf7950f66967e3a1ebd457",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "datasets/frozen_benchmark_n32/invariant_optimization_summary.json",
+      "sha256": "78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "datasets/frozen_benchmark_n32/MANIFEST.sha256",
+      "sha256": "71e87aeefc5b10f7b5bc99571ecaf430b24b9f1811fa4dd3d47af50e84951c0b",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    },
+    {
+      "filename": "datasets/cross_schema_validation/cross_schema_results.json",
+      "sha256": "b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a",
+      "status": "UNTOUCHED_BYTE_FOR_BYTE"
+    }
+  ]
+}

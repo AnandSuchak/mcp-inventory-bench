@@ -1,0 +1,45 @@
+{
+  "benchmark_type": "Empirical Latency Hierarchy (Request-Level vs. Task Trajectory vs. Local AST)",
+  "source_data": {
+    "live_request_cache_traces": 556,
+    "primary_benchmark_tasks": 32,
+    "attempt_distribution_ci_k2": {
+      "1_attempt": 6,
+      "2_attempts": 20,
+      "3_attempts": 6
+    },
+    "mean_attempts_per_task_lasr_k2": 2
+  },
+  "request_level_model_latency_ms": {
+    "description": "Round-trip network + model inference latency for single API call (N=556 empirical traces)",
+    "samples": 556,
+    "p50_ms": 3407.11,
+    "p90_ms": 14737.95,
+    "p95_ms": 28855.06,
+    "p99_ms": 56708.45,
+    "mean_ms": 7752.79,
+    "stdev_ms": 13613.1
+  },
+  "task_level_trajectory_turnaround_ms": {
+    "description": "Cumulative model turnaround across multi-attempt task trajectory (convoluted sum over k attempts)",
+    "methodology": "Empirical bootstrap convolution (10,000 iterations summing k independent request samples)",
+    "mean_attempts": 2,
+    "p50_ms": 9594.12,
+    "p90_ms": 34251.87,
+    "p95_ms": 43888.97,
+    "p99_ms": 94847.83,
+    "mean_ms": 15704.97,
+    "stdev_ms": 20329.72
+  },
+  "local_ast_recomposition_latency_ms": {
+    "description": "Deterministic schema slicing and in-tree AST merging (local CPU execution)",
+    "total_pipeline_p50_ms": 0.0201,
+    "total_pipeline_p99_ms": 0.0461,
+    "cumulative_task_ast_overhead_p50_ms": 0.0402
+  },
+  "scientific_conclusions": {
+    "request_level_ratio": "0.00059%",
+    "task_level_ratio": "0.00042%",
+    "takeaway": "Request-level model turnaround has p50 = 3407.1 ms. Complete task-level trajectory turnaround (summing over empirical attempt distribution) has p50 = 9594.1 ms. Local in-tree AST recomposition adds 0.0201 ms per round (~0.0402 ms per task), accounting for 0.00042% of complete task latency."
+  }
+}

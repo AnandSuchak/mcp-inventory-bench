@@ -1,0 +1,19 @@
+{
+  "manifest_name": "LASR-MCP Telemetry Pilot Manifest",
+  "timestamp": "2026-10-23T06:32:08.554329+00:00",
+  "elapsed_seconds": 26.89,
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "total_calls": 9,
+  "total_arms": 6,
+  "artifacts": {
+    "pilot_summary.json": {
+      "sha256": "0a06a63f752fc0776eefca5321d3cb9195fa38dd406502a1561cf6059925db05",
+      "size_bytes": 11829
+    },
+    "pilot_call_records.jsonl": {
+      "sha256": "801ea62c874bc1bdad8b1452e059052b5ac1348ad73f8e56b590b6d9ae6a463a",
+      "size_bytes": 23952
+    }
+  }
+}

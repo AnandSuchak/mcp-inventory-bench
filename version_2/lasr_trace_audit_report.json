@@ -1,0 +1,1046 @@
+{
+  "status": "HISTORICAL_PRE_ALIAS_AUDIT_SNAPSHOT",
+  "note": "Historical pre-alias audit snapshot. For authoritative current retrieval evaluation with alias normalization, see dense_rag_evaluation.json and retrieval_evaluation_curve.csv.",
+  "root": ".",
+  "data_files_read": 581,
+  "records_parsed": 7270,
+  "data_files": [
+    "datasets\\cache\\00eef91951cf29cf915fa040aff939ccaa7fd2394e8bd72469df15dda3ace475.json",
+    "datasets\\cache\\00f1bf4065329bd7eab03fc1cd2e9a5b5d7d6ece88dafe0fedd7db540d5359cb.json",
+    "datasets\\cache\\0261d992233b6447ee950fac95f173869dd149620c309ffa65393f50cb64fb49.json",
+    "datasets\\cache\\038f3ab3b7e22db77e27ad3d5dc08ad4c256050095253fa5056dadc65fd8ace7.json",
+    "datasets\\cache\\044f5498d4432335b921912e1696036e965ce12d8701f951be2c89fbb3ab0a9b.json",
+    "datasets\\cache\\04994bb6b64bb974f58b6c8d3050310a64722fae18dae17b528038b9bee61037.json",
+    "datasets\\cache\\04a1c8abb2f8130b3a39b1408c05bf2d0ab80cb890c8c1c9f036ece7bc80e2e8.json",
+    "datasets\\cache\\058e54364bbeb5b2c9f8f1c38188ed58a91360d63512c9d9f254d795b95a6c97.json",
+    "datasets\\cache\\05d2da0d392cee32a619e88f173bf41639c5b8e2762691cecafb506231d3a54c.json",
+    "datasets\\cache\\07510ae6fe2e7ae04eaae094b429e666f5805443efb63e463001a8bfd5ea31dd.json",
+    "datasets\\cache\\079d04797fe44915393703c51dfc9c68336b14537837a892c2ffceb4484e4c7c.json",
+    "datasets\\cache\\08cb67684f4c14a41243a134fa7e1edc06e25c84039fa9aab11ad7b0c8753a98.json",
+    "datasets\\cache\\08ead8ddcba26087272d5532142e57e6a2facd257b1de33ead17228789b64794.json",
+    "datasets\\cache\\090b18150a7446c77bd8360d18faf537baa96cea96eb6a06df8ce6738ac38eb6.json",
+    "datasets\\cache\\096da205af764f3f8bc1caee6571fccc8be99b369336d3bf4954b2bc5dded40a.json",
+    "datasets\\cache\\0a154f00d0087390b1847f59611f11cf2781fd090693c4fc33b0da1c794dce38.json",
+    "datasets\\cache\\0a64d2f9bfaaee972b85453d25206e0cf46ca40a8ca76d5b381643a0cc81d395.json",
+    "datasets\\cache\\0a6e389ef2838768997c4e52dcf96755e4ece1b6d4c364abebb28bd572b7b717.json",
+    "datasets\\cache\\0ac678918490dd45934389ca40b1b0ca4fda9b6b044fc82d18a202098337b6c9.json",
+    "datasets\\cache\\0b508092dce928cccb24a12c0cf32d43e467ec885744c745cc8a3e921f2117d5.json",
+    "datasets\\cache\\0b61bbe0d5b1a6c8170efbab3bf56feef6e78ec8f6a52a5c98b3da26c3a7c7dd.json",
+    "datasets\\cache\\0b96f3b44731cd7203e1981e502cbe25dac6a9e48b646826f348a009faa96e6d.json",
+    "datasets\\cache\\0bd6f2ba48a8878dfeabdf8cba123e9f57e0493bea63bd3fb86654cf8ef84eb0.json",
+    "datasets\\cache\\0d920c95649f035a261eb9cc1fdde517433db3b365cc936ffe690adb7f7ee58c.json",
+    "datasets\\cache\\0e001b30c7ba717182ef918dbf613f63c3b7248ea519341e61ffa20c300b6a40.json",
+    "datasets\\cache\\0f842955bc087c2546c86ddd9ae9c1a6a5306284361c50bb5ae8c9771aef75c6.json",
+    "datasets\\cache\\0f86abb604f2e8454589d601c77b515e657368747eec560aa4a7874cd0cdc7e4.json",
+    "datasets\\cache\\10277ce540f81fd6875380307c08b79cfcb34160ab45116187125e9731106e3d.json",
+    "datasets\\cache\\1054b1b44484afc83a70aff5fd76c96a808040656c3cbba1d1485846f871050c.json",
+    "datasets\\cache\\10873231597b91173f9d1c029bb5194ddab450d15bfdadd6296698ea6c5e8a3d.json",
+    "datasets\\cache\\109f76a333fcd76401d84a0cb8f5285fb749d555d2609bb04352cec462961298.json",
+    "datasets\\cache\\115b8c3776aa8e2f51e4e3a7d00738411945b8e4eb65ecc0c65a92ba715c23bd.json",
+    "datasets\\cache\\11922324ea8600189006cfaca4e82883b742439c39b6ddbd87fbe587359184ea.json",
+    "datasets\\cache\\120808d4cdb6826e812cf42de3e0c79caa6f50cdc7e2c81a588b1dfd5b7be77e.json",
+    "datasets\\cache\\121e51ee5a032fa9e844f761821bf6c8121f44273d7009b3bb5e3abb6c613741.json",
+    "datasets\\cache\\127f22b1eb35d614922e76b8a3c1ed82d208b46380e21faf754785d7e853b71e.json",
+    "datasets\\cache\\12f035c6788bdcb1fe18b6ad3cbf0f18ee194f8e3ba63fac8025a667539edcfa.json",
+    "datasets\\cache\\145b03e66262ac9b1efcce5706d90edf74177e02e469d37c96d668bf833f4c20.json",
+    "datasets\\cache\\1469a30379ba25b0ed00b520d369736927ceb6e15324269cc3c3349af2e04fc7.json",
+    "datasets\\cache\\14f77faf1511a66363760c61785d8cfc33d8266c6d47cace92d59d27033b846d.json",
+    "datasets\\cache\\150cec56fd5da3317842d30306fc967a3768017ae9d0e2ae9fcbdc630394139c.json",
+    "datasets\\cache\\15a13aace0637978241cf63055cda96b36b4c9ee8b636bab6764025dbca29368.json",
+    "datasets\\cache\\15b5c6df0ab7607ba23a03b95c0e7fcc7d9cd1d0dd4579e0757bdd78cb766f5f.json",
+    "datasets\\cache\\15c2387b58f624b3067bce8386b052aba3f29fedd702f2a3afc1448283455e3f.json",
+    "datasets\\cache\\16518ee5f7160ac934b3e08135e22ba341881697bcb5e5f9caa114856bc5e5c9.json",
+    "datasets\\cache\\16866f126d53711342810af72dd241c0426fb82841dbaeb3be3b6f0685cfbc71.json",
+    "datasets\\cache\\16b09cff8de92ecd25f4ad81468a4626f41dd13e3b11dd48283d875378ef7fc1.json",
+    "datasets\\cache\\172dc2fff57bfde5f85de1a8d072b1bfd6448e365893be5d801bf24c7fbe8b51.json",
+    "datasets\\cache\\17579af2ac8bc9105d775bff64d84e73c4a6cd9bdd3ba13b0c527a8db9d051e3.json",
+    "datasets\\cache\\17a81e3cd7b0d3a2868f23e6ec529d920444260e283005e1aacbbf01fb4aea77.json",
+    "datasets\\cache\\17e2df56bf11216618aea9d5799cc828056cd244b736b134d1a271b172b2ccf9.json",
+    "datasets\\cache\\183f99fa1a21325ee14e82d6307a81d6687eb47e906d0f4590d752e505e5eaf0.json",
+    "datasets\\cache\\185f0e9b6df2aa6973c98cad16a4e82b3013dc2b8691b2343042dd4ac1e6a683.json",
+    "datasets\\cache\\187d7b112c64f1680f94a0b2020700d3175f1cfe8e3786e8bca4747d5f97dd9f.json",
+    "datasets\\cache\\188fc32ed0c6588c8da5d29bbfb89a68a359fe3e07609b74687da119d6b32b2b.json",
+    "datasets\\cache\\19c669821c98bbae1dcdf4a664f4ec15d96555fb21a304ec98214b35e09b1fd7.json",
+    "datasets\\cache\\1ade64ed92f5348d810f7c4377a1e5a30bb61db1863bb3daffe2c9958c469088.json",
+    "datasets\\cache\\1b2fbc17a1cfb5d59d9e19a365fee48b8ac7bce649b96f3fcdb5e77cf4d9e690.json",
+    "datasets\\cache\\1b49944737daff21fe196403c3597bd369137a0358733c46f71a9e6b85682fd2.json",
+    "datasets\\cache\\1bc8916b17f270c816c43b611ad3bf8555599c2514dedf5e4788570efb6511e2.json",
+    "datasets\\cache\\1df6ebb78069881c5511990a468477d9c89ec76fd0b93b7aa1dda50427374d1f.json",
+    "datasets\\cache\\1ee016fc9770523d1fe63d53062ab8c0db0e657a0fa5a510ebcdf77044efa4d1.json",
+    "datasets\\cache\\1ee389af96fdaf30305604a4dc889822c4251e47114ce172ffa6449a79633b7b.json",
+    "datasets\\cache\\1f08d4e85a219376f7d821ec4335100ba2cbc6a4b3a0d88ff89a6ee702150da4.json",
+    "datasets\\cache\\2110cb1837cbd2c03301ffa75b56d987934244081359023316e933192e1fd179.json",
+    "datasets\\cache\\221fbb2396dddbc7191382484a1fdc61b21c4cda54cceb15bc9e562863176f52.json",
+    "datasets\\cache\\2234da832c82a2d9c351b7cb0f56c422b0edd62a9a779a30f0e407ebbd2ab49a.json",
+    "datasets\\cache\\22aef971aac6054ce6a5a4d2b7afa03f20b625e4adc862eda500a7fd7edee250.json",
+    "datasets\\cache\\22d28804d1af1459418fe1f41c109b790553389accba2812aacf4c8aa7977107.json",
+    "datasets\\cache\\22f845482b1bd3d60fc230d1c93ce4a8807b4dad0df8f61c71a12dffe2f3984e.json",
+    "datasets\\cache\\238fcaed89887299254e5f3edcc14fa896d4a88809e4d6d5fef8fccf0c1b78c4.json",
+    "datasets\\cache\\2414d610f34d6a32f43b98e5c48a6913c6b480d08ff879e8d8e995add699a80e.json",
+    "datasets\\cache\\247b2bfa0cc5e9dc24755bc061b1dd5495ab7916ef33972ec140f4c60a8c4e2c.json",
+    "datasets\\cache\\24dd98f6217c3c531b771a0a464ad5b9c704e7446ae4b08d9b48167c97143867.json",
+    "datasets\\cache\\2564618bcf3909e418860f693d143a39afadebfab9b447e75c995ec20256d5ab.json",
+    "datasets\\cache\\25e14dc8cdeeb24143434e73665b9d4af883f9b3435b28d5a5c3ffd33a252bd3.json",
+    "datasets\\cache\\25e7d2c66fa640cb20665e398db3309a2ef2687f40403b4f3dc1c2155ae65109.json",
+    "datasets\\cache\\26300817867d68418f9d426cc3e28ae34fddfbe5f2c7fa43b37061af7cad2d31.json",
+    "datasets\\cache\\268bb2f8b4518162b70d41111f164b689db776daf6ccadf5ed378eb61d9eb85d.json",
+    "datasets\\cache\\26a2716afca831738fc19c9893dfd8c4fa783daab14896e0511c94fb906afc4b.json",
+    "datasets\\cache\\26d79df77303179af5d97bac170d202efb2ed10d604f7bbde939e5766176ed87.json",
+    "datasets\\cache\\272c56efdc17e08dfe2d4aba9adc739a397cb9400cf45e3b2cd11e0d0b6168e8.json",
+    "datasets\\cache\\27633ae3fec5e0f73b2a1e8485411da0397fcdf541ee1d9cd41a128b672dbf98.json",
+    "datasets\\cache\\278f63bde804a863e05c37e16928fa0dd5cac906f25d09626f059d075ffde617.json",
+    "datasets\\cache\\28accd80fdbe753f78dd47b0e73a32a195c0014bcd08c3689e0aea8b130d3a49.json",
+    "datasets\\cache\\28b9a9b9f5c5753ded159ff7afcb27e8410f7ff4b4d92ffd004f705e38f62797.json",
+    "datasets\\cache\\2927c365587c38d7dee96fb1cd02c2d779dda35c364d7fb49da78665a4210510.json",
+    "datasets\\cache\\292c4411f49edfb17adf49fbba6d607cf7ce6f8a9eb46032f1880da639b04c3c.json",
+    "datasets\\cache\\29a3147f5b88923917dcec95ce22481a616ae3ee5c4b4de2387a69d24c4bd046.json",
+    "datasets\\cache\\29a7bac764339fe7522f0a45f874fd732dff3cf682daae5748de92053fd08d0b.json",
+    "datasets\\cache\\29c2dfdb2616901f9b83e894206645f9a7ae66b26352f12f7afe47243fd3c719.json",
+    "datasets\\cache\\2a40ff58eb8b16586e5051f79a2b0b284d5cfb3ecf4d807d83883419ad371f57.json",
+    "datasets\\cache\\2ae251dceb3e6b81ac5de844a61cf9d1538de7cddcd8e5c424e4b446a941d119.json",
+    "datasets\\cache\\2c28f856c103d880335d46ec57480dd54a90076b7aef61e67ff2cdd0b71d1662.json",
+    "datasets\\cache\\2c74e3805317d24b6ce43cc0f788db20e29923b301ddf8bcf13ef45b8e3cfdcf.json",
+    "datasets\\cache\\2c7d05d7b1aae66bb5022b3ccbcf24d2ad9bff5b6a1620be99d38262775ddfa4.json",
+    "datasets\\cache\\2d2128bc53ba87de33879e5dfe55957ed99c9b99349bb097dc02c95ecf3bde29.json",
+    "datasets\\cache\\2d770c6a363fdd1747a2d2e5dc6b1b72384f8ad9abbd8615e848de0284d1d022.json",
+    "datasets\\cache\\2e145df5a95071e92ea5f322eaf87c2f3152eaa8050394b726b742f0668097dd.json",
+    "datasets\\cache\\2f144839c13e05c3d11541aef32427a9484c78ddef8af590776aaa46cb3f01a4.json",
+    "datasets\\cache\\2ff7000575b364f4b4656773fabc6ad52e9428e1490081696824cddb511c4ad4.json",
+    "datasets\\cache\\302fa6fa9f96bb30f8cabe3b426ff45c5a8b48cc264954473979fb82c757f279.json",
+    "datasets\\cache\\30694613a9387508a0adb9efa9403b5eee4a4a24224d77723a5c717fdb3dda8e.json",
+    "datasets\\cache\\30d5e0c430a30c2b81e54d3fc268ed4eca5518d9b5f4d41f6b6d9b6154d17276.json",
+    "datasets\\cache\\3170b853f53a2d24351fad80de9df4b9bb57b964beafb8ecdcff68a3999d7208.json",
+    "datasets\\cache\\31b7b72764d66fe637a76f3f850b89ce1493387b3094a79a4c7038674dce1ba5.json",
+    "datasets\\cache\\31d5b26a05345c706d44f93f888e5f8d8b3454def617bd3c0e43ef976eca4527.json",
+    "datasets\\cache\\31e37e1c460b9e2c0947942ae33d236ae7fa55ecdccc045d0e6470b0aaf178ee.json",
+    "datasets\\cache\\3229588316df1681c7c6c63f5aba55d3b4b40cfc0a2ec601755f400f3272045e.json",
+    "datasets\\cache\\32b259de6abdf3530e846466216b289b4f9304472d866a609daa5941b673be6d.json",
+    "datasets\\cache\\32f1f2d7b8703098f56f1f4020ee654a454fb02c5f0beb4b96a52c708c038a67.json",
+    "datasets\\cache\\32f4a0910da5b03af633107c689302c2cfe67e4c194538f217e0d4df73ac3808.json",
+    "datasets\\cache\\348625e5b7e89449ffb2f97a088b7970bef0a9bf6e317565185ec1f261a4523f.json",
+    "datasets\\cache\\34c0559bbe6291dc8b3806ae06c497716d717dbb6815193e526ec54f3409cf78.json",
+    "datasets\\cache\\353b929763ac76f132195588e37e007984b234f127b542ed2292e3ca50030780.json",
+    "datasets\\cache\\357463602ea3b4d6e7dd37356e8be51be2a2cde74ac3576b8a7c531d3130f23f.json",
+    "datasets\\cache\\35f35f8f9c3d8c6aef3a59f00004cb4205a363c44c75690775d860ade3c846e2.json",
+    "datasets\\cache\\363b3a132c26782c7cf38c06d1ebfd3ff4234a07ea497f9c4302e57f24f8cbe0.json",
+    "datasets\\cache\\37f087b874b4c6f6a14b0f9c5fbb9ac84628902a5c1da86520c596918775012c.json",
+    "datasets\\cache\\3883f85eaabf461acac97c18073c8eda021d5d5cdcbb5baf6f4dc4612408b9bb.json",
+    "datasets\\cache\\38a98ee28ed0432f523b429d1e54480c033919d52f4cbcb2e812a30730eb5aff.json",
+    "datasets\\cache\\395f63740526ff03f379fd6c24be1ce6d3e40fcb75048f4ab03dd47c19d464e4.json",
+    "datasets\\cache\\397469c87885ebbe2b63b3a4ef398ba30ab88af35d7e48c3c668c72f250f867f.json",
+    "datasets\\cache\\3987460be8410171e4d79c0f458794baa20719590e22a28e26ec3c83ae2ca1f1.json",
+    "datasets\\cache\\3a56bb8431196e0ea608bf49f765212f4fd5ca1699fd9050f44dc461e0b2ccfc.json",
+    "datasets\\cache\\3b4c957ea26511c839ef02b0d406ac90132cefc81570b8593aa622f01e6c9fea.json",
+    "datasets\\cache\\3b884bebc92677397dcc4040105b010921cbc1ed837e13374dbc6b0f5c93ed79.json",
+    "datasets\\cache\\3c027a84174d4cd3ae574d30e72fcda09dff5e8a2d3b97d28fd862b7a2735531.json",
+    "datasets\\cache\\3c99601e60f60345df8145bc2a020bbdc3a4d4ca4a3a58a9e6eeb554a148d930.json",
+    "datasets\\cache\\3e3f86ee30a14578b1e42728559f3a9eff6510eee4d39836e1690ccb73eeffa9.json",
+    "datasets\\cache\\3efb7a86fef897b13c5c1290be4b598562200a78fd56abfdc1a9260183013e17.json",
+    "datasets\\cache\\3fa62b60ce30b66bd78ee753834a577d0085c9d3c7e2fded87c0f938dc75af65.json",
+    "datasets\\cache\\412a7624a7f22a900606afff2d400c34ef41616bc0f2721efc9821440e9f44c7.json",
+    "datasets\\cache\\41975627aca25e429d18fbad267975e8f4050ae53e2d97a8501ff7d324c9603f.json",
+    "datasets\\cache\\4221727b0f9b891f11d8f9e96e6e344b4ea349df93d6769aa33a2f9c9bbd0055.json",
+    "datasets\\cache\\43befb1f9d6bb2b57326a337837f70451fc46417909ca509eeefa3be40e41b07.json",
+    "datasets\\cache\\444ffb49e38971d313ec8b50ff06b2bc4d608b4ed13b9f60429016a3d21ca3cd.json",
+    "datasets\\cache\\44ff64383e7db278ebe0a0911bb2c553aeb20f0933e37118def71666e7ea2268.json",
+    "datasets\\cache\\45880cc0b12c25c1d1fe7cce5821d68476d1a89340ab3af81a0e9768fea085a8.json",
+    "datasets\\cache\\45b7cb6ff1dfb5880227c40f0de188ba4029625008bfadf12396e957f161e143.json",
+    "datasets\\cache\\463f60837b99c8dbbfe60bab1785ff85c4559525cbb0d53eb0c5fd3d51ba6c32.json",
+    "datasets\\cache\\472531d69e988e1e84a789f14985c1e555dd930770981fc65207f2e3298edb6f.json",
+    "datasets\\cache\\47f7f78bf030b554401d75f4355cd22cf4d6c05afff0125f5c4e0ba985cd128b.json",
+    "datasets\\cache\\4803ecfd81ecdaf4755fab2feb1cbfb328d2ae36d9a0a5007c9f957c2b7d0939.json",
+    "datasets\\cache\\480782b50cbf6f8cf2189b3dfa23784416425d6ce5af8940437e29897df23e8a.json",
+    "datasets\\cache\\4814dac0b5f42d3651735fc6f5a21b54d9aa18a4bc282b1cea6c34e3d96e1bae.json",
+    "datasets\\cache\\48629b6f1855afc6e3728eb55d94b33db3d870cd7e8e1d18a90ac45ccae87c7e.json",
+    "datasets\\cache\\489c189eed0a3e2fb96b73264c074db78126b4e50660423e26e4a930f9b237d6.json",
+    "datasets\\cache\\48f65aac5db52281999b6fd4f560c36d8971aa80ed4ea70028e70fc5add318f3.json",
+    "datasets\\cache\\492aca7d16404a78e667eb0421e481d4b9686198ba6113fe9c159d8dc585f000.json",
+    "datasets\\cache\\49a07fb9a2405040545cffc2a8bcf04fc0b6a952662ec48e81d0aba13ac3af0f.json",
+    "datasets\\cache\\49cfe8501b3fdcc7822f1bdb08569a8743ff3cfbd564f3ba1adcf5f274a851eb.json",
+    "datasets\\cache\\4a0c32045aa99c692d174dee847bde502376d5dd1b44c30020c124202aa78cd5.json",
+    "datasets\\cache\\4a59fc44fa6663f27490f4d61fa41c4b254778d10b9709c6f26c015731cfa618.json",
+    "datasets\\cache\\4a78fa0cb71730a0445809285b2d5a905c3a5e955cacbf6bd6e0c1abe51c525b.json",
+    "datasets\\cache\\4a7c4c533f582d4b70cc84c710574ba7da59afa002da0493dea44e3246e4b193.json",
+    "datasets\\cache\\4a97fc29afad7c1dee377bdc4ddff7d07ab7e8b1664cdb18b7c372fd58d1d744.json",
+    "datasets\\cache\\4ab810d44dc6e2b5d9e53986dbeaf17aee2991b0daa98097a728d23d8d565058.json",
+    "datasets\\cache\\4b0f2bbf90cb9d882b0ae8c57d520c98a979c899757f057febd9928f04550df1.json",
+    "datasets\\cache\\4c425c787408593ed5bbd596c1f811b424f857340207520823b5bcaa8a69eb86.json",
+    "datasets\\cache\\4cc7376d0c7f14b34e6bf67cc566a4646c5ad1d7525b3a98b4357cb264c3a34c.json",
+    "datasets\\cache\\4d60d5297521161c19073f3e6493dc95407ae59d666dfadbab3595f6ace74742.json",
+    "datasets\\cache\\4d833683b4b577c207cfa65a13ebf8dc59e265160d62d6ac1bb634080e157e1e.json",
+    "datasets\\cache\\4d869213893815500f76d4427c96a3087ec912fc36ad6695eb60bf338e134d4c.json",
+    "datasets\\cache\\4dd668efe154bf4f49c8040e2587612985b1ae1aa49176a77dc3ca96d6932c16.json",
+    "datasets\\cache\\4e40318d6fd7530330bc3b3c48931cf19cd35a0260b0eaff1de11887d02fe56b.json",
+    "datasets\\cache\\4e8d2dd4d3b8715aade79c8a171e0463a902d38435311f625e6d4ab6877a62e4.json",
+    "datasets\\cache\\4f2bca8b2c2380f471cfe71fd2bfa57dd7690ecb6698c4b051b7a5167fa92ecf.json",
+    "datasets\\cache\\4fdccbebf4cbe0072878a19d2dde598d1ea5a7bf5e6851fe78d63ce1bd6a8678.json",
+    "datasets\\cache\\5042b77c6572c615c0f063b38e107d380e732568f3295ff790b3690a6f7ed7dc.json",
+    "datasets\\cache\\5081dfb6a6a33bf4ddbf605384c6673cf3735151e93d25655ccf7fbb8c247b6e.json",
+    "datasets\\cache\\51da7337a30aae4a9027643cf0d3bd178257b7653aad5bd0c3ca543f251181b9.json",
+    "datasets\\cache\\52059a4b413cf3fe2a5c472938128f25012fcb4d2edfd488fb2233f46accc3d0.json",
+    "datasets\\cache\\523eb429cf9d067cc23cae8071404f48ece32995076e31e22bb8f584b05a5eae.json",
+    "datasets\\cache\\52e5061ef1a61701921216ff900dccb094469add05af1e1d2be5127c96a6ef33.json",
+    "datasets\\cache\\52f0755e1720b2be939172945da1be0d9c685236b309b2971fbbf0bad1683982.json",
+    "datasets\\cache\\540f88df2911badcee276e2cef412ca55dc04f772e1d35f4fc0de894645739fd.json",
+    "datasets\\cache\\5574a5bb8630de3bf9567f5b21c9d8e06effc74a6c4a633c87b0ccc9a84208b0.json",
+    "datasets\\cache\\55fbb5b146d103efee3a29e82972dff1becefe4903c6db93ba006a6dc00ea57c.json",
+    "datasets\\cache\\56301dd977c89e4dbc5e985f419070c4e448cbe214e5a47b6a9da76a72bc693c.json",
+    "datasets\\cache\\564f11da40ded9d7d65cb443cbb148dbe22b9c12914fea55f1a7ae8784d77add.json",
+    "datasets\\cache\\565f8b2c40bd8603051212b373afafad51be07570a3e1212edca7bcc085026cb.json",
+    "datasets\\cache\\56616c81b6bc2ee11d4cbf6151a0c9a24b3df28184792f4bc4393ff17e37915d.json",
+    "datasets\\cache\\56e1239d7ea775baa12fd8d2ca9dfdbcf1bbf2196c50fb61b869f52b441a4d45.json",
+    "datasets\\cache\\56e91161d1af9303b8967a2d37386e1a9307d35a8ed0f40ffd77b62d0c370ea9.json",
+    "datasets\\cache\\57238bf132bb7c3e2fca5592c9fc0e8ba9faf1d9d4d584e6da737f9d646c6798.json",
+    "datasets\\cache\\57a96a5b7e90b49385b7dd3da188279b83330a5faaef0261f4ba585fea111fdc.json",
+    "datasets\\cache\\57b6daed4346bb7afba5d8f1ebea3c844cbffe8f0768e229a0c5a0f37409a932.json",
+    "datasets\\cache\\581772286674c08e13566c7692a9ea7985a48aff84207de97763e45352e29674.json",
+    "datasets\\cache\\5895b50158b7f4e9ade426b1ce9ea4808d519a0b47a2884f0f2b328d9f87c8e9.json",
+    "datasets\\cache\\58a731a7d3dc6af379c768946e3d19ebec956c2bddf3a2dc3d816fc9cca7c507.json",
+    "datasets\\cache\\58b264f34d5d57f9adc4c3635c184cb1268ae6b0b7948c63960770f69cdec6e0.json",
+    "datasets\\cache\\595e7ceeb22455324105e582de0bb43fd2353531e7abea792883eac14dc5b8c0.json",
+    "datasets\\cache\\59a6603225576b5b74013915dad2b91c21353ffb86ce9deb1fea91c737331d1e.json",
+    "datasets\\cache\\59b16f6f7c1241105706d0dd4da2916d02a9b142803af78f286dd2ab53ff24de.json",
+    "datasets\\cache\\5c17fa179330f4f7095a0eca3c21368932a39b503a2b4f0631e0b882f9d4bf42.json",
+    "datasets\\cache\\5c9ab378f80b44ebd2aeb0653a17cd0529a6109c2757b10d72078e7b401e5301.json",
+    "datasets\\cache\\5cc5851a53fd9ff81479ad0a195100cb3a1dd82bff3a9aa4dfb55d5a57c503e4.json",
+    "datasets\\cache\\5cd5962cb48c23ddbf821c522fe224ea299e5cb261eb3954d16b75354749967e.json",
+    "datasets\\cache\\5d03732f5cfee9aeda24f2fa122cd4b0837a4f37abf91c094a13e5ea5f95313f.json",
+    "datasets\\cache\\5de6a929565c0be4837e92e58a07b84c3b42e30d3abaf274d63f09b51521ab1e.json",
+    "datasets\\cache\\5e16352cd525f25a4efbd3a6dd9dd8f7ba62eacc0376cda9f8dab3c14822dd0f.json",
+    "datasets\\cache\\5e6e0c445288251c86f69cb23fea363b219c232b0c64e7e6423fa8ae89538ed4.json",
+    "datasets\\cache\\5eeef1c7b1630b4462fe3aedbd9cf11a23375c0a925dbc15e9f91af7020b4774.json",
+    "datasets\\cache\\5f29b93cb9c1850b66003b89b722280c927e110062d73260372f5951d9fcb67b.json",
+    "datasets\\cache\\5f46ebf245492e3f43e2be09ddb6d254b2774c46a8d06e74f236b7feda6bbb15.json",
+    "datasets\\cache\\5fac083f876af47f0be078876bdf84b85d7958ee86c1bdd220be050737cdf455.json",
+    "datasets\\cache\\610e5e35cd19f64c040eb5258cc5b9f82fb9870cfa60046c483554a01ffa5522.json",
+    "datasets\\cache\\61405ac2cb2991ebab2a8162957d5b58e3ed5d3dfc6b4dd2b76f8931523e598a.json",
+    "datasets\\cache\\61a5121fa0c2f14d63a135ebb8af2cd8d0ad654edb211d141b544ac4556a7e27.json",
+    "datasets\\cache\\61bdf40cde90922c7c8d4453b21219c6a247cb61e5893382d3ab468688633732.json",
+    "datasets\\cache\\62c03e033d5857d3a2317e4987499cf0cc9d853af3751fcc827930e6447cfd46.json",
+    "datasets\\cache\\62ff434b4670ef46826bd372a181c6a5990a3a64179d1c7a6ba9ad9950d704e7.json",
+    "datasets\\cache\\636f4015abc72ba6ac3a0c23cd4b955dffc77e4841db79ee4532fe5c89aba730.json",
+    "datasets\\cache\\63de583c923005c448f824ae6279f1a11b67061601089a70992bfa28027d7ed2.json",
+    "datasets\\cache\\64173b0eb6bf789583bc1f432d40c8cc12b35b67672706e530cee378eba25b06.json",
+    "datasets\\cache\\645a0be0123a90adf0ba876de515343c46f1ffd8f1dec0e6bfd59744d70306de.json",
+    "datasets\\cache\\646a6d0e23f5510fe68dd26771f598f32218b41a64952f3114eb52f89dc9bdbc.json",
+    "datasets\\cache\\64a24dc19cc27077b350bd2c84ba29ebdfa86916a07a61a2276f4137d136f0d8.json",
+    "datasets\\cache\\6548c32af1d706b77e03aeca57b8825154fee97661ef9de6e8ad0daf8028da48.json",
+    "datasets\\cache\\654d1875d2ce093a810a3183e2d221e1c74e95338ef7257205d211f05ef0d046.json",
+    "datasets\\cache\\6725a3ee4d90ca0b11a7cea0b452c693812198083d2e1df9c06bc736acefaefb.json",
+    "datasets\\cache\\6773f7de125992d9fb8106b40b6171ab793a45f264ca513af03bec7b3bf1f2ba.json",
+    "datasets\\cache\\67c121b1658ade4c5d58c1f0c127f0408a374bd48a9c11cadd2cf3ec11f686b4.json",
+    "datasets\\cache\\67d2a746027e114b10d640a924d12426964fad2f7d07d2a19f36de51cb92f0c9.json",
+    "datasets\\cache\\6835623bfc654ff35775916a45f904cb9366fecc3ef38e0d96892dc1b4c1e097.json",
+    "datasets\\cache\\686eb819afdec1ca63d1997e0359c804bf484da260c11b1b25e106161126896e.json",
+    "datasets\\cache\\68d861ec942616c4d0e4bfe12c89d74a12d96f4c3461824a5fd1a37211eace58.json",
+    "datasets\\cache\\693dc22897a21b88970e787e3460802e64cd7c1578fd0667bc33a89f59456d6a.json",
+    "datasets\\cache\\6b18a592623cd019cdcd88137012bb0d0500f87da8348a7af76ece338b0456fb.json",
+    "datasets\\cache\\6b750b1ec71520cef25c0da60ef8b83023a53cb0de5e629a87ad9c9a4722b207.json",
+    "datasets\\cache\\6bddd3b71267a58934376f8bd0780a61a44a22590292415023a02229d253cec0.json",
+    "datasets\\cache\\6c407506926bb0f6e99d9dbe5adbee22e0237bf02d0bae23cc5f472432a46f33.json",
+    "datasets\\cache\\6ca3be00441cdbc210bb76b0f7fc1e949fe4f314f124a9c90ceff85cf40c1005.json",
+    "datasets\\cache\\6d01e55d0ea316738e2f53219585fdff139f9cdd80278eb73482b559a00ac607.json",
+    "datasets\\cache\\6e1b673f8b62791ba95efe10d2b92165fe9238d8a9c197469ac40c7dd876f4fa.json",
+    "datasets\\cache\\6e444162b283006486f614952fa7496369e9af70cca0d78485a8a8bcd9300543.json",
+    "datasets\\cache\\6eaf1e7e5d3f082b9d851df911866f7a92b67a900754c11569b640a5fccc1052.json",
+    "datasets\\cache\\6f013990eca2f3556a0f7e7b74bb460b740d2655d1d3c13c656291e95f9c72be.json",
+    "datasets\\cache\\6fe81f3663b0bf2fb46e3004c57e6d2f10253d19e27ee6105e3ff172d331cee7.json",
+    "datasets\\cache\\6fff291104eeffc73721927e20da9a1b017daa0e63879885ff094f6356008fa3.json",
+    "datasets\\cache\\70ffe91911416c29c3ff95b7008d0123b8c5aecc17859efc9720b00fc090b73d.json",
+    "datasets\\cache\\71f00e511247bf3236eafbe8bb5f7c86a6ffde4c6b24088d6f623cac052dce6d.json",
+    "datasets\\cache\\72492d3da1a3da5e9ff11654ba6a5da9ae2fbe4988a734517ebe5b9c2b6f3782.json",
+    "datasets\\cache\\72d6b4ca45cfe59d1b1390ccb732c3bcfa8be25e63174bf265996c86895325ac.json",
+    "datasets\\cache\\72f5f3c4b336b788d70ba35219745f48e5dcd5a24c7ecf62844fefab45efab66.json",
+    "datasets\\cache\\7324ea4e4a7e17ca85be9e75aa2b0094571891a901cbcf222d8881949c05d3e8.json",
+    "datasets\\cache\\73298d18ba46ecb01fed2a9c6b93259b192df8da9ad8e223bb55af4da799e664.json",
+    "datasets\\cache\\73562a76fac91904ddf298d1f16cceea2f88df1d6bdeb621f66e67df0b49d497.json",
+    "datasets\\cache\\73e58aa11c6e9912e4b0fa163cea0605e3409752e0a02b3b19aabe1a689aed98.json",
+    "datasets\\cache\\74f50f287c9c839dbd76a7c5203d15c5571493490e312e0d6542d965d76d1ce1.json",
+    "datasets\\cache\\7601172760aac4c2e218f872c6a78c82acd9f4979398f23a84173250b3992b1a.json",
+    "datasets\\cache\\7635036dafc5c75620be9938685101a3cfa18f08a8045050535326991b066b05.json",
+    "datasets\\cache\\7664e2647fa821666270a0228ea1357485c9e007fb3c4e5bdf50b49991495d5a.json",
+    "datasets\\cache\\776e4af679d55da08e61d8fc1901f15edf948baceacdb8257d53ecc76ea13161.json",
+    "datasets\\cache\\77ada3b4fd74b8e38b17266f243817b2bed24ba7dd7a68291ed0108a1dbcd128.json",
+    "datasets\\cache\\77cd3cdc53dff9980e91029f1d2caffc7b669b66ed84a480c60426cf8474fe02.json",
+    "datasets\\cache\\77d7ea8cdbc6bd543212b3fad32f8facc7cf046b1570fd524880de65c8f4448e.json",
+    "datasets\\cache\\7863c6258f847e570fcebf4d2097d1646626052fb8d4697e3aec0b7bdaa7bc03.json",
+    "datasets\\cache\\7894f242f3bca69d1242ce68218c529ca4a8bd267d584541f081df74ee34a6db.json",
+    "datasets\\cache\\78f5d2d68913b4d97550f1831b61c6becf39e1b91e24e15ff037b898e56c4508.json",
+    "datasets\\cache\\7913dcd212b1f323967c6731b34a68edf66390278e2b590bd214df693d489d0f.json",
+    "datasets\\cache\\7a5e3fcfb0554f63172efdb4a0a0b1233fabbb1936179aae8ddb855fba210671.json",
+    "datasets\\cache\\7a80ddf2f8c1bdabd11f8a65277069d4e209303e8d5efd58ce32a97f8c59d584.json",
+    "datasets\\cache\\7aafc939ab04a4f5339f4786325fedc6b56c9646fdc3b1d4b84f44fe4c3d30ea.json",
+    "datasets\\cache\\7bbd714273af2e5361799a80b9ec1d6d8863bc0b0ab314e53e678c4eb33718f7.json",
+    "datasets\\cache\\7bc1a2bf9736b9668c554ce4447fce4e5b4a73d0d3dffc8f7aa9a63412ac68bf.json",
+    "datasets\\cache\\7bf316066fdd914b3f540ad7402d4e65fac388203b48ba1636135590ba1efccf.json",
+    "datasets\\cache\\7ccb54d090322d1c70153cd606af2a86f83aab31922ab4074dc57574db18f7cb.json",
+    "datasets\\cache\\7da20f6b7be5eaa17fe294f7758297e4536b1e224afcabb306ad5a5bf5518f9d.json",
+    "datasets\\cache\\7daada9a1efd8598450157e3f2bf2e61f80cf01d8864b0898bd9fee5c6322e3e.json",
+    "datasets\\cache\\7e0c2cab8e43771090c53344c17adbe5623bd944e868bbe3a843520d95c4f37d.json",
+    "datasets\\cache\\7f02a4c434ee39cb1606cfe14f09ad1bf9e9ac41cd22ad417df2eee3991bb5ed.json",
+    "datasets\\cache\\7f11c0b571013d48c7889b91f581ac9eabea004558005626874859cfad403bc6.json",
+    "datasets\\cache\\7f5d2c495ef2dcfcfdb4c470b0a473a8bf88a9f60cfa32c4081e73517d990bfd.json",
+    "datasets\\cache\\7f616b33a4991a176e36add4f819bc232dac800ca7dc05e73ec287d874d87a49.json",
+    "datasets\\cache\\7fef144c996fdb88d308e93bb18a15f6427406dfae5642d6f3af0dfd967ad2d2.json",
+    "datasets\\cache\\80ef81291e981185324f76a4b871f94ad965500720c548cc2e512129433eacba.json",
+    "datasets\\cache\\81f2a809c33b72ac08589a79d39803e3843cb631cc3b3711753853b74bd2ddba.json",
+    "datasets\\cache\\8246d1cff5c8f91004cba21d2382bd1ccad04a5bbffde0ed3097a2897013deac.json",
+    "datasets\\cache\\825717e76b7c61b601b718249889afe6025e6ce4c339efc27bd261808deb45f8.json",
+    "datasets\\cache\\82cadc67c7a06066716e63b415e69f337592f0b51bb7b80e1020bfacb60b62c1.json",
+    "datasets\\cache\\834d39e6c7b3d185883df1fba71f3773e3bce3a0dcd9db65801866c6fb3218da.json",
+    "datasets\\cache\\8374bb448d7a82ee006cdfd6c1bbc09a212d182a9fa5ef81a24e6cf08a6aa476.json",
+    "datasets\\cache\\838e6fda8d0d64989aff27f662eefb80c4897e1de877e030fc2106ceb9495c73.json",
+    "datasets\\cache\\84c4a957993c9e55d4dc21a1dbaf1caedcdd1321c7d5f1f682bb5b279f734f11.json",
+    "datasets\\cache\\84d059030dd7260eead5e8e01d8282a0ffc3936d4c0f5c7afcd21be8831756d2.json",
+    "datasets\\cache\\856a2a5cdb71ec1bbbc71c61fb4668459e6862cd95db3acce0af69fdde8fb975.json",
+    "datasets\\cache\\857ec9edb47b0a2a85c58d03a6c5503457d4a6181319aad827f6d82f2aa56ac0.json",
+    "datasets\\cache\\859ef70919acdcb8c3fec1d4c589b1edd58980e55132760268382abf21bf3131.json",
+    "datasets\\cache\\8618e9394a9b1e865abc864969ed39ae9d3547539dd8cfa2cb75c25095c269c3.json",
+    "datasets\\cache\\86754c6a5decfc59f13b59e67f55f1c6e66bf56eb9cdff7457ca6e2fbfc654d2.json",
+    "datasets\\cache\\86e5345c3ca8a485448aaecb0fad90e3305b6111c98e9d293e3f00f6432a6497.json",
+    "datasets\\cache\\875bdbf2119c30917591e8eb304c37a384b69b570e40cc0f514f9be28ad5fcc1.json",
+    "datasets\\cache\\878cff797e58968bcee62c456d9bbb73f093179fe90389fbb32d7182b99d32dc.json",
+    "datasets\\cache\\87a311091eff54b64d075daf0fa3d671764c4ba5d9ef37a1b1e007072ae0da3a.json",
+    "datasets\\cache\\87c64d418831a475b5fd2a17a54f46d2ddb0fb84bebf64850d88c6bb94e89328.json",
+    "datasets\\cache\\87f0331bd87be3a7fdd2dee775229480cc10911daedba6e29a52050c1b4e07f7.json",
+    "datasets\\cache\\88b23372a4091201b7849bbfa0ac797f15e8ccdb9f8a4f3baf6747cda4bb4bf1.json",
+    "datasets\\cache\\88bbdbf45dd56d9bcfb7a5c012e492056541669519ec74cf7a54bf716794750e.json",
+    "datasets\\cache\\894c3ada1260e034c4866125408e8d39b1384bcee23bb1b09c93bacb4d9781c5.json",
+    "datasets\\cache\\89a364ddc931a25e4583313b1a1e390185bf2185816c5e39562c8d3440c4df30.json",
+    "datasets\\cache\\89aad58a6df19100b6a8cb3cd0ab2cf305d21c52853c5273aa3c9362bf8249ac.json",
+    "datasets\\cache\\8ae3f338ca3b3c862e7be91472b776f19c80933739ed8d9c0d2e25069c79294c.json",
+    "datasets\\cache\\8b374d4b21529cc93d3d624db7606d1639fdaf917a2fe50b2413196cf2554331.json",
+    "datasets\\cache\\8b427084c9a9316cc31b07361f64944091a5f42f6b3ab7edea6cc7beeabc38de.json",
+    "datasets\\cache\\8b663560ba40160610fe4fd30e1c627198de1c219de4552f5a986d99cc91feaa.json",
+    "datasets\\cache\\8be62aba371206ea8960124e8984a9166a0263624fe66fe469958aef8c0ff2b5.json",
+    "datasets\\cache\\8c4e26583495f651dc79e0191886a039b72d16a2293dbc2579038e8f52c1b462.json",
+    "datasets\\cache\\8ce3c27a70c00db5ad84b9b30d6f4605dea13dde959cb3d19f01d0ac619c0ac7.json",
+    "datasets\\cache\\8d7e94c0aca0aa13a43a62cf69a66c96602fc7d189a381683e8bbd8ec67a44dd.json",
+    "datasets\\cache\\8e659abd0275333de017e69e15a8e7a8ca8725aaa306a104b14bfbf4408406dc.json",
+    "datasets\\cache\\8f3a780bc48ecf405c00507fb8b9bdde727e69f5d4cf8e9c74dea712b825f88d.json",
+    "datasets\\cache\\8f439b775be3b1b0dbc889593c7b2c95c33b4b32b65646c62f2ac4adfac28594.json",
+    "datasets\\cache\\8f8358b81d1325437f9a5042bcea4285eeb2f25c625e7dd34a36d1532f661e62.json",
+    "datasets\\cache\\8fa5de2dd0d484a365e6baec81176a826b346ddb18276eeafcab3b89d162ab33.json",
+    "datasets\\cache\\9011d68dab124229f76d5e0007d3f9e1cd5e5305c7b603fe9008edddaddf7b14.json",
+    "datasets\\cache\\90816b2d1ccc3ef583dc0eb13653db60ac01be491572a1b9558c3fad7b8f92c8.json",
+    "datasets\\cache\\91162d768beed29f5768bf684fed3cfa500d0c08417b3baddbf480595db5a786.json",
+    "datasets\\cache\\918230b679d4822dc932d34eeff92f1d1f8ea284e656de3941b7a85c1000118e.json",
+    "datasets\\cache\\91ca92efa85fdbcce7106bee88c272941a9b0dc11db696993882a2d28e0fd3a2.json",
+    "datasets\\cache\\91e6cb78669352145dca861bad7b5ae308a6ac5e5eda55e114720e1440bde9c1.json",
+    "datasets\\cache\\9359ae4ad23655470801187c94afc1084e536b0bb35370fd7a194fe9f07ff6a6.json",
+    "datasets\\cache\\938fef568d1fdfcc270b9dbd9a457f943549da57f881fd62dd28666cb336bfe7.json",
+    "datasets\\cache\\93b75805ee2b6b326baa94b59931b6f5cba7dc4c2e5325804fb3b53f39684141.json",
+    "datasets\\cache\\93e757e274daccf98751dfeaf118c5b33d2cb2e501722a32a5fe0f325aeefb9b.json",
+    "datasets\\cache\\94743dc48b43b580b603098cdba55333aa8848d6b2447f6ca036a67a6d50eecf.json",
+    "datasets\\cache\\95c294b7fd80a1795aa4a67798904165e060a0029a0d8c3e3d1395dbcb018636.json",
+    "datasets\\cache\\9656fc70935206ab92ecb1413fc57c64a34e9ca568987e6f43b19cc3c0cb94c4.json",
+    "datasets\\cache\\97c4fe77e7c70a41881dff8a7ca45d8e2310e8e96a293035191f9620105fb302.json",
+    "datasets\\cache\\97c67484e8fda634b0d864565b229cca4775565621133e9edcfa35d04e69970a.json",
+    "datasets\\cache\\984ed657b00eee3d5b291c0e0788e6cd0913218ec0cddaad83c0a5f7ec1dc015.json",
+    "datasets\\cache\\9913dfeaf867d5f99c9889bbb06ca076a9d0d04e3bbdf0afa2747f18537b5afa.json",
+    "datasets\\cache\\99fb26c4d0f194a61f0a4c4ab944ff739a335b31d708f9e74cc814391879cdc7.json",
+    "datasets\\cache\\9a59ae0d2390fb25e775dacf1b5db9531e5c9eeed3f87b215f11803de95753c5.json",
+    "datasets\\cache\\9a7d5681ba0b819ce1bc59cd7b4890319afaed6a33cfb064971597dae480ecca.json",
+    "datasets\\cache\\9aa3ac16577cfbf545bbdec7b6b01e83e980424423a1135764f49cb527322ef4.json",
+    "datasets\\cache\\9b02c68a69e4fea55915533201745e4eb7942bfc6245a620b76b45b4dd87d190.json",
+    "datasets\\cache\\9b518973446ab84d7b56477908db258d18a75ab402585cf6c6f65fd05f3bf229.json",
+    "datasets\\cache\\9b61e594ad88e2fa90d6d528cabf8deb98654136626e7b3eac7ee510bcdf0fc0.json",
+    "datasets\\cache\\9b9e31102d14dfd0d494199e4a6e038ae067408941928efd2281808db64a8e5f.json",
+    "datasets\\cache\\9b9e84b9be5313847f93cc23af1b0500dab5aeebc3fe64c1b38a4488e6bb5085.json",
+    "datasets\\cache\\9c0a5d1e703edd06b33ca1bf5066c5c33db8e8ac06d3eb09965326202ee128ea.json",
+    "datasets\\cache\\9c0b752f39fe0d7f2a4f9bc593bb8ee6b952c547123f77256506c94da29476c4.json",
+    "datasets\\cache\\9c12667449adde91d27f636c1ba01394fc8f0ab9c5ede8b73b5e8b024d97ceff.json",
+    "datasets\\cache\\9c2ded9f9d13b9abbf15141195a5c09a9b7a47acd928743613086b505ef19ef9.json",
+    "datasets\\cache\\9c74ce0ee6264e499639ea6a77a3864883a2a83fd2ae81f1024532586c7f982f.json",
+    "datasets\\cache\\9caa79b8ad5440b933320451c3f28b9d64bf684eb3beec9306d8704ac6028706.json",
+    "datasets\\cache\\9cab67c4d64eb67d74c1181105023b1dd5dcf086d83e45e2aa363d06f83fb46a.json",
+    "datasets\\cache\\9cef3579b37dbfeec098d041df153a35265464abc71abb3abf99e833b72e41b4.json",
+    "datasets\\cache\\9dfa90e475ccf22d9bba55d76da1f922f59b71ca17c647003a42ce2b27c7d7b1.json",
+    "datasets\\cache\\9f31a09df5ae249dc2f7c13aa9636facdc3b7a4276bee2402175e11f0c5e03a9.json",
+    "datasets\\cache\\9f8fa00ad1c1ed394671838fc4a72a51fc9d1e55c6ea91a5efd3c27529dd9f93.json",
+    "datasets\\cache\\9fe34068a49d0460ab479c0f7455146b6bf38b78a1f356119375b32291c9f6e9.json",
+    "datasets\\cache\\9ffae6613f5a61c0046e3add61a31afd2aac11a940c0fa3929b92248e9c0aafa.json",
+    "datasets\\cache\\a0517419b5fbbc371fcece43a73c5200a0d53fdfaf626b80dc78bec726985fd0.json",
+    "datasets\\cache\\a06702527a6a033af5e309adfa00395aa75ecf7885535daa6ae4ca33ca39e6e8.json",
+    "datasets\\cache\\a0ef11f1d1fc2e1e1ef78e44c6cf1c876a839207868d545ff2020598c92cc622.json",
+    "datasets\\cache\\a113c6dcbe80f1c5e72729e19006d7d424e16dd1c8ac01caeb2a5e045bdf77b2.json",
+    "datasets\\cache\\a1779413c679a7bd02d6b4db5ab0461de495db41b527adecadd5c676bef3cc44.json",
+    "datasets\\cache\\a1c3d45f86079f07c68725521ac1b514a6b0f387d2282b13fd68a95e1e392032.json",
+    "datasets\\cache\\a1df0ec46e9ca7da969c58f4f68823296431a22df3f86490a437d196b4ff4fe5.json",
+    "datasets\\cache\\a260d96505831a97f5bd8c5ba811c79c4c31e874a279a10ae6b340bc4d31059e.json",
+    "datasets\\cache\\a3a082ef5fa077556220ea8646bf6a31f0d4406b560c65068062c780bef862b9.json",
+    "datasets\\cache\\a43e80915c1650acd2531f53bef31aa87a3a2038d4cee5d4f0573877d753cb6b.json",
+    "datasets\\cache\\a477b7702f8b5262fdef0fa0e61655aee25101d61aa1068cbc6c8b57bfae19d2.json",
+    "datasets\\cache\\a4eefdf21c3eda65a556d5234ed4cddc644040e3ce9aca1dde3af6da7eeb0001.json",
+    "datasets\\cache\\a521faf33d1c1c775747bde6582c53c64d702d5256cfccb93b469372ca8e645f.json",
+    "datasets\\cache\\a5a30bdfff8e12115cfc9b4cb46896b3ef7dac477f1c5e34869dbb462b04ca21.json",
+    "datasets\\cache\\a5bb35ddf1e6959dc9b66edad15a9b9695dc6feb67a04993cbf1a07c9ae66b63.json",
+    "datasets\\cache\\a5f81ebfa901ecd4dfffac00a65baf23620e0914438f818a4fd815e4e6cb73f4.json",
+    "datasets\\cache\\a60850a7ee4b9bb256589df33e356f90614509f299b11c560be7c84fd6b38f72.json",
+    "datasets\\cache\\a63b1cb35de7b3684e233bacd34c0a8d50757940873f4f25a926b2e6520ad118.json",
+    "datasets\\cache\\a6cceadfbd63024bc3cbb006f30dea4076a9008918fad677747b290b7be6bed0.json",
+    "datasets\\cache\\a77f3188bf52a3db83c2d171a8fd31b80febd5873c2d4be82adda3de184ccda9.json",
+    "datasets\\cache\\a7d9fa7bfe36c88ffc7508595ebf830e6507682ebf86e8858b36f3b6576aa25f.json",
+    "datasets\\cache\\a84c1039386aa78b6e3915b0ddc9aa21c52b15d6f47911ed7b77ffe45fd17ff0.json",
+    "datasets\\cache\\a8a652d3c00386025eda9d1ca4ce33e1a35be3e6bc107f30bde8b8f0958717af.json",
+    "datasets\\cache\\a8eb2d67f19b7bb6429286df3d3eee67caf1c578c5bb3664962e4c7ee6b1aa43.json",
+    "datasets\\cache\\a8ffdb1f06c56d91ff95f6b6ff2945128da6dcca488a61d8b3def73086fdb2af.json",
+    "datasets\\cache\\a92e7fefccaed41e6de53d0deccc94e9df979298e0870677cf85e27684db7c28.json",
+    "datasets\\cache\\a934b2b21fac096b08120bb5aa251fd91688201e668f3b3bd8ac3e8865e74518.json",
+    "datasets\\cache\\a97eab1457928ae29ab405776ecae1119ff05892260892a5b89ecea1e1028739.json",
+    "datasets\\cache\\aa1c18a3513f6af349b14633cd9c9896b93fefc883a0452e0905d6d3489d82ac.json",
+    "datasets\\cache\\aa5f2da353ea1b953e451c17eca74322977442874a6f1c7b29b4b077ab0e31cf.json",
+    "datasets\\cache\\aa85088bdd2b9f8280a411939b45053b54048a027b9a482579905dc3a81004de.json",
+    "datasets\\cache\\ab2c8e191842282f26fca8bbee151e223841a1e2d15b9161ac13c60c7a4cf2ca.json",
+    "datasets\\cache\\ab816f1551fb5a6585f2ffc84070702f8579cf888ecf0b1c878688037daabbd5.json",
+    "datasets\\cache\\ab9dba497a84e14efca5b09d9b9c672e433411c38b275765f0f8f2d9e1a021b8.json",
+    "datasets\\cache\\ad5bf2b5e457d2544a85b50e4ac16d7e944c5cfad21d23c3aa9360b3aa879d02.json",
+    "datasets\\cache\\ad75e6a243337dab3d0cbac3ac0d2bc90f70d2ef8fa805db4aa59e19c5578c66.json",
+    "datasets\\cache\\aea4d871dd275785b27b62aca830c9064d464d334a282d12fcbb311e7d32c4a8.json",
+    "datasets\\cache\\af441bb5b6993f35c9bc1f6fa1a7b7b466f104ccd1feeed5dd8b7055314a772d.json",
+    "datasets\\cache\\af71ff45f5e51bd17fe9588f4be7adccb9b259a965b6c80c29d7c7dae7cbda53.json",
+    "datasets\\cache\\affc79c3bca56eb827a6d576a85e144a0b239109bbb0c3037ea0baf00154bd21.json",
+    "datasets\\cache\\b0bf3db08a641248776ae8cab5370ec0d75c86ff0450ab0cd6e985f3b650fa4d.json",
+    "datasets\\cache\\b0dbe9aac47c76a42db01e06882c001ce426c0a3448bf5e54c545ae5bc94575f.json",
+    "datasets\\cache\\b19be5f9647385c792548c63358f70ad37066af1a8c9c54ff2eadc2cb34b7c8d.json",
+    "datasets\\cache\\b234e0b2f43fb90001f36fc31f78439514fabadbb8557b2cdfb44bc3156948f4.json",
+    "datasets\\cache\\b2e947cf4906463d703f1705ddae7471845c5d6be63ee17f6250ae074b29bc61.json",
+    "datasets\\cache\\b376978c4169e62a13d25519c4ae2f457c8a2dd06127d1346bc9d08b176b7c3a.json",
+    "datasets\\cache\\b3d124cfda39b92e2f1d25118aa346c9a210faefde33f1a2449bee2361077665.json",
+    "datasets\\cache\\b407ca7ee24e587a51602e8dd5da2a6a40a7d0a7f0324fc09a915453b5e614f1.json",
+    "datasets\\cache\\b40a4a12e0fa4ace6a7399657a288da894ae8192a059f9b26aa12002e93013eb.json",
+    "datasets\\cache\\b47fadeb2b7f347007b224edb64d2a45bb138d2d64f27fd8a19cef6c1b240981.json",
+    "datasets\\cache\\b4eb96c2d7dbefe319723c8f9a55661ab96c14ddbd8d0fdb32733f8f17c89ca6.json",
+    "datasets\\cache\\b5905d98c380374d7b45b765c93a857b9e41ba23ae1b81523db3a089e8464bc2.json",
+    "datasets\\cache\\b5e04ea8cbe8b8ab463330f779c41e3544324b177cf17ab2b8cc6f2cbc713f5e.json",
+    "datasets\\cache\\b61ab81304562632018574f0ec67532afe4fcc31aa6a604573828a92247637a2.json",
+    "datasets\\cache\\b7ff4d7ac0ab9705fc1b79a6d37bde46f61df040435c23d0e9a2abff8f85811f.json",
+    "datasets\\cache\\b83e639edc8b2a0141672c98dd678153a1f8bc684bc7770ca92eb34f69594ec2.json",
+    "datasets\\cache\\b8c1af80c2e92a573cdf6ccd58c1a3f010e6a96ee3e346bf4865a67c0ab107f2.json",
+    "datasets\\cache\\b9e168fceb837b1811cb5a46f151eed96d90e3c91248cb92a6f27343b3933359.json",
+    "datasets\\cache\\ba2da6abc83ab4ee94688f6e5c1bd601bdfe06dc7cf85a83e7729f59285074f3.json",
+    "datasets\\cache\\ba374887273eccf8fddac02af695fe63c55d7b9fe7ede83bce55776aecd1dcbe.json",
+    "datasets\\cache\\baddc5e0a829606201c6cde021ab1cac2f0cd9635f64462b6ea124e5f276e37c.json",
+    "datasets\\cache\\bae193a2cbce185d66e39ec09f49674e6ecfaa70686c5b4580c54433b9e01dd6.json",
+    "datasets\\cache\\bb1cbdafebf7d41a4cc8196305d6c38823acf0a624cddb466890d5e5e9fe3905.json",
+    "datasets\\cache\\bb8678e2e3213348e846ff1805ee0c72e7fe7689f357bde27f1663808a8da2a6.json",
+    "datasets\\cache\\bb90fbc439ab540177c16ba297e3b8b8fc54ddd24bece30cf5facaf8eb441f24.json",
+    "datasets\\cache\\bbb9f4dc0961c95e5a3a0f4fbfe9dfbe09470d8d973750c698551a7e06fbe960.json",
+    "datasets\\cache\\bcb5b8df4b9d64651f4df953e3b4f864a8db335dd11127a9ec4f1bb134e8acb9.json",
+    "datasets\\cache\\bcc68caf0e27e7d22b64eb806d76bfb57586ba89d68a42e371950c1b590ce4f2.json",
+    "datasets\\cache\\bd8fc89f9aad6a8449491d1c61e11823e3a57e391755c2f1f37dd86e0dcf4591.json",
+    "datasets\\cache\\bda008a8e235d2109a19b002f5ff182f3a0efda0f472aeac4a8cd88c1f14efb9.json",
+    "datasets\\cache\\beb3118f99f6468077a16feeb97963727835fc51664775f8de61d2005f44db5c.json",
+    "datasets\\cache\\bec32af63a0ba191b37449c2a8ae70c8c101a760b5166a87f7c5ec5cbea6631c.json",
+    "datasets\\cache\\bee332c3483b0022ca01cb0b41fcbd5a05cc7ccf819ca34408adcb4a2744a0e7.json",
+    "datasets\\cache\\bf8132831fa8827b6e2b81a24bfbd1bd02419a47dfd7edae335ce52f430f1413.json",
+    "datasets\\cache\\bfdacf7fd6aab35794d9a8951d6f030314783b6498450bdda60e52e73d80fdd1.json",
+    "datasets\\cache\\c00fce3f1c2d809a446d08cdd444749e5780befe2fedbbc16de5ce7f0528195f.json",
+    "datasets\\cache\\c0215385f52c470c531a8e56ed169752b631e2389c286a2c31b3dceaacc18464.json",
+    "datasets\\cache\\c19477fa8887124fa89b835eed1edec953a5d41325b26db4e12dbc1ad9d7498d.json",
+    "datasets\\cache\\c2d5451f534af9a6f25837bb7768660a9c4a700ad2b15dc23aeed25cfd44f635.json",
+    "datasets\\cache\\c3742e0f8aa4788689cad9628ba630782e7cf55e85d57b79dec14436fae3498f.json",
+    "datasets\\cache\\c429b5291f1b1f56392458d14369e3123a51109553eee5ec020ef2372107fef5.json",
+    "datasets\\cache\\c4d0eb47a450b4593eafd58a3dd5dc79bef3a8fea0a54afc2518e458dbe2ca3c.json",
+    "datasets\\cache\\c517f9149919418b0cb972cf07b1615f6f30a4313f5d67dfb91ef885971cecd4.json",
+    "datasets\\cache\\c5df12ec87f1e5bc0e70dfda46114cd6085e43c67cc0ce43a7aeac3327cc9cb6.json",
+    "datasets\\cache\\c5f34e54054c30f4b8e128cfef8e16083b633be4bd8d196e3aac871bcb97afd9.json",
+    "datasets\\cache\\c636d2d053a3f176ee5f590cb87bc1f6c68a7dfd44ea57131528d0d9242b8707.json",
+    "datasets\\cache\\c67a6617b02b495bd510931f8faac3cbce085184cdf09ddafb8965c88278071b.json",
+    "datasets\\cache\\c6b198b6ca212fdac638f8ff61fbf95f7890412892b98357c09609983b84eed1.json",
+    "datasets\\cache\\c780157dc48c7dbfd0bd43cc00d308d818359ac3a57f1730efe24eaf8b80d2c3.json",
+    "datasets\\cache\\c787f92134ebdc6d7b7da4e3b8fe8f0c6f54392b7ed308dbc4c7bafa13f13a7d.json",
+    "datasets\\cache\\c807f4255a0c6ff9ba0f8d828b5172fdc323976cb2f84ff87bb51e11b44c7879.json",
+    "datasets\\cache\\c84e8524d85f6218fd7627512e354ad132e361592d84eb8b24c9c9364c68f147.json",
+    "datasets\\cache\\c85bef049171003385802545ef3ff1040623f1b01cc354c0cc9fad1293dd361f.json",
+    "datasets\\cache\\c8e0c286cdf27bce71fcc7af5730daeacfe9ec11d89f9daab81ff68b1f7696bb.json",
+    "datasets\\cache\\c9c291ae739393f1a6b2199cb18aad3fef8cacabf549e30ee4b2ee90f4e9984c.json",
+    "datasets\\cache\\ca04127e0d9b69abc9cd69589eeac75bab47414845441e9815e6a2df3a2211e5.json",
+    "datasets\\cache\\cae7ece83fe802394e570f896091bd425a0e5e25cc7811022fa32a3527cc1b2b.json",
+    "datasets\\cache\\caef0fd81d58df0a8b63f68fa0cbffa741910d09c5ee00f66417eee089f45406.json",
+    "datasets\\cache\\cb57b6a78d461fb6e774768bacafd20eae5c7d55907b2fa68d698d3f0a3aacc5.json",
+    "datasets\\cache\\cb701f5751b07fce99c0555365b1c86581c06d56fe65839f62bdffc1bd7dac69.json",
+    "datasets\\cache\\ccb4f2e8e740cc38ae0e9a9449858bd3bf692582deef08bef31a3b305705a464.json",
+    "datasets\\cache\\ccc9c3854e17f8cecc062563a98d63d89d6bad1274a8b74498ee1c7d48748449.json",
+    "datasets\\cache\\cda2c0977c0650ec81fa0ac09fa284c8a2abc6e881c7e2d8215116f46ff9acf2.json",
+    "datasets\\cache\\ce050833b7ccafe297db228d01f0dfafb05dc8db1d6746d5bd280d8bcfaf6ebb.json",
+    "datasets\\cache\\cf33473ae2d083b3b901f94a1bc1ac256e5e9b8b0f12533e18fb65d323685968.json",
+    "datasets\\cache\\cf40fef9ecd64587b4df005a8030f6446430a3e808f63d94ee48745363f86944.json",
+    "datasets\\cache\\cf519436bf259c7aa115d675b2a907892bd36a68528400c8ea0e974132414cbc.json",
+    "datasets\\cache\\cfb361931c273945d8e419f860442fc419ed1a261829f12621cc7d95f3ca3949.json",
+    "datasets\\cache\\d1a293e268bc9f1bfcca15951f9787aed08dd66de38daf50003534182ce90d43.json",
+    "datasets\\cache\\d1e2ae42368cd8839347be0a35fc5dbf89f32dc041dbe5bbe626ca10b7431e40.json",
+    "datasets\\cache\\d22df6c589c9220d8a000c50db1d85cf91b3a80b79bfb8a247ab4ffe0a9a47c6.json",
+    "datasets\\cache\\d2c4285626172c28da6ca0f7c229ee53def455f816a4e2fdbb6a8fe7ec6903ce.json",
+    "datasets\\cache\\d2cb0cbc22c147fa0acadf434a626edf2fd174c3c7458409dda302c8928b502a.json",
+    "datasets\\cache\\d3e23c2209aa85fc90498be707f31ec37d9bd3c9ea1b1b11bd8736164a0622ae.json",
+    "datasets\\cache\\d3e98338873c57c9dd5991c566b4c79e38171d36ec4398a9006cfb65c8ff4944.json",
+    "datasets\\cache\\d476fa43a05a39eb471e835b229cd407c6a5b72f1599249403affabae13a5c3c.json",
+    "datasets\\cache\\d4ccbb8352a6e6fc5211fa10d52b933cf60e253dee3f371dc7d62143fa2aa6fe.json",
+    "datasets\\cache\\d5925d93039a20a58fa3cba4002e05990d222563255c1b737e19424407efa0bb.json",
+    "datasets\\cache\\d68e5a61975f6c6131e92de8dbcd092a1bcc500b103b73a90a48f3764a1841eb.json",
+    "datasets\\cache\\d695f21ec9b5be845ec305b84d47f7dc91768be5aaae3184fb484b8d9365b9cf.json",
+    "datasets\\cache\\d713f01d07e1149d753a92f624a10685969a5108fa0aae1b6b10aa4eb7ee61fb.json",
+    "datasets\\cache\\d736a331d2f6050a30666c32c142b210c2f641e3e7d45dc52b6967da6de50844.json",
+    "datasets\\cache\\d7dc12dced23155c0fccb0e4b3501fd1eea04f073d072f83134e7cb01c08e026.json",
+    "datasets\\cache\\d884a2bb5abc9d4e2804a1726e78e74d51ffb0619e4091b9e2f5c782ecb35b50.json",
+    "datasets\\cache\\d8a1a96707ce3ecf3d8bdc3a39b4c99e2ed069bb2b5b7932ae4ccfe215ce8bf6.json",
+    "datasets\\cache\\d92d3363c24c8dc7ecfe335ef4da851e80c4eac91bf4ae40eb5d7b0350a4ece8.json",
+    "datasets\\cache\\d94600b3589c0ccfa154e295e6c3c7fc1662db0485383728fd0651139c77d531.json",
+    "datasets\\cache\\da437daff893f264a368aa1308830a69de0476d058ade574b3aec6e0907e5cab.json",
+    "datasets\\cache\\db2842963cdb9ba31b5930b7f5389f1fea0dc4084307722d9d7bcf893790eb88.json",
+    "datasets\\cache\\db8777a8fd7d9fe3fa0484b9f4f752f7941c89d5a2ce3281230ec2112703b3e3.json",
+    "datasets\\cache\\dbf4f2addcc55dbf8db23648894587eca00341efcd8135784bb75e9a59be17ed.json",
+    "datasets\\cache\\dbf664dbdc1fb48851621d52f89bdc15e6a62b73cea4d6cbf0c004f9c16d116f.json",
+    "datasets\\cache\\dc090ce25c51427908e32e9f906c16d974775f36d080ca9aa5941c79e709f33b.json",
+    "datasets\\cache\\deb4efa108f08e704be7aa3f69ab28dd77fa9a63038d974b0d40c61701514d53.json",
+    "datasets\\cache\\df6dcc19c2c85b1df13a869e78f6a9f785147c53a79f688d1debd14f6973f331.json",
+    "datasets\\cache\\df8f4bacac644fff5588a63f8f41617f48ee815f2e6e5d2f9b1640cff5def689.json",
+    "datasets\\cache\\e083b1782a984fcce7135d73dc434ee7c41c468e7230088cdaaf54e4d4923e4d.json",
+    "datasets\\cache\\e08d77330faa5be96f28afb32a8324c6de66306a0219e071b30da1cd69b3f3a8.json",
+    "datasets\\cache\\e0cf1c967ce4307798b1fcf8f0386cbddf0ccd6c6cc8010783137b725d691970.json",
+    "datasets\\cache\\e2423d6f2663a4ce6b808a4e10b8e17595f4f77d49fd396c6e1f4fa61c4d0a33.json",
+    "datasets\\cache\\e24aec393b9a70a90f682e7590c206531440367497387e0a4c95a814d016fd53.json",
+    "datasets\\cache\\e294afccf55761eb4e5e9b8ce7355707453ab96c214fb670da5fdaffc311e60e.json",
+    "datasets\\cache\\e2f0cfa27f88f9429aae890780ea7bf24a962d0425d1b330ee2f1c17955d87be.json",
+    "datasets\\cache\\e30c7f27baa88a9e12c3f19725d087f85261b1fe781e6546a23dca1877483698.json",
+    "datasets\\cache\\e358e79512f88d5864d790c63e9ea72c818fe66ddbfd56cd1af4c3e8852f9ebc.json",
+    "datasets\\cache\\e3706834694c6856d39c968f5531c674988ae29cd05cfbfb2ce28f005ac108cc.json",
+    "datasets\\cache\\e43a2cb28b2119bffda5fec66a550efed979a1e80eeacba5449c48aff24efdc1.json",
+    "datasets\\cache\\e4d528f912169cffe0b16816d9df39f7d2ff3c037875b211c388144ee9157f0f.json",
+    "datasets\\cache\\e4dd4ca89556883fc4936220cd11779f7cef79e9b9df95e6cc6301161bbe5a82.json",
+    "datasets\\cache\\e54f2368431ae1f63db9ecdfc38264cbf114fae90ccc5e2dec14ecb17c6471d1.json",
+    "datasets\\cache\\e58f978484f9ae7220a1f356b1b15b83210f393964b38452a22c8c21868d12d4.json",
+    "datasets\\cache\\e5dc4adae4553be656dbe935c61a5e3e3f2831fa267eb5f570bf70a3e1fc9bce.json",
+    "datasets\\cache\\e5dfce2a9d71ecad75a818ecea40f9927dbf0c4980882ed78997fcc4fd49f316.json",
+    "datasets\\cache\\e6bfb6460dafb2f24639f48ea4c5a33b56bf7fdbb87aaf38871d7453c942407c.json",
+    "datasets\\cache\\e800f89eab86b46c031a4f8cf167ff23e4b14fad0f3e955cc64a70b7c5880dcf.json",
+    "datasets\\cache\\e926b2eeacfc03aba8b6e3f42340570ca94865fa0d4899021eb8fe434e192938.json",
+    "datasets\\cache\\ea0fe9121a03dfae49f8ce16d5d92fef2238742516c854431c06008f0686d881.json",
+    "datasets\\cache\\ebb4d30669bca875cb153fe9655157ca401abba8009881d9756ede82aec74d6a.json",
+    "datasets\\cache\\ec770726d4c0b42ffb836b6d49c7f9ee202a11c9647728bbaf1ec01c91b4ed16.json",
+    "datasets\\cache\\ed44b7fe68182c4cc69f32d65ee8d3a25313173c3ee4769df937937ae58ee6a6.json",
+    "datasets\\cache\\ed7e88570baec8dc20009d931522111c70fed59e9451fd6893a7219042e849f4.json",
+    "datasets\\cache\\eef32cf45ace0c64ac8ce87bdb64b4cfe4054f2ec5b87262a0ef1f372211660c.json",
+    "datasets\\cache\\ef0289078d063f53ca04105c273ac184527cfd6e2ea2219e69fa370213f4f93e.json",
+    "datasets\\cache\\efef94ccdd75fe77248d7eb1fcf582aa8c90c5029dce517b5fa9eda930c5c8ca.json",
+    "datasets\\cache\\f0340c1d02f3f2421a3f614084854e2d410cbc0ea6b88d4251f7bccf473a482a.json",
+    "datasets\\cache\\f0b8a7fa0e4c083ba7543d1bc0f83e46bdf6e4ea8eb9c60fb650066698dde16c.json",
+    "datasets\\cache\\f10716723ce8f0215fa471fbb5e376a620813ccb09d4d1ce612c772ad129f953.json",
+    "datasets\\cache\\f19826f744b323a0cf86d7f87411738c7f987519fba13ae5d2bd37b504c8e650.json",
+    "datasets\\cache\\f23bd1e2716cdb35105bf4bafdf9120ab87a092d9cd6976650a242d090430ca7.json",
+    "datasets\\cache\\f25551782990f1e0c23370bf2fc21d5a6ea8ab547fd00c761e4664cc948ea796.json",
+    "datasets\\cache\\f27f107205aba5ee71e9a4eedc56e68989cdf6b7cbb836f5cec82227cc0c03e5.json",
+    "datasets\\cache\\f285a7a1571bcf699bb2ca123c91c03eed93efe1b8584d977379d570695947a3.json",
+    "datasets\\cache\\f364385cdf28d9f3477f0d4abbc3a78a7b1a6ad49c1329990ab5f2f345b2df64.json",
+    "datasets\\cache\\f36bac694828dd592ed800c7003d38b6441c0cd971665e80bf89983a21a48e67.json",
+    "datasets\\cache\\f375f009ed2e3f10e3a082e35963cff66468ff3b34fbb17243baa1316ae825d7.json",
+    "datasets\\cache\\f3b0cf1d0f50d18176c401eb9667e4ba302e8430559ca3ab09ffc7e027d2fb74.json",
+    "datasets\\cache\\f4be2df43aa570de830404c8232a6dc9b776d1321ba661d11787ebd647452962.json",
+    "datasets\\cache\\f5914ece4115a5a1d985bf6e70f9be0a2b666c0aaedb699789c7ad0cf7848055.json",
+    "datasets\\cache\\f6152284c86ddcba6bfe50d6068889a8ba8b5c5ea525a81e6374c8d9dfb98f95.json",
+    "datasets\\cache\\f687dcd26048b73ae0ffca6e7cec9de0993b3ce0cd8727b866db075ea3a10614.json",
+    "datasets\\cache\\f70ebf810d03a1b9c67f031a9a7d97e1ef6f670ab34b88cf3a9c9c3bf3d56950.json",
+    "datasets\\cache\\f715343a8eb958fca2bf9bd66c50790cad0e9d81e2e66ef9d051afe92b80b899.json",
+    "datasets\\cache\\f72de5b28019e3771a219e31bf688b1a6bd09dcb1675afc0fc59d7652b79a306.json",
+    "datasets\\cache\\f739fe1b8b54909adf26e4f48ec86f9311a9b55dd1d4310146da94ecde4ab673.json",
+    "datasets\\cache\\f74261b38362ed95e313c7084ba8a350e2b9b29231cc59887a2cca5df827d798.json",
+    "datasets\\cache\\f76bc3bb2b66d22a917feb0686ef4c606c00acfe3763538b81fee8c4dc9c00e6.json",
+    "datasets\\cache\\f7a4ad8da5dba247016b2720503f606d90fded58023870da6b9630c1d4552fd5.json",
+    "datasets\\cache\\f7abc0fd293f9b48976f69e8113524d4722e4d81337f7cd8e7a041045be1fc0c.json",
+    "datasets\\cache\\f7ac622483b043d1fc7b2b2ec00cf1d8ae74edad743aa1152a446d4f77be56bf.json",
+    "datasets\\cache\\f839f44ca3523cf7165ffc0368ba560588e8c138c0b0873690322f3d65963fe8.json",
+    "datasets\\cache\\f98a99a8b71553b2f8a111bccf213e749276fe70498990762ea300bbc007d331.json",
+    "datasets\\cache\\fa7305b4cdb77abe043ebcd9c2e23866de759b820cc227a2083cf583fd43997a.json",
+    "datasets\\cache\\fa81180d3116fcf203a95353c01554ed74ee579484879a84d1392088c80dc0e2.json",
+    "datasets\\cache\\fadffa2ae376a38c082309e5058841ba2a434540941b1d1fff94c917e9fbe5ad.json",
+    "datasets\\cache\\fb035891be852dd1281b1a0de6f8fb83962db9434e1b2f093fc7e7eec4de510a.json",
+    "datasets\\cache\\fb41831f0300b31ab096e7366baf3956c87981e941b7d785fc2fa3f7d9ce5948.json",
+    "datasets\\cache\\fbd6339fdafb6f4a4fce9df37cbc4a391597ad86701b1f6e130d1f5b2ddee984.json",
+    "datasets\\cache\\fc42060bb7e8228bbd8f240f6cc2e8ab6307c26758bfeff9f2b708a5a362a8b0.json",
+    "datasets\\cache\\fd215b4262a093f4e20108541e00f1506a6d39a81f68a95cb8dfa8ec230b1796.json",
+    "datasets\\cache\\fdde888ddc508d8ee4d7215795e35a8404de803e0fcd68bbff359ca2b0091b4c.json",
+    "datasets\\cache\\ff9edceec10dce10c24e00b676af8042abc667fa5ec1b5d7e373a4d2ed5e2de3.json",
+    "datasets\\cross_schema_validation\\cross_schema_results.json",
+    "datasets\\dataset_a\\manifest.json",
+    "datasets\\dataset_a\\raw_traces.jsonl",
+    "datasets\\dataset_a_pilot\\manifest.json",
+    "datasets\\dataset_a_pilot\\raw_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp1_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp2_budget_curve\\budget_1A_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp2_budget_curve\\budget_1B_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp2_budget_curve\\budget_1C_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp2_budget_curve\\budget_1D_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp2_budget_curve\\budget_full_traces.jsonl",
+    "datasets\\dataset_b_pilot\\exp3_systems_eval\\systems_benchmark_summary.json",
+    "datasets\\dataset_b_pilot\\exp4_counterfactual\\counterfactual_replay_trials.jsonl",
+    "datasets\\dataset_b_pilot\\exp4b_bundle_scaling\\bundle_scaling_results.json",
+    "datasets\\dataset_b_pilot\\invariant_optimization_eval\\invariant_optimization_summary.json",
+    "datasets\\dataset_b_pilot\\invariant_scaling_eval\\invariant_bundle_scaling_summary.json",
+    "datasets\\dataset_b_pilot\\oracle_sanity_check\\oracle_sanity_results.json",
+    "datasets\\frozen_benchmark_n32\\invariant_optimization_summary.json",
+    "datasets\\frozen_benchmark_n32\\metadata.json",
+    "release_archive\\cross_schema_results.json",
+    "release_archive\\invariant_optimization_summary.json",
+    "release_archive\\RELEASE_METADATA.json",
+    "results\\benchmark_3way_comparison.json",
+    "version_2\\benchmark_tasks_n32.json",
+    "version_2\\full_schema.json"
+  ],
+  "excluded_patterns": [],
+  "api_calls_and_recorded_latency": [],
+  "local_latency_fields_seen": {},
+  "local_ast_latency_note": "Latency is summarized only if existing trace fields record a recomposition/splice duration. If no samples are listed, instrument the actual LASR recomposition function and rerun; a synthetic JSON operation would not measure LASR's implementation.",
+  "offline_cosine_rag": {
+    "status": "computed",
+    "method": "local TF-IDF weighted lexical vectors + cosine similarity (not text-embedding-004)",
+    "tasks_evaluated": 32,
+    "schema_constraint_chunks": 27,
+    "k": 2,
+    "micro_recall_at_k": 0.111111,
+    "macro_recall_at_k": 0.125,
+    "per_task": [
+      {
+        "query": "Restock our east depot with 50 units using our standard vendor agreement.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/items/maxItems",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Have procurement route forty units of SKU-10008 to the eastern facility.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/items/items/properties/sku/pattern",
+          "/properties/items/items/properties/sku/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "We require thirty additional parts delivered to the western depot by next cycle.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/authorized_by/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Supply chain notice: dispatch 45 units to our US East regional distribution site.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/warehouse_code/enum",
+          "/type"
+        ],
+        "gold_recalled": [
+          "/properties/warehouse_code/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Send forty inventory pieces to our western operations terminal.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Order 50 replacement modules for delivery to our east coast branch.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/items/maxItems",
+          "/properties/order_priority/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Prepare standard shipment of 60 items to the west coast facility.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/enum",
+          "/properties/items/items/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Execute routine replenishment: 40 units routed to east depot.",
+        "ground_truth_ids": [
+          "/properties/authorized_by/pattern",
+          "/properties/warehouse_code/enum"
+        ],
+        "retrieved_ids": [
+          "/properties/warehouse_code/enum",
+          "/type"
+        ],
+        "gold_recalled": [
+          "/properties/warehouse_code/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Top priority: rush 20 units to our eastern warehouse to avoid assembly shutdown.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/warehouse_code/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Immediate replenishment needed: expedite 25 units for critical East terminal operations.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/enum",
+          "/properties/warehouse_code/enum"
+        ],
+        "gold_recalled": [
+          "/properties/order_priority/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Factory emergency: order 15 replacement components under critical expedition terms.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/enum",
+          "/properties/order_priority/type"
+        ],
+        "gold_recalled": [
+          "/properties/order_priority/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Urgent order: send 30 essential parts to our West facility under highest priority.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [
+          "/properties/order_priority/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Rush shipment authorized: procure 20 units for immediate delivery to East depot.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/authorized_by/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Emergency ticket #409: expedite purchase of 25 items to prevent line stoppage.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/items/items/type",
+          "/properties/items/items/additionalProperties"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "High-severity stock failure: dispatch 15 urgent units to West regional hub.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/warehouse_code/enum",
+          "/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Critical stock alert: place urgent purchase for 20 modules heading to East dock.",
+        "ground_truth_ids": [
+          "/properties/order_priority/enum",
+          "/properties/total_budget_limit/maximum"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/enum",
+          "/properties/warehouse_code/enum"
+        ],
+        "gold_recalled": [
+          "/properties/order_priority/enum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Execute bulk order of 100 items from contracted vendor meeting minimum batch requirements.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/total_budget_limit/minimum",
+          "/properties/items/items/properties/quantity/minimum"
+        ],
+        "gold_recalled": [
+          "/properties/items/items/properties/quantity/minimum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Wholesale replenishment: procure 120 units from certified supplier Texas Semi.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/supplier_id/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Contract requisition for 90 parts honoring supplier minimum order volume standards.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/supplier_id/type",
+          "/properties/items/items/properties/quantity/minimum"
+        ],
+        "gold_recalled": [
+          "/properties/items/items/properties/quantity/minimum"
+        ],
+        "recall_at_k": 0.5
+      },
+      {
+        "query": "Place bulk procurement request for 110 units from approved semiconductor supplier.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/supplier_id/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Order 100 replacement assemblies meeting certified vendor procurement specifications.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/total_budget_limit/minimum",
+          "/properties/order_priority/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Restock 80 specialized items ensuring manufacturer MOQ thresholds are satisfied.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/items/items/type",
+          "/properties/items/items/additionalProperties"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Commercial wholesale order: 125 units from primary contracted vendor.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Procure 95 batch components from certified supplier following volume agreements.",
+        "ground_truth_ids": [
+          "/properties/items/items/properties/quantity/minimum",
+          "/properties/supplier_id/pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/supplier_id/type",
+          "/required"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Issue dual-line replenishment order for 25 units of SKU-10006 and 35 units of SKU-10007.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/items/items/properties/sku/pattern",
+          "/properties/items/items/properties/sku/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Consolidate two product lines into one replenishment order for the eastern depot.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Multi-item stock order: acquire 30 units of component 1 and 20 units of component 2.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/items/minItems",
+          "/properties/order_priority/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Rebalance regional storage with a combined order of two separate catalog parts.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/supplier_id/pattern",
+          "/properties/authorized_by/pattern"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Dual-item requisition: place order for 25 units of SKU-10008 and 30 units of SKU-10009.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/items/items/properties/sku/pattern",
+          "/properties/items/items/properties/sku/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Bundle replenishment request across multiple stock keeping units for West terminal.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/warehouse_code/enum",
+          "/type"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Assemble combined purchase order covering two inventory lines for East hub.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      },
+      {
+        "query": "Multi-part dispatch: order 35 units of first item and 25 units of second item.",
+        "ground_truth_ids": [
+          "items.minItems",
+          "items.required",
+          "items.sku.pattern"
+        ],
+        "retrieved_ids": [
+          "/properties/order_priority/type",
+          "/properties/order_priority/enum"
+        ],
+        "gold_recalled": [],
+        "recall_at_k": 0.0
+      }
+    ],
+    "warning": "This is a reproducible lexical-cosine baseline. Do not describe it as dense embedding Tool-RAG or substitute its result for an embedding-model experiment."
+  }
+}

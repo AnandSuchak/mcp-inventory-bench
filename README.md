@@ -1,188 +1,235 @@
 # LASR-MCP: Learned Adaptive Schema Resolution with Dynamic In-Tree Recovery for Enterprise Tool-Calling Agents
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSING.md)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](LICENSING.md)
 [![Python: 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![MCP Spec: 2026-07-28](https://img.shields.io/badge/MCP%20Spec-2026--07--28-brightgreen.svg)](https://modelcontextprotocol.io/specification)
 [![JSON Schema: Draft 2020-12](https://img.shields.io/badge/JSON%20Schema-Draft%202020--12-blueviolet.svg)](https://json-schema.org/draft/2020-12/json-schema-core.html)
-[![Tests: 74 Passed](https://img.shields.io/badge/Tests-74%2F74%20Passing-success.svg)](#reproducibility-verification)
+[![Tests: 110 Passed](https://img.shields.io/badge/Tests-110%2F110%20Passing-success.svg)](#7-reproducibility--verification)
 
-> **Author**: Anand S. Suchak  
-> *Independent Systems Researcher* | Email: `anand02suchak@gmail.com`  
-> **Canonical Repository**: [https://github.com/AnandSuchak/mcp-inventory-bench](https://github.com/AnandSuchak/mcp-inventory-bench)  
-> **Camera-Ready Artifact**: `release_archive/lasr_mcp_camera_ready_package.zip` (SHA-256 Manifest Verified)
+> **Version:** `2.0.3`<br>
+> **Author:** Anand S. Suchak<br>
+> **Affiliation:** Independent Researcher | Email: `anand02suchak@gmail.com`<br>
+> **Canonical Repository:** [https://github.com/AnandSuchak/mcp-inventory-bench](https://github.com/AnandSuchak/mcp-inventory-bench)<br>
+> **Authoritative Manuscript:** [`version_2/paper_v2/main_v2.pdf`](version_2/paper_v2/main_v2.pdf) (15-Page IEEE Conference/Transactions Format)<br>
+> **Distribution Bundle:** [`release/v2.0.3/`](release/v2.0.3/) | Pre-packaged in [`zenodo_deposit_v2_0_3/`](zenodo_deposit_v2_0_3/)
 
 ---
 
-## 1. Executive Summary
+## 1. Research Overview
 
-As enterprise computing transitions toward autonomous agentic workflows, the **Model Context Protocol (MCP)** has emerged as the open standard interface for tool discovery and parameter integration. However, exposing complex enterprise contracts (such as multi-constraint procurement, logistics, and inventory dispatching) presents a fundamental systems dilemma:
-- **The Monolithic Full-Schema Tax**: Transmitting complete monolithic schemas (frequently exceeding 500–650 tokens per tool) on every turn inflates prompt token overhead, drives up operational API costs, and degrades inference throughput.
-- **The Brittleness of Naive Truncation**: Statically stripping schemas down to basic primitive types eliminates critical domain constraints (e.g., regex patterns, enum bounds, item limits), causing language models to hallucinate invalid arguments and suffer catastrophic validation failures.
+Enterprise Autonomous Agents built on the **Model Context Protocol (MCP)** frequently interface with large, deeply constrained JSON Schema declarations. In complex workflows (such as enterprise procurement, multi-depot replenishment, and freight logistics), presenting complete monolithic schemas incurs high prompt token overhead and diminishes inference throughput. Conversely, statically stripping schemas to primitive types leads language models into unconstrained argument hallucinations and validation failures.
 
-**LASR-MCP** resolves this trade-off through a tripartite architectural framework:
-1. **Tier 1 — Invariant Foundation Floor ($C_I^*$):** An empirically selected minimal constraint subset ($339$ tokens for procurement) that establishes a baseline structural viability floor without intent conditioning.
-2. **Tier 2 — Proactive Intent-Conditioned Predictor ($\hat{C}_T(x)$):** A lightweight semantic classifier that predicts task-relevant constraint bundles from user intent prior to tool invocation.
-3. **Tier 3 — Dynamic In-Tree Recomposition ($C_R^{(t)}$):** A closed-loop reactive operator that intercepts pass-level multi-error validator diagnostics (RFC 6901 JSON Pointers and keywords) and splices canonical constraint nodes directly into the native JSON Schema tree on Attempt 2.
+**LASR-MCP** introduces a tripartite architecture that resolves this systems dilemma through adaptive, closed-loop schema exposure:
 
 ```text
 Active Tool Schema at Round t:
 C_active^(t) = C_I^*  ∪  Ĉ_T(x)  ∪  C_R^(t)
                │         │          │
                │         │          └─► [Tier 3] Dynamically Recovered Constraints (Validator Intercept)
-               │         └────────────► [Tier 2] Proactive Intent-Predicted Bundle (Task Text)
+               │         └────────────► [Tier 2] Proactive Intent-Conditioned Bundle (Task Text)
                └──────────────────────► [Tier 1] Invariant Foundation Floor (Structural Safety)
 ```
 
----
-
-## 2. Cryptographic Manifests & Data Provenance
-
-All experimental data, recorded execution traces, and benchmark harnesses are immutably archived with automated SHA-256 cryptographic manifests:
-
-### A. Primary Frozen Benchmark ($N=32$ Tasks, 4 Operational Archetypes)
-- **Git Commit Hash**: `9807340abc38170e0090a102547ee4309c01d78b`
-- **Data File**: [`datasets/frozen_benchmark_n32/invariant_optimization_summary.json`](datasets/frozen_benchmark_n32/invariant_optimization_summary.json)
-- **SHA-256 Digest**:
-  ```text
-  78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11
-  ```
-
-### B. Post-Freeze Cross-Schema Robustness Study ($N=32$ Tasks, 4 Enterprise Domains)
-- **Data File**: [`datasets/cross_schema_validation/cross_schema_results.json`](datasets/cross_schema_validation/cross_schema_results.json)
-- **SHA-256 Digest**:
-  ```text
-  b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a
-  ```
+1. **Tier 1 — Invariant Foundation Floor ($C_I^*$):** An empirically derived, intent-agnostic core schema floor ($339$ tokens for enterprise procurement) that provides structural definitions (nested object and array types) to prevent early parsing collapses.
+2. **Tier 2 — Proactive Intent-Conditioned Predictor ($\hat{C}_T(x)$):** A lightweight classifier that estimates $k$ task-relevant constraint fragments directly from user task text prior to tool invocation.
+3. **Tier 3 — Dynamic In-Tree Recomposition ($C_R^{(t)}$):** A deterministic recovery operator that intercepts pass-level validation diagnostics (RFC 6901 JSON Pointers and violated keywords) upon validation failure and splices only the violated constraints directly into the active JSON Schema tree for subsequent retry attempts.
 
 ---
 
-## 3. Empirical Evaluation & Benchmark Results
+## 2. Research Contributions
 
-### Table I: Full-Spectrum Systems Evaluation (32-Task Development/Validation Benchmark)
-*Evaluated on Google Cloud `gemini-3.5-flash-lite` with provider-reported `totalTokenCount` accounting.*
-
-| System Arm | Reactive? | Init $S_0$ (tok) | Exp. $\Delta S$ (tok) | 1st-Pass Struct. | Final Struct. | Semantic Corr. | Mean $TTS$ | Total Workload Tokens | Token Reduction |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Full Schema Control** | No | 552.0 | 0.0 | 31.2% | 93.8% | 90.6% | 2913.2 | 96,629 | baseline |
-| **$C_I^*$ Baseline ($k=0$)** | No | 339.0 | 0.0 | 0.0% | 68.8% | 65.6% | 3182.9 | 102,407 | +6.0% (overhead) |
-| **LASR $k=1$ (Static)** | No | 361.1 | 0.0 | 15.6% | 78.1% | 71.9% | 2410.6 | 83,754 | -13.3% |
-| **LASR $k=1$ (Reactive)** | **Yes** | 361.1 | 45.4 | 15.6% | **100.0%** | **93.8%** | 2410.6 | **77,140** | **-20.2%** |
-| **LASR $k=2$ (Reactive)** | **Yes** | 366.8 | 43.8 | 18.8% | **100.0%** | **93.8%** | **2351.5** | **75,248** | **-22.1%** |
-| **Oracle $O(x)$ (Reactive)\*** | Yes | 359.0 | 48.3 | 15.6% | 96.9% | 93.8% | 2325.3 | 75,649 | -21.7% |
-
-*\*Note: Oracle $O(x)$ is a model-conditional reference baseline constructed from task specifications. Mean $TTS$ is conditional on successful trajectories ($N_{\text{succ}}$); Total Tokens sums all turns across all 32 tasks.*
+- **Adaptive JSON Schema Resolution:** Closed-loop pruning and dynamic expansion of Draft 2020-12 tool schemas tailored to runtime execution needs.
+- **Multi-Label Intent-Conditioned Constraint Prediction:** Linguistic and semantic mapping of task prompts to domain constraints without requiring prompt-level schema leakage.
+- **Multi-Error Validator Interception:** Extraction of fine-grained error paths from JSON Schema validators for surgical error recovery.
+- **Native In-Tree Schema Recomposition:** Deterministic mutation of active schema abstract syntax trees via RFC 6901 JSON Pointers, preserving full dialect compliance.
+- **Finite Monotonic Recovery Bound:** Theoretical proof guaranteeing recovery termination within $K \le M - |A_0|$ retry turns without non-monotonic schema oscillations.
+- **Empirical Retry-Amortization Analysis:** Characterization of the *Retry-Amortization Boundary*, establishing the exact operational conditions under which adaptive pruning outperforms or underperforms monolithic schema delivery.
+- **Open-Science Telemetry & Benchmark:** Full raw call ledgers ($7,860$ response-bearing Gemini API invocations, $154$ transport retries, $3,840$ trials) released under open-access terms.
 
 ---
 
-### Table IV: Cross-Schema Robustness Evaluation across 4 Enterprise Domains
-*Stress-testing architectural transfer across four heterogeneous synthetic contracts ($N=32$ tasks total, 8 per domain; 50/50 explicit vs. ambiguous split).*
+## 3. Experimental Setup
 
-| Enterprise Tool Schema | Domain / Key Constraints | Init $S_0$ | Full $S$ | Token Savings | 1st-Pass (Exp/Amb) | Final Struct. | Semantic Corr. | Ambiguous Task Recovery |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `create_purchase_order` | Procurement (Regex, enums, budget bounds) | 339 | 552 | **21.3%** | 50.0% (4/4, 0/4) | **100.0%** | 87.5% | **100.0% (4/4)** |
-| `inventory_adjustment` | Warehouse Stock (Signed deltas, facility codes) | 299 | 541 | **22.4%** | 50.0% (4/4, 0/4) | **100.0%** | 87.5% | **100.0% (4/4)** |
-| `shipment_creation` | Freight Logistics (Nested packages, tracking regex) | 337 | 646 | **25.2%** | 50.0% (4/4, 0/4) | **100.0%** | 100.0% | **100.0% (4/4)** |
-| `customer_refund` | Financial Accounting (Refund limits, currency enums) | 292 | 474 | **20.5%** | 50.0% (4/4, 0/4) | **100.0%** | 100.0% | **100.0% (4/4)** |
-| **Macro Mean / Aggregate** | **Cross-Domain Summary ($N=32$)** | **316.8** | **553.2** | **22.5%** | **50.0% (16/16, 0/16)** | **100.0%** | **93.8%** | **100.0% (16/16)** |
+The canonical live evaluation reported in manuscript v2.0.3 was conducted under the following pre-registered, audited parameters:
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Total Completed Trials** | $N = 3,840$ |
+| **Unique Evaluation Tasks** | $32$ synthetic enterprise tasks (4 clusters of 8 tasks each) |
+| **Experimental Arms** | $6$ distinct arms evaluated symmetrically |
+| **Replicates per Task-Arm** | $20$ fixed-seed repeated runs |
+| **Model** | `gemini-3.5-flash-lite` |
+| **Inference Temperature** | $0.2$ |
+| **Execution Seed** | $42$ |
+| **Response-Bearing API Calls** | $7,860$ |
+| **Client Transport Retries** | $154$ (automatic client-side backoff) |
+| **Dialect & Standard** | JSON Schema Draft 2020-12 / Model Context Protocol |
+
+### Experimental Arms
+
+1. **Full Schema Control (`full`):** Static baseline transmitting the complete monolithic tool schema ($552.0$ tokens) upfront on every turn.
+2. **Invariant Baseline (`ci_k0`):** Pruned baseline presenting only the invariant floor ($C_I^*$, $339.0$ tokens) without proactive prediction or reactive recovery.
+3. **Proactive Static Control (`ci_k1_static`):** Invariant floor augmented with top-$1$ proactive predicted constraints, but no closed-loop retry recovery.
+4. **Proactive-Reactive LASR (`ci_k1_reactive`):** Invariant floor + top-$1$ proactive prediction + closed-loop reactive in-tree error recovery.
+5. **Proposed LASR (`ci_k2_reactive`):** Invariant floor + top-$2$ proactive prediction + closed-loop reactive in-tree error recovery.
+6. **Task-Aware Oracle Reference (`oracle_reactive`):** Theoretical reference exposing the minimal exact constraint bundle required for each specific task.
 
 ---
 
-## 4. Key Empirical Takeaways
+## 4. Empirical Benchmark Results (Table IV)
 
-1. **Semantic Predictability ($H_1$)**: Task text contains strong predictive signals for intent-conditioned rules. On unseen syntactic template families, LASR achieves $F_1 = 0.863$ versus $0.250$ for frequency baselines ($\Delta F_1 = +0.612, p < 0.001$).
-2. **Invariant Safety Floor ($H_2$)**: Operating below the empirical floor ($339$ tokens) causes structural validity to collapse from $75.0\%$ to $50.0\%$ on the calibration probe due to missing nested container definitions.
-3. **Causal Contribution of Reactive Recovery ($H_3$)**: Paired comparison against static adaptive exposure demonstrates a $+21.9\text{ pp}$ gain in structural validity ($78.1\% \rightarrow 100.0\%$, exact one-sided McNemar test $p = 0.0078125$), successfully recovering all $27/27$ initially failed trajectories within 3 attempts.
-4. **Workload Token Economics ($H_4$)**: Rather than increasing token spend through retries, reactive LASR saves $6,614$ tokens ($-7.9\%$) over static LASR and $21,381$ tokens ($-22.1\%$) over Full Schema by resolving errors on Attempt 2 and terminating retry cascades early.
+The table below presents the verified results from the canonical $3,840$-trial live benchmark across all six arms. All token figures reflect provider-reported Prompt-plus-Candidate (P+C) usage from `usageMetadata` ($\text{promptTokenCount} + \text{candidatesTokenCount} = \text{totalTokenCount}$):
+
+| Experimental Arm | Reactive Recovery? | Mean P+C Tokens / Trial | Total P+C Workload | Structural Reliability | Semantic Correctness | Signed Workload Savings vs. Full (95% Bootstrap CI) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Full Schema Control** | No | 1,116.8 | 714,740 | 100.0% | 96.9% | 0.0% (Baseline Reference) |
+| **`ci_k0` (Floor Baseline)** | No | 2,057.7 | 1,316,900 | 87.5% | 84.4% | -84.25% ([-125.15%, -49.21%]) |
+| **`ci_k1_static`** | No | 1,919.3 | 1,228,340 | 90.6% | 87.5% | -71.86% ([-109.18%, -40.22%]) |
+| **`ci_k1_reactive`** | **Yes** | 1,601.4 | 1,024,880 | 96.9% | 93.8% | -43.39% ([-70.15%, -19.70%]) |
+| **`ci_k2_reactive` (Proposed)**| **Yes** | **1,406.5** | **900,140** | **96.9%** | **93.8%** | **-25.94% ([-52.55%, -3.16%])** |
+| **`oracle_reactive`** | **Yes** | 1,377.8 | 881,820 | 96.9% | 93.8% | -23.38% ([-49.56%, -1.17%]) |
+
+*Note: Signed savings are defined as $(T_{\text{full}} - T_{\text{arm}}) / T_{\text{full}} \times 100$. Negative values indicate higher token workload. Percentile bootstrap intervals (10,000 resamples, seed 42) cluster over task IDs.*
 
 ---
 
-## 5. Repository Structure
+### Critical Scientific Findings: The Retry-Amortization Boundary
+
+The empirical benchmark reveals critical systems dynamics that qualify prior preliminary claims:
+
+1. **Proposed LASR vs. Zero-Constraint Floor:** Proposed LASR $k=2$ consumes **$31.65\%$ fewer tokens** than the zero-constraint baseline (`ci_k0`: $900,140$ vs. $1,316,900$ tokens), demonstrating substantial token compression over naive unconstrained generation.
+2. **Benchmark-Wide Penalty vs. Full Schema Control:** Across the entire $3,840$-trial benchmark, proposed LASR $k=2$ consumes **$+25.94\%$ MORE tokens** than Full Schema Control ($900,140$ vs. $714,740$ tokens; 95% CI: $[-52.55\%, -3.16\%]$). **LASR does NOT establish overall token savings across heterogeneous benchmark tasks.**
+3. **Regime-Dependent Efficiency (Routine Cluster C1):**
+   - In **Cluster C1 (`routine_regional_replenish`)**, where proactive prediction accuracy is high and constraint violations are minimal, proposed LASR $k=2$ achieves **$13.49\%$ lower token consumption** than Full Schema Control ($847.6$ vs. $979.8$ tokens/trial) while delivering **$100.0\%$ structural reliability**.
+4. **Retry Cascades in Complex Clusters (C2–C4):**
+   - In **Cluster C2 (`expedited_emergency_order` / Expedited Emergency Orders)**, LASR incurs $+22.23\%$ higher token spend ($1,557.5$ vs. $1,274.2$ tokens; signed savings: $-22.23\%$).
+   - In **Cluster C3 (`specialized_bulk_procurement` / Specialized Bulk Procurement)**, LASR incurs $+59.79\%$ higher token spend ($1,610.9$ vs. $1,008.1$ tokens; signed savings: $-59.79\%$).
+   - In **Cluster C4 (`multi_item_depot_rebalance` / Multi-Item Depot Rebalancing)**, LASR incurs $+33.60\%$ higher token spend ($1,609.9$ vs. $1,205.0$ tokens; signed savings: $-33.60\%$).
+   - **Mechanism:** In multi-turn tool interaction, re-transmitting previous turns, error diagnostics, and assistant responses on Attempt 2 consumes far more tokens than transmitting a complete monolithic schema upfront on Attempt 1. Pruning is only economically sound when first-pass success is high.
+
+---
+
+## 5. Research Limitations & Ethical Disclosures
+
+To prevent overgeneralization, we explicitly disclose the methodological boundaries of this study:
+
+1. **Single Model Family:** Evaluated exclusively on Google Cloud's `gemini-3.5-flash-lite`. Behavior across open-weight models (e.g., Llama 3) or frontier reasoning models may vary.
+2. **Synthetic Benchmark Scope:** Tasks are drawn from an enterprise procurement and inventory domain. Production enterprise schemas may feature higher cardinality or dynamic database-backed constraints.
+3. **Evaluation Breadth:** Evaluated across $32$ pre-specified tasks grouped into four structural clusters.
+4. **Vocabulary & Constraint Recurrence:** Training and evaluation prompts share an enterprise procurement lexicon with recurring constraint patterns.
+5. **Calibration Probe Overlap:** An $8$-task calibration probe (`BLIND-C1-013` ... `BLIND-C4-014`) was utilized during development, as disclosed in Section III-F of the manuscript.
+6. **Fixed-Seed Determinism:** Replicates operated at fixed seed $42$ and temperature $0.2$; variance primarily captures prompt-caching and service transport behavior.
+7. **Single-Tool Focus:** Evaluates deep constraints on a single primary tool (`create_purchase_order`) rather than multi-tool agent routing.
+8. **Transport Scope:** Benchmarked via direct REST API client interaction rather than end-to-end stdio/SSE MCP multiplexing.
+
+---
+
+## 6. Repository Architecture & Experimental Scopes
 
 ```text
 mcp-inventory-bench/
 ├── datasets/
-│   ├── frozen_benchmark_n32/          # Primary frozen benchmark dataset & cryptographic manifest
-│   │   ├── invariant_optimization_summary.json  (SHA-256: 78c2c88e...)
-│   │   └── MANIFEST.sha256
-│   └── cross_schema_validation/       # 4-domain cross-schema robustness dataset & manifest
-│       ├── cross_schema_results.json            (SHA-256: b3d57636...)
-│       └── MANIFEST.sha256
-├── paper/                             # IEEE conference publication source files
-│   ├── main.tex                       # Primary LaTeX driver (Exact 8-page format)
-│   ├── sections/                      # Section-by-section LaTeX modules (00 to 07)
-│   ├── tables/                        # Tables I through IV
-│   ├── references.bib                 # Cleaned bibliography (Sadani, Cho, Zhai, Sakizli, etc.)
-│   └── main.pdf                       # Compiled camera-ready PDF (Exact 8 pages, 27 embedded fonts)
-├── release_archive/                   # Release bundle for camera-ready distribution
-│   ├── main.pdf                       # Canonical camera-ready PDF
-│   ├── lasr_mcp_camera_ready_package.zip  # Self-contained submission archive
-│   ├── RELEASE_MANIFEST.sha256        # Comprehensive bundle checksums
-│   └── RELEASE_METADATA.json          # Machine-readable provenance metadata
-├── tests/                             # Comprehensive 74-test regression test suite
-│   ├── test_frozen_integrity.py       # Cryptographic manifest & dataset immutability tests
-│   ├── test_cross_schema.py           # Multi-domain transfer & recovery verification
-│   ├── test_token_accounting.py       # Gemini API totalTokenCount decomposition tests
-│   ├── test_recomposer.py             # JSON Pointer in-tree recomposition tests
-│   ├── test_validator.py              # JSON Schema Draft 2020-12 validator tests
-│   └── test_predictor.py              # Linear intent classifier tests
-├── trace/                             # Core LASR-MCP runtime operators
-│   ├── recomposer.py                  # In-tree JSON Schema tree recomposition operator
-│   ├── validator.py                   # Draft 2020-12 multi-error diagnostic extractor
-│   └── slicer.py                      # Invariant foundation extractor & serializer
-└── requirements.txt                   # Frozen Python environment dependencies
+│   ├── fresh_live_benchmark_n32/      # [SCOPE 2] Canonical 3,840-trial live benchmark (Authoritative)
+│   │   ├── benchmark_call_records.jsonl (22 MB, 7,860 calls, SHA-256: a50bd0f8...)
+│   │   ├── benchmark_trial_records.json (9.4 MB, 3,840 trials, SHA-256: 24550314...)
+│   │   ├── benchmark_summary.json       (5 KB, SHA-256: cdf05169...)
+│   │   └── run_manifest.json            (1.1 KB, SHA-256: 83d36e1b...)
+│   ├── frozen_benchmark_n32/          # [SCOPE 1] Historical frozen benchmark (v1.0 single-trial archive)
+│   │   └── invariant_optimization_summary.json (SHA-256: 78c2c88e...)
+│   └── cross_schema_validation/       # [SCOPE 3] Post-freeze 4-domain structural simulation
+│       └── cross_schema_results.json    (SHA-256: b3d57636...)
+├── version_2/                         # Canonical Version 2.0.3 analysis, scripts & manuscript
+│   ├── paper_v2/                      # 15-Page IEEE camera-ready source and compiled PDF
+│   │   ├── main_v2.pdf                (525 KB, SHA-256: 73e1b92e...)
+│   │   └── main_v2.tex
+│   ├── analyze_fresh_benchmark.py     # 10,000-resample paired cluster bootstrap analysis
+│   ├── reconcile_canonical_metrics.py # Read-only canonical integrity verifier
+│   └── generate_paper_tables_v2.py    # Deterministic Table I-IV generator
+├── release/
+│   └── v2.0.3/                        # Formal release documentation & cryptographic manifest
+│       ├── MANIFEST.sha256            (Verified SHA-256 manifest of all release artifacts)
+│       ├── RELEASE_NOTES.md
+│       └── DATA_PROVENANCE.md
+├── zenodo_deposit_v2_0_3/             # Pre-assembled Zenodo deposit package
+├── paper/                             # Historical Version 1.0 (8-page conference draft, archived)
+├── trace/                             # Core LASR-MCP runtime operators (slicer, recomposer, validator)
+├── tests/                             # Test suite (74 unit & regression tests)
+└── generated_tests/                   # Integration and closed-loop tests (20 tests)
 ```
 
 ---
 
-## 6. Reproducibility & Build Verification
+## 7. Reproducibility & Verification
 
-### Environment Setup
+### A. Environment Installation
+
+Ensure Python 3.11+ is installed. Clone the repository and install dependencies:
+
 ```bash
-# Clone the canonical repository
 git clone https://github.com/AnandSuchak/mcp-inventory-bench.git
 cd mcp-inventory-bench
-
-# Create and activate Python virtual environment
-python -m venv .venv
-# On Windows (PowerShell):
-.venv\Scripts\Activate.ps1
-# On Linux / macOS:
-source .venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Run Full Regression Suite (74/74 Passing)
+### B. Running the Test Suite (110 Tests Passing)
+
+Execute the comprehensive test suite (including unit tests, schema validators, in-tree recomposers, and verifier regression tests):
+
 ```bash
-pytest -q
-# Expected output: 74 passed in ~0.50s
+# Run all 110 tests across framework and verifiers
+pytest
+
+# Or run the 74 core framework tests specifically:
+pytest generated_tests tests
 ```
 
-### Verify Cryptographic Dataset Checksums
-```bash
-# Verify primary frozen benchmark (commit 9807340)
-certutil -hashfile datasets/frozen_benchmark_n32/invariant_optimization_summary.json SHA256
-# Expected: 78c2c88ed5128e0f296fa29e0c258589b516f3adb14b0b8da491fa73bc3ffc11
+### C. Running Read-Only Canonical Metric Reconciliation
 
-# Verify cross-schema robustness dataset
-certutil -hashfile datasets/cross_schema_validation/cross_schema_results.json SHA256
-# Expected: b3d57636f9834ff536204acfe88454c9620228bb67705f1b3caa40e0d562302a
+Verify that all reported numbers match the underlying canonical telemetry byte-for-byte:
+
+```bash
+python version_2/reconcile_canonical_metrics.py --check
+# Expected output: [SUCCESS] Pure read-only canonical audit passed! All targets match canonical evidence.
 ```
 
-### Deterministic PDF Compilation
+### D. Reproducing Statistical Bootstrap Analysis
+
+Re-run the 10,000-iteration paired cluster bootstrap over the 3,840 raw trials:
+
 ```bash
-# Uses Tectonic engine with fixed timestamp for bit-for-bit reproducibility
-$env:SOURCE_DATE_EPOCH = "1725969600"
-.\bin\tectonic.exe -Z search-path=paper paper\main.tex
-# Result: Exactly 8 pages, 27/27 fonts embedded, zero undefined markers
+python version_2/analyze_fresh_benchmark.py
+# Computes primary comparison (LASR k=2 vs Full: -25.94%, 95% CI: [-52.55%, -3.16%])
+```
+
+### E. Cryptographic SHA-256 Manifest Verification
+
+Verify all datasets and manuscript bundles against the canonical manifest:
+
+```powershell
+python -c "
+import hashlib
+from pathlib import Path
+manifest = Path('release/v2.0.3/MANIFEST.sha256')
+with open(manifest) as f:
+    for line in f:
+        line = line.strip()
+        if not line or line.startswith('#'): continue
+        h, p = line.split(maxsplit=1)
+        path = Path(p.strip())
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == h
+        print(f'VERIFIED: {path.name}')
+"
 ```
 
 ---
 
-## 7. Citation
+## 8. Publication Details & Citation
 
-If you use this benchmark dataset, runtime framework, or cite the empirical findings in your research:
+- **Author:** Anand S. Suchak
+- **Affiliation:** Independent Researcher
+- **Manuscript Version:** v2.0.3 (November 2026)
+- **Preprint Archive:** Zenodo Open-Science Repository (Deposit package prepared in [`zenodo_deposit_v2_0_3/`](zenodo_deposit_v2_0_3/))
 
 ```bibtex
 @article{suchak2026lasr_mcp,
@@ -190,12 +237,16 @@ If you use this benchmark dataset, runtime framework, or cite the empirical find
   author={Suchak, Anand S.},
   journal={Open-Science Research Preprint (Zenodo)},
   year={2026},
+  version={2.0.3},
   url={https://github.com/AnandSuchak/mcp-inventory-bench}
 }
 ```
 
 ---
 
-## 8. License
+## 9. License
 
-This project is licensed under the [MIT License](LICENSE). All benchmark data, schemas, and execution traces are open for academic and commercial research under open-science principles.
+This repository uses dual open-access licensing (see [`LICENSING.md`](LICENSING.md) for full details):
+- **Software & Benchmark Scripts:** [MIT License](LICENSING.md).
+- **Academic Manuscript & Research Documentation:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSING.md).
+- **Benchmark Telemetry & Datasets:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSING.md).

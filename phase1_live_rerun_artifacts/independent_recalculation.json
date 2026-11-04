@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "run_timestamp": "2026-10-22T12:30:37Z",
+    "elapsed_seconds": 8163.33,
+    "mean_api_latency_ms": 26628.44,
+    "min_api_latency_ms": 7966.99,
+    "max_api_latency_ms": 1071967.5,
+    "cache_entries_count": 285,
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini"
+  },
+  "arms_independent_recalculation": {
+    "full": {
+      "tasks_count": 32,
+      "total_attempts": 57,
+      "total_tokens_consumed": 87013,
+      "token_savings_pct_vs_full": 0.0,
+      "first_pass_structural_pct": 40.6,
+      "final_structural_pct": 96.9,
+      "first_pass_semantic_pct": 96.9,
+      "final_semantic_pct": 93.8,
+      "recovery_rate_pct": 94.7,
+      "mean_tts": 2656.2
+    },
+    "ci_k0": {
+      "tasks_count": 32,
+      "total_attempts": 93,
+      "total_tokens_consumed": 101082,
+      "token_savings_pct_vs_full": -16.17,
+      "first_pass_structural_pct": 0.0,
+      "final_structural_pct": 65.6,
+      "first_pass_semantic_pct": 9.4,
+      "final_semantic_pct": 59.4,
+      "recovery_rate_pct": 65.6,
+      "mean_tts": 3111.0
+    },
+    "ci_k1_static": {
+      "tasks_count": 32,
+      "total_attempts": 78,
+      "total_tokens_consumed": 87363,
+      "token_savings_pct_vs_full": -0.4,
+      "first_pass_structural_pct": 6.2,
+      "final_structural_pct": 81.2,
+      "first_pass_semantic_pct": 15.6,
+      "final_semantic_pct": 75.0,
+      "recovery_rate_pct": 80.0,
+      "mean_tts": 2568.1
+    },
+    "ci_k1_reactive": {
+      "tasks_count": 32,
+      "total_attempts": 67,
+      "total_tokens_consumed": 78330,
+      "token_savings_pct_vs_full": 9.98,
+      "first_pass_structural_pct": 6.2,
+      "final_structural_pct": 96.9,
+      "first_pass_semantic_pct": 15.6,
+      "final_semantic_pct": 90.6,
+      "recovery_rate_pct": 96.7,
+      "mean_tts": 2401.5
+    },
+    "ci_k2_reactive": {
+      "tasks_count": 32,
+      "total_attempts": 65,
+      "total_tokens_consumed": 76607,
+      "token_savings_pct_vs_full": 11.96,
+      "first_pass_structural_pct": 12.5,
+      "final_structural_pct": 93.8,
+      "first_pass_semantic_pct": 25.0,
+      "final_semantic_pct": 87.5,
+      "recovery_rate_pct": 92.9,
+      "mean_tts": 2300.3
+    },
+    "oracle_reactive": {
+      "tasks_count": 32,
+      "total_attempts": 68,
+      "total_tokens_consumed": 79727,
+      "token_savings_pct_vs_full": 8.37,
+      "first_pass_structural_pct": 6.2,
+      "final_structural_pct": 93.8,
+      "first_pass_semantic_pct": 15.6,
+      "final_semantic_pct": 81.2,
+      "recovery_rate_pct": 93.3,
+      "mean_tts": 2415.0
+    }
+  }
+}

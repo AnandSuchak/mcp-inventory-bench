@@ -1,0 +1,33 @@
+{
+  "title": "LASR-MCP: Learned Adaptive Schema Resolution with Dynamic In-Tree Recovery for Enterprise Tool-Calling Agents (v2.0.3)",
+  "description": "<p><b>LASR-MCP v2.0.3</b> replication package and preprint manuscript. Contains the 15-page IEEE manuscript PDF, complete LaTeX compilation bundle (24 files), canonical 3,840-trial empirical benchmark telemetry (7,860 Gemini 3.5 Flash-Lite API calls), raw call ledgers, statistical bootstrap analysis scripts, and cryptographic verification manifests.</p><p><b>Abstract:</b> Enterprise Model Context Protocol (MCP) agents frequently expose large, deeply constrained JSON Schema specifications that inflate prompt token budgets. While lazy schema resolution seeks to mitigate context bloat, Learned Adaptive Schema Resolution (LASR-MCP) operates by pruning upfront schemas and dynamically injecting violated constraints upon validation failure. However, preliminary v1.0 evaluations suffered from heuristic token double-counting and neglected the multi-turn cost of retry cascades. In this paper, we present a rigorous empirical and theoretical evaluation of LASR-MCP (<code>mcp-inventory-bench</code> v2.0.3) across N=3,840 completed trials across 32 tasks, six experimental arms, and 20 fixed-seed executions per task-arm pair (7,860 response-bearing API invocations on <code>gemini-3.5-flash-lite</code> at temperature 0.2, alongside 154 client transport retries). Using provider-reported prompt-plus-candidate (P+C) token usage from <code>usageMetadata</code> and a paired task-cluster percentile bootstrap (10,000 resamples, seed 42), we characterize the <i>Retry-Amortization Boundary</i> in agentic tool-calling.</p>",
+  "creators": [
+    {
+      "name": "Suchak, Anand S.",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Model Context Protocol",
+    "Autonomous Agents",
+    "Adaptive Schema Resolution",
+    "JSON Schema",
+    "Enterprise Tool-Calling",
+    "In-Tree Recovery",
+    "Token Efficiency",
+    "LLM Agents",
+    "Gemini"
+  ],
+  "version": "v2.0.3",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/AnandSuchak/mcp-inventory-bench",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
